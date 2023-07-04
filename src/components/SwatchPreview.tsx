@@ -1,18 +1,16 @@
+import React from "react";
+import { ColorContext } from "../App";
 import { contrastText } from "../utils/colorCalculations";
 
-type Props = {
-  colorCode: string;
-  colorMode: string;
-};
+export function SwatchPreview() {
+  const color = React.useContext(ColorContext);
+  const { HEX, colorMode } = color;
 
-export function SwatchPreview({ colorCode, colorMode }: Props) {
-  const labelColor = contrastText(colorCode);
+  const labelColor = contrastText(HEX || "ffffff");
 
   return (
-    <div style={{ backgroundColor: colorCode }}>
-      <p
-        style={{ color: labelColor }}
-      >{`${colorMode}: ${colorCode}`}</p>
+    <div style={{ backgroundColor: HEX }}>
+      <p style={{ color: labelColor }}>{`${colorMode}: ${HEX}`}</p>
     </div>
   );
 }
