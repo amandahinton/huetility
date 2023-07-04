@@ -2,8 +2,8 @@ import React from "react";
 import { ColorContext } from "../App";
 import { contrastText } from "../utils/colorCalculations";
 
-export function SwatchPreview() {
-  const color = React.useContext(ColorContext);
+export function Swatch() {
+  const {color} = React.useContext(ColorContext);
   const { HEX, colorMode } = color;
 
   const labelColor = contrastText(HEX || "ffffff");

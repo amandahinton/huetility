@@ -1,24 +1,32 @@
 import React from "react";
-import { ColorPicker, SwatchPreview } from "./components";
+import { ColorPicker, Swatch } from "./components";
 import type { ColorData } from "./types/types";
 import { ColorMode } from "./types/enums";
 import "./App.css";
 
-const defaultData = {
-  colorMode: ColorMode.HEX,
-  HEX: "#f20091",
+type ColorContextType = {
+  color: ColorData;
+  setColor: (color: ColorData) => void;
 };
 
-export const ColorContext = React.createContext<ColorData>(defaultData);
+const defaultData = {
+  color: {
+    colorMode: ColorMode.HEX,
+    HEX: "#f20091",
+  },
+  setColor: () => {},
+};
+
+export const ColorContext = React.createContext<ColorContextType>(defaultData);
 
 function App() {
-  const [color, setColor] = React.useState<ColorData>(defaultData);
+  const [color, setColor] = React.useState<ColorData>(defaultData.color);
 
   return (
-    <ColorContext.Provider value={color}>
+    <ColorContext.Provider value={{ color, setColor }}>
       <h1>Color</h1>
       <ColorPicker />
-      <SwatchPreview />
+      <Swatch />
     </ColorContext.Provider>
   );
 }
