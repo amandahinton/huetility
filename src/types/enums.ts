@@ -5,4 +5,5 @@ export enum ColorMode {
   LAB = "LAB",
   LCH = "LCH",
   RGB = "RGB",
+  RGBA = "RGBA",
 }
