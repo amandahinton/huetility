@@ -10,8 +10,8 @@ export type ColorData = {
   RGB?: RGB;
   RGBA?: RGBA;
 };
- 
-// HEX: # + 3 or 6 characters for rgb, # + 8 chars for for rgba
+
+// HEX: # + 3 or 6 characters for rgb or 8 chars for for rgba
 
 // hue: 0-360
 // saturation: 0-100 (gray to full color)
