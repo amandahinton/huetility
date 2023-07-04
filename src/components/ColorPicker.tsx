@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ColorMode } from "../types/enums";
 
 export function ColorPicker() {
