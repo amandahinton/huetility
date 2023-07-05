@@ -1,10 +1,9 @@
-import React from "react";
-import { ColorContext } from "../App";
+import { useColor } from "../contexts/ColorContext";
 import { contrastText } from "../utils/helpers";
 import { ColorMode } from "../types/enums";
 
 export function Swatch() {
-  const { color } = React.useContext(ColorContext);
+  const { color } = useColor();
   const { colorMode } = color;
 
   const labelColor = contrastText(color.HEX);
