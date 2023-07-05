@@ -1,4 +1,3 @@
-import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { ColorPickerHEX, ColorPickerRGB, ColorPickerRGBA } from "../components";
 import { ColorMode } from "../types/enums";

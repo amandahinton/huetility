@@ -1,4 +1,3 @@
-import React from "react";
 import { useColor } from "../contexts/ColorContext";
 
 export function ColorPickerRGBA() {

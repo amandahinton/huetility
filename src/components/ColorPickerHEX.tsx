@@ -1,4 +1,3 @@
-import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { ColorMode } from "../types/enums";
 
