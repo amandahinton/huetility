@@ -1,14 +1,14 @@
 import { ColorMode } from "./enums";
 
 export type ColorData = {
-  colorMode?: ColorMode;
-  HEX?: string;
+  colorMode: ColorMode;
+  HEX: string;
   HSL?: HSL;
   HWB? = HWB;
   LAB? = LAB;
   LCH? = LCH;
-  RGB?: RGB;
-  RGBA?: RGBA;
+  RGB: RGB;
+  RGBA: RGBA;
 };
 
 // HEX: # + 3 or 6 characters for rgb or 8 chars for for rgba
@@ -31,7 +31,9 @@ export type HWB = {
   b: string;
 };
 
-// lightness, red/green, blue/yellow
+// lightness
+// red/green
+// blue/yellow
 export type LAB = {
   l: string;
   a: string;
@@ -51,9 +53,9 @@ export type LCH = {
 // green: 0-255 (none to full color)
 // blue: 0-255 (none to full color)
 export type RGB = {
-  r: string;
-  g: string;
-  b: string;
+  r: number;
+  g: number;
+  b: number;
 };
 
 // red: 0-255 (none to full color)
@@ -61,8 +63,8 @@ export type RGB = {
 // blue: 0-255 (none to full color)
 // alpha/transparency: 0-1 decimal
 export type RGBA = {
-  r: string;
-  g: string;
-  b: string;
-  a: string;
+  r: number;
+  g: number;
+  b: number;
+  a: number;
 };
