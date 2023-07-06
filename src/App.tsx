@@ -1,4 +1,4 @@
-import { ColorPicker, Swatch } from "./components";
+import { CSSValues, ColorPicker, Swatch } from "./components";
 import { ColorProvider } from "./contexts/ColorContext";
 import "./App.css";
 
@@ -8,6 +8,7 @@ function App() {
       <h1>Color</h1>
       <ColorPicker />
       <Swatch />
+      <CSSValues />
     </ColorProvider>
   );
 }
