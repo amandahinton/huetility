@@ -28,7 +28,8 @@ export function Swatch() {
     <div
       style={{
         backgroundColor: cssValue,
-        height: 100,
+        height: 200,
+        width: 300,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
