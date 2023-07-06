@@ -16,8 +16,8 @@ const defaultData = {
   color: {
     colorMode: ColorMode.HEX,
     HEX: "#f20091",
-    RGB: { r: 242, g: 0, b: 145 },
-    RGBA: { r: 242, g: 0, b: 145, a: 1 },
+    RGB: { r: 242, g: 2, b: 145 },
+    RGBA: { r: 241, g: 3, b: 148, a: 1 },
   },
   setMode: () => {},
   setHEX: () => {},
@@ -39,6 +39,7 @@ export function ColorProvider({ children }: ColorProviderProps) {
     });
   }
 
+  // todo debounce so no console.log errors as typing
   function setHEX(hexcode: string) {
     setColor({
       ...color,
