@@ -20,11 +20,11 @@ export function Tints() {
   };
 
   console.log(divergenceFromWhite)
-  for (let i = tintCount - 2; i > 0; i--) {
+  for (let i = 1; i < tintCount - 1; i++) {
     const newtint = {
-      r: divergenceFromWhite.r * tintMultiplier * i,
-      g: divergenceFromWhite.g * tintMultiplier * i,
-      b: divergenceFromWhite.b * tintMultiplier * i,
+      r: RGB.r + (divergenceFromWhite.r * tintMultiplier * i),
+      g: RGB.g + (divergenceFromWhite.g * tintMultiplier * i),
+      b: RGB.b + (divergenceFromWhite.b * tintMultiplier * i),
     };
     cssTints.push(cssColorValue(ColorMode.RGB, newtint));
   }
