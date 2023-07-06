@@ -4,9 +4,9 @@ import { ColorMode } from "../types/enums";
 
 export const isHexcode = (hexcode: string): boolean => {
   const pattern = new RegExp(
-    /^#([A-Fa-f0-9]{8}|A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+    /^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
   );
-  return pattern.test(hexcode) == true ? true : false;
+  return pattern.test(hexcode);
 };
 
 export const contrastText = (hexcode: string): string => {
