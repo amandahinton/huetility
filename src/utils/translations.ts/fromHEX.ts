@@ -1,19 +1,12 @@
+import { isHexcode } from "../helpers";
+import { BLACK_RGB, BLACK_RGBA } from "../constants";
 import type { RGB, RGBA } from "../../types/types";
-
-import {BLACK_RGB, BLACK_RGBA } from "../constants";
-
-export const isHexcode = (hexcode: string): boolean => {
-  const pattern = new RegExp(
-    /^#([A-Fa-f0-9]{8}|A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
-  );
-  return pattern.test(hexcode) == true ? true : false;
-};
 
 export const hexcodeToRGB = (hexcode: string): RGB => {
   if (!isHexcode(hexcode)) {
     console.error("Error: improper hexcode input, defaulting to black RGB");
     return BLACK_RGB;
-  } 
+  }
 
   try {
     let red;
@@ -50,7 +43,7 @@ export const hexcodeToRGBA = (hexcode: string): RGBA => {
   if (!isHexcode(hexcode)) {
     console.error("Error: improper hexcode input, defaulting to black RGBA");
     return BLACK_RGBA;
-  } 
+  }
 
   try {
     let red;
