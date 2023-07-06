@@ -11,7 +11,9 @@ type ColorContextType = {
   setRGBA: (rgba: RGBA) => void;
 };
 
-//todo make this a random color each refresh
+// todo make this a new color each refresh
+// after fromRGB, use random numbers to assign rgb then translate
+// default rgb and rgba below are different for debugging only
 const defaultData = {
   color: {
     colorMode: ColorMode.HEX,
@@ -39,7 +41,6 @@ export function ColorProvider({ children }: ColorProviderProps) {
     });
   }
 
-  // todo debounce so no console.log errors as typing
   function setHEX(hexcode: string) {
     setColor({
       ...color,
