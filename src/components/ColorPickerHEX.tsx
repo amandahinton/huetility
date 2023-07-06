@@ -1,27 +1,29 @@
+import React from "react";
 import { useColor } from "../contexts/ColorContext";
-import { ColorMode } from "../types/enums";
+import { isHexcode } from "../utils/helpers";
 
 export function ColorPickerHEX() {
   const { color, setHEX } = useColor();
 
-  //todo make onChange a handleChange
-  // that stores the value in state here
-  // checks isHexcode
-  // if isHexcode is true, then setHex() with it
+  const [hexInput, setHexInput] = React.useState<string>(color.HEX);
+
+  const handleHexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setHexInput(e.target.value);
+    if (isHexcode(e.target.value)) setHEX(e.target.value);
+  };
 
   return (
-    <form>
-      <div>
-        <label htmlFor="colorPicker">Select color</label>
-        <input
-          required
-          type="text"
-          id="colorPicker"
-          name="colorPicker"
-          value={color[ColorMode.HEX]}
-          onChange={(e) => setHEX(e.target.value)}
-        />
-      </div>
-    </form>
+    <div>
+      <label htmlFor="colorPicker">Select color</label>
+      <input
+        required
+        type="text"
+        id="colorPicker"
+        name="colorPicker"
+        value={hexInput}
+        onChange={handleHexChange}
+      />
+    </div>
   );
 }
