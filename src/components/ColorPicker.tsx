@@ -16,11 +16,10 @@ export function ColorPicker() {
 
   return (
     <>
-      <h3>Select Color</h3>
       <div>
-        <label htmlFor="colorMode">Color mode</label>
         <select
           required
+          id="colorMode"
           value={color.colorMode}
           onChange={(e) =>
             setMode(ColorMode[e.target.value as keyof typeof ColorMode])

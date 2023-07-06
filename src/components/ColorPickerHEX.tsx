@@ -15,12 +15,12 @@ export function ColorPickerHEX() {
 
   return (
     <div>
-      <label htmlFor="colorPicker">Select color</label>
+      <label htmlFor="hexPicker">Hexcode:</label>
       <input
         required
         type="text"
-        id="colorPicker"
-        name="colorPicker"
+        id="hexPicker"
+        name="hexPicker"
         value={hexInput}
         onChange={handleHexChange}
       />
