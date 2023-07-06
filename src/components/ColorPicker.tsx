@@ -16,6 +16,7 @@ export function ColorPicker() {
 
   return (
     <>
+      <h3>Select Color</h3>
       <form>
         <div>
           <label htmlFor="colorMode">Color mode</label>
