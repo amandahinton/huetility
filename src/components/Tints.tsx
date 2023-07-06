@@ -7,7 +7,7 @@ export function Tints() {
   const { color } = useColor();
   const { RGB } = color;
 
-  const [tintCount, setTintCount] = React.useState<number>(10);
+  const [tintCount, setTintCount] = React.useState<number>(3);
   const source = cssColorValue(ColorMode.RGB, RGB);
   const cssTints = [source];
 

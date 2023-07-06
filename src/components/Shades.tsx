@@ -7,7 +7,7 @@ export function Shades() {
   const { color } = useColor();
   const { RGB } = color;
 
-  const [shadeCount, setShadeCount] = React.useState<number>(10);
+  const [shadeCount, setShadeCount] = React.useState<number>(3);
   const source = cssColorValue(ColorMode.RGB, RGB);
   const cssShades = [source];
 
