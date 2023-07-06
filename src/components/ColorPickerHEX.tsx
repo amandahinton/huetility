@@ -4,6 +4,11 @@ import { ColorMode } from "../types/enums";
 export function ColorPickerHEX() {
   const { color, setHEX } = useColor();
 
+  //todo make onChange a handleChange
+  // that stores the value in state here
+  // checks isHexcode
+  // if isHexcode is true, then setHex() with it
+
   return (
     <form>
       <div>
@@ -14,9 +19,7 @@ export function ColorPickerHEX() {
           id="colorPicker"
           name="colorPicker"
           value={color[ColorMode.HEX]}
-          onChange={(e) =>
-            setHEX(e.target.value)
-          }
+          onChange={(e) => setHEX(e.target.value)}
         />
       </div>
     </form>
