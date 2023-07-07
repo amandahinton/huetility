@@ -2,6 +2,7 @@ import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { cssColorValue } from "../utils/helpers";
 import { ColorMode } from "../types/enums";
+import "./Shades.css";
 
 export function Shades() {
   const { color } = useColor();
@@ -26,7 +27,7 @@ export function Shades() {
 
   return (
     <>
-      <h3>Shades</h3>
+      <h3 className="huetility-shades-title">RGB Shades</h3>
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>
       <input
         type="range"

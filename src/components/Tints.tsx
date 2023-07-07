@@ -2,6 +2,7 @@ import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { cssColorValue } from "../utils/helpers";
 import { ColorMode } from "../types/enums";
+import "./Tints.css"
 
 export function Tints() {
   const { color } = useColor();
@@ -19,7 +20,6 @@ export function Tints() {
     b: 255 - RGB.b,
   };
 
-  console.log(divergenceFromWhite)
   for (let i = 1; i < tintCount - 1; i++) {
     const newtint = {
       r: RGB.r + (divergenceFromWhite.r * tintMultiplier * i),
@@ -33,7 +33,7 @@ export function Tints() {
 
   return (
     <>
-      <h3>Tints</h3>
+      <h3 className="huetility-tints-title">RGB Tints</h3>
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
       <input
         type="range"
