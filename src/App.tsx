@@ -5,6 +5,7 @@ import "./App.css";
 function App() {
   return (
     <ColorProvider>
+      <h1>HUETILITY</h1>
       <ColorPicker />
       <Swatch />
       <CSSValues />
