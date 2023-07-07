@@ -70,7 +70,7 @@ export const hexcodeToRGBA = (hexcode: string): RGBA => {
       r: parseInt(red, 16),
       g: parseInt(green, 16),
       b: parseInt(blue, 16),
-      a: alpha ? parseInt(alpha, 16) : 1,
+      a: alpha ? Number((parseInt(alpha, 16) / 256).toFixed(2)) : 1,
     };
   } catch (error) {
     console.error("Could not convert to RGBA, defaulting to black:", error);
