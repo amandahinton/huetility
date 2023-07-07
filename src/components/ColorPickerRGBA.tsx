@@ -5,11 +5,12 @@ export function ColorPickerRGBA() {
   const { RGBA } = color;
 
   return (
-    <form>
-      <div>
-        <label htmlFor="rgbaPickerR">R</label>
+    <div className="huetility-code-input-container">
+      <div className="huetility-code-input">
+        <label htmlFor="rgbaPickerR">R:</label>
         <input
           required
+          className="huetility-number-input"
           type="text"
           id="rgbaPickerR"
           name="rgbaPickerR"
@@ -23,9 +24,13 @@ export function ColorPickerRGBA() {
             })
           }
         />
-        <label htmlFor="rgbaPickerG">G</label>
+      </div>
+
+      <div className="huetility-code-input">
+        <label htmlFor="rgbaPickerG">G:</label>
         <input
           required
+          className="huetility-number-input"
           type="text"
           id="rgbaPickerG"
           name="rgbaPickerG"
@@ -39,9 +44,13 @@ export function ColorPickerRGBA() {
             })
           }
         />
-        <label htmlFor="rgbaPickerB">B</label>
+      </div>
+
+      <div className="huetility-code-input">
+        <label htmlFor="rgbaPickerB">B:</label>
         <input
           required
+          className="huetility-number-input"
           type="text"
           id="rgbaPickerB"
           name="rgbaPickerB"
@@ -55,9 +64,13 @@ export function ColorPickerRGBA() {
             })
           }
         />
-        <label htmlFor="rgbaPickerA">A</label>
+      </div>
+
+      <div className="huetility-code-input">
+        <label htmlFor="rgbaPickerA">A:</label>
         <input
           required
+          className="huetility-number-input"
           type="text"
           id="rgbaPickerA"
           name="rgbaPickerA"
@@ -72,6 +85,6 @@ export function ColorPickerRGBA() {
           }
         />
       </div>
-    </form>
+    </div>
   );
 }

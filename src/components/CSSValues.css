@@ -1,0 +1,12 @@
+.huetility-css-rules-title {
+ margin-bottom: 0;
+}
+
+.huetility-css-rules-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.huetility-css-rule {
+  padding: 0 18px;
+}
