@@ -1,5 +1,8 @@
 body {
   background-color: rgb(245 245 245);
+  font-family: 'Open Sans', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
