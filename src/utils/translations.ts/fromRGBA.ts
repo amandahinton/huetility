@@ -2,14 +2,15 @@ import { isHexcode } from "../helpers";
 import { BLACK_HEXCODE } from "../constants";
 import { RGB, RGBA } from "../../types/types";
 
-// todo rgba.a needs to take a decimal between 0 and 1
 export const RGBAToHexcode = (rgba: RGBA): string => {
+  let aValue = Math.round(rgba.a * 255);
+
   let hexcode =
     "#" +
     rgba.r.toString(16) +
     rgba.g.toString(16) +
     rgba.b.toString(16) +
-    rgba.a.toString(16);
+    aValue.toString(16);
 
   if (isHexcode(hexcode)) {
     return hexcode;
