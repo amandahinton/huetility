@@ -7,18 +7,18 @@ export function CSSValues() {
   const { color } = useColor();
 
   return (
-    <>
-      <h3 className="huetility-css-rules-title">CSS Values</h3>
+    <div className="huetility-component-container">
+      <h2 className="huetility-component-title">CSS Values</h2>
       <div className="huetility-css-rules-container">
         {Object.keys(ColorMode).map((mode) => {
           const colorMode = mode as keyof typeof ColorMode;
           return (
-            <div key={mode} className="huetility-css-rule">
+            <button key={mode} className="huetility-css-rule">
               {cssColorValue(ColorMode[colorMode], color[colorMode])}
-            </div>
+            </button>
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
