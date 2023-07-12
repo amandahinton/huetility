@@ -34,6 +34,38 @@ export const isRGBA = (rgba: RGBA): boolean => {
   );
 };
 
+export const isBlack = (mode: ColorMode, code: any): boolean => {
+  let isBlack = false;
+
+  switch (mode) {
+    case ColorMode.HEX:
+      if (code === "#000000") isBlack = true;
+      break;
+    case ColorMode.RGB:
+    case ColorMode.RGBA:
+      if (code.r === 0 && code.g === 0 && code.b === 0) isBlack = true;
+      break;
+  }
+
+  return isBlack;
+};
+
+export const isWhite = (mode: ColorMode, code: any): boolean => {
+  let isWhite = false;
+
+  switch (mode) {
+    case ColorMode.HEX:
+      if (code === "#ffffff") isWhite = true;
+      break;
+    case ColorMode.RGB:
+    case ColorMode.RGBA:
+      if (code.r === 255 && code.g === 255 && code.b === 255) isWhite = true;
+      break;
+  }
+
+  return isWhite;
+};
+
 export const contrastText = (hexcode: string): string => {
   if (!isHexcode(hexcode)) return BLACK_HEXCODE;
 
