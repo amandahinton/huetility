@@ -1,6 +1,8 @@
+/* globals */
+
 body {
   background-color: rgb(245 245 245);
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -12,4 +14,46 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+a {
+  color: #f20091;
+  text-decoration: none;
+  cursor: pointer;
 }
