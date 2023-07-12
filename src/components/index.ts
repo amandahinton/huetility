@@ -3,6 +3,6 @@ export * from "./ColorPickerHEX.tsx";
 export * from "./ColorPickerRGB.tsx";
 export * from "./ColorPickerRGBA.tsx";
 export * from "./CSSValues.tsx";
-export * from "./Shades.tsx";
+export * from "./ScaleShades.tsx";
 export * from "./Swatch.tsx";
-export * from "./Tints.tsx";
+export * from "./ScaleTints.tsx";
