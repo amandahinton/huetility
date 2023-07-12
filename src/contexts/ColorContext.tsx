@@ -1,7 +1,14 @@
 import React from "react";
 import type { ColorData, RGB, RGBA } from "../types/types";
 import { ColorMode } from "../types/enums";
-import { hexcodeToRGB, hexcodeToRGBA } from "../utils/translations.ts/fromHEX";
+import {
+  hexcodeToRGB,
+  hexcodeToRGBA,
+  RGBToHexcode,
+  RGBToRGBA,
+  RGBAToHexcode,
+  RGBAToRGB,
+} from "../utils/translations.ts";
 
 type ColorContextType = {
   color: ColorData;
@@ -50,22 +57,20 @@ export function ColorProvider({ children }: ColorProviderProps) {
     });
   }
 
-  //todo write the translations
   function setRGB(rgb: RGB) {
     setColor({
       ...color,
-      HEX: "#000000",
+      HEX: RGBToHexcode(rgb),
       RGB: rgb,
-      RGBA: { ...rgb, a: 1 },
+      RGBA: RGBToRGBA(rgb),
     });
   }
 
-  //todo write the translations
   function setRGBA(rgba: RGBA) {
     setColor({
       ...color,
-      HEX: "#000000",
-      RGB: { r: rgba.r, g: rgba.g, b: rgba.b },
+      HEX: RGBAToHexcode(rgba),
+      RGB: RGBAToRGB(rgba),
       RGBA: rgba,
     });
   }
