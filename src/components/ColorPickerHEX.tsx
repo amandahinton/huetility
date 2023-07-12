@@ -28,6 +28,9 @@ export function ColorPickerHEX() {
             onChange={handleHexChange}
           />
         </div>
+        {!isHexcode(hexInput) && (
+          <small className="huetility-input-error">Enter a valid hexcode</small>
+        )}
       </div>
     </div>
   );

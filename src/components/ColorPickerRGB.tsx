@@ -50,6 +50,9 @@ export function ColorPickerRGB() {
           value={RGBInput.r}
           onChange={(e) => handleRGBChange("r", e)}
         />
+        {(RGBInput.r < 0 || RGBInput.r > 255) && (
+          <small className="huetility-input-error">Enter a number 0-255</small>
+        )}
       </div>
 
       <div className="huetility-code-input">
@@ -77,6 +80,9 @@ export function ColorPickerRGB() {
           value={RGBInput.g}
           onChange={(e) => handleRGBChange("g", e)}
         />
+        {(RGBInput.g < 0 || RGBInput.g > 255) && (
+          <small className="huetility-input-error">Enter a number 0-255</small>
+        )}
       </div>
 
       <div className="huetility-code-input">
@@ -104,6 +110,9 @@ export function ColorPickerRGB() {
           value={RGBInput.b}
           onChange={(e) => handleRGBChange("b", e)}
         />
+        {(RGBInput.b < 0 || RGBInput.b > 255) && (
+          <small className="huetility-input-error">Enter a number 0-255</small>
+        )}
       </div>
     </div>
   );

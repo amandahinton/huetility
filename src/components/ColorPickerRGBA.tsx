@@ -50,6 +50,9 @@ export function ColorPickerRGBA() {
           value={RGBAInput.r}
           onChange={(e) => handleRGBAChange("r", e)}
         />
+        {(RGBAInput.r < 0 || RGBAInput.r > 255) && (
+          <small className="huetility-input-error">Enter a number 0-255</small>
+        )}
       </div>
 
       <div className="huetility-code-input">
@@ -77,6 +80,9 @@ export function ColorPickerRGBA() {
           value={RGBAInput.g}
           onChange={(e) => handleRGBAChange("g", e)}
         />
+        {(RGBAInput.g < 0 || RGBAInput.g > 255) && (
+          <small className="huetility-input-error">Enter a number 0-255</small>
+        )}
       </div>
 
       <div className="huetility-code-input">
@@ -102,6 +108,9 @@ export function ColorPickerRGBA() {
           value={RGBAInput.b}
           onChange={(e) => handleRGBAChange("b", e)}
         />
+        {(RGBAInput.b < 0 || RGBAInput.b > 255) && (
+          <small className="huetility-input-error">Enter a number 0-255</small>
+        )}
       </div>
 
       <div className="huetility-code-input">
@@ -130,6 +139,11 @@ export function ColorPickerRGBA() {
           value={RGBAInput.a}
           onChange={(e) => handleRGBAChange("a", e)}
         />
+        {(RGBAInput.a < 0 || RGBAInput.a > 1) && (
+          <small className="huetility-input-error">
+            Enter a decimal number 0-1
+          </small>
+        )}
       </div>
     </div>
   );
