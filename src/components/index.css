@@ -10,3 +10,7 @@
 .huetility-component-title {
   margin-bottom: .5rem;
 }
+
+.huetility-input-error {
+  color: red;
+}
