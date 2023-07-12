@@ -1,0 +1,8 @@
+.huetility-swatch {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
