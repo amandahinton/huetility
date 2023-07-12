@@ -18,15 +18,13 @@ type ColorContextType = {
   setRGBA: (rgba: RGBA) => void;
 };
 
-// todo make this a new color each refresh
-// after fromRGB, use random numbers to assign rgb then translate
-// default rgb and rgba below are different for debugging only
+// todo make this a random color
 const defaultData = {
   color: {
     colorMode: ColorMode.HEX,
     HEX: "#f20091",
-    RGB: { r: 242, g: 2, b: 145 },
-    RGBA: { r: 241, g: 3, b: 148, a: 1 },
+    RGB: { r: 242, g: 0, b: 145 },
+    RGBA: { r: 241, g: 0, b: 145, a: 1 },
   },
   setMode: () => {},
   setHEX: () => {},
