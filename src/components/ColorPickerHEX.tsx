@@ -16,16 +16,18 @@ export function ColorPickerHEX() {
   return (
     <div className="huetility-code-input-container">
       <div className="huetility-code-input">
-        <label htmlFor="hexPicker">Hexcode:</label>
-        <input
-          required
-          className="huetility-hex-input"
-          type="text"
-          id="hexPicker"
-          name="hexPicker"
-          value={hexInput}
-          onChange={handleHexChange}
-        />
+        <div className="huetility-code-string-input">
+          <label htmlFor="hexPicker">Hexcode:</label>
+          <input
+            required
+            className="huetility-hex-input"
+            type="text"
+            id="hexPicker"
+            name="hexPicker"
+            value={hexInput}
+            onChange={handleHexChange}
+          />
+        </div>
       </div>
     </div>
   );
