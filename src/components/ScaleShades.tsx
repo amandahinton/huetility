@@ -2,9 +2,9 @@ import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { cssColorValue } from "../utils/helpers";
 import { ColorMode } from "../types/enums";
-import "./Shades.css";
+import "./Scale.css";
 
-export function Shades() {
+export function ScaleShades() {
   const { color } = useColor();
   const { RGB } = color;
 
@@ -26,8 +26,8 @@ export function Shades() {
   cssShades.push("rgb(0, 0, 0)");
 
   return (
-    <>
-      <h3 className="huetility-shades-title">RGB Shades</h3>
+    <div className="huetility-component-container">
+      <h2 className="huetility-component-title">RGB Shades</h2>
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>
       <input
         type="range"
@@ -38,32 +38,19 @@ export function Shades() {
         value={shadeCount}
         onChange={(e) => setShadeCount(Number(e.target.value))}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: 20,
-          height: 100,
-          width: 900,
-        }}
-      >
+      <div className="huetility-shade-tint-buttons-container">
         {cssShades.map((shadeValue) => (
           <button
             key={shadeValue}
+            className="huetility-shade-tint-button"
             title={shadeValue}
             style={{
               backgroundColor: shadeValue,
-              borderRadius: 0,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: 100,
               width: 900 / shadeCount,
             }}
           ></button>
         ))}
       </div>
-    </>
+    </div>
   );
 }

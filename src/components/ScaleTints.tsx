@@ -2,9 +2,9 @@ import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { cssColorValue } from "../utils/helpers";
 import { ColorMode } from "../types/enums";
-import "./Tints.css"
+import "./Scale.css";
 
-export function Tints() {
+export function ScaleTints() {
   const { color } = useColor();
   const { RGB } = color;
 
@@ -22,9 +22,9 @@ export function Tints() {
 
   for (let i = 1; i < tintCount - 1; i++) {
     const newtint = {
-      r: RGB.r + (divergenceFromWhite.r * tintMultiplier * i),
-      g: RGB.g + (divergenceFromWhite.g * tintMultiplier * i),
-      b: RGB.b + (divergenceFromWhite.b * tintMultiplier * i),
+      r: RGB.r + divergenceFromWhite.r * tintMultiplier * i,
+      g: RGB.g + divergenceFromWhite.g * tintMultiplier * i,
+      b: RGB.b + divergenceFromWhite.b * tintMultiplier * i,
     };
     cssTints.push(cssColorValue(ColorMode.RGB, newtint));
   }
@@ -32,8 +32,8 @@ export function Tints() {
   cssTints.push("rgb(255, 255, 255)");
 
   return (
-    <>
-      <h3 className="huetility-tints-title">RGB Tints</h3>
+    <div className="huetility-component-container">
+      <h2 className="huetility-component-title">RGB Tints</h2>
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
       <input
         type="range"
@@ -44,32 +44,19 @@ export function Tints() {
         value={tintCount}
         onChange={(e) => setTintCount(Number(e.target.value))}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: 20,
-          height: 100,
-          width: 900,
-        }}
-      >
+      <div className="huetility-shade-tint-buttons-container">
         {cssTints.map((tintValue) => (
           <button
             key={tintValue}
+            className="huetility-shade-tint-button"
             title={tintValue}
             style={{
               backgroundColor: tintValue,
-              borderRadius: 0,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: 100,
               width: 900 / tintCount,
             }}
           ></button>
         ))}
       </div>
-    </>
+    </div>
   );
 }
