@@ -5,8 +5,6 @@ import { RGB, RGBA } from "../../types/types";
 export const RGBToHexcode = (rgb: RGB): string => {
   let hexcode = "#" + rgb.r.toString(16) + rgb.g.toString(16) + rgb.b.toString(16);
 
-  console.log(hexcode)
-
   if (isHexcode(hexcode)) {
     return hexcode;
   } else {
