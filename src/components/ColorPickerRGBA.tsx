@@ -1,88 +1,134 @@
+import React from "react";
 import { useColor } from "../contexts/ColorContext";
+import { isRGBA } from "../utils/helpers";
+import { RGBA } from "../types/types";
 
 export function ColorPickerRGBA() {
   const { color, setRGBA } = useColor();
   const { RGBA } = color;
 
+  const [RGBAInput, setRGBAInput] = React.useState<RGBA>(RGBA);
+
+  const handleRGBAChange = (
+    channel: keyof RGBA,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    e.preventDefault();
+
+    const updatedChannel: Partial<RGBA> = {};
+    updatedChannel[channel] = Number(e.target.value);
+    const newRGBA = { ...RGBAInput, ...updatedChannel };
+    setRGBAInput(newRGBA);
+
+    if (isRGBA(newRGBA)) setRGBA(newRGBA);
+  };
+
   return (
     <div className="huetility-code-input-container">
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerR">R:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgba-picker-r">R:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgba-picker-r"
+            name="rgbaPickerR"
+            min={0}
+            max={255}
+            value={RGBAInput.r}
+            onChange={(e) => handleRGBAChange("r", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerR"
-          name="rgbaPickerR"
-          value={RGBA.r}
-          onChange={(e) =>
-            setRGBA({
-              r: Number(e.target.value),
-              g: RGBA.g,
-              b: RGBA.b,
-              a: RGBA.a,
-            })
-          }
+          type="range"
+          min="0"
+          max="255"
+          step="1"
+          id="rgba-slider-r"
+          name="rgbaSliderR"
+          value={RGBAInput.r}
+          onChange={(e) => handleRGBAChange("r", e)}
         />
       </div>
 
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerG">G:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgba-picker-g">G:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgba-picker-g"
+            name="rgbaPickerG"
+            min={0}
+            max={255}
+            value={RGBAInput.g}
+            onChange={(e) => handleRGBAChange("g", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerG"
-          name="rgbaPickerG"
-          value={RGBA.g}
-          onChange={(e) =>
-            setRGBA({
-              r: RGBA.r,
-              g: Number(e.target.value),
-              b: RGBA.b,
-              a: RGBA.a,
-            })
-          }
+          type="range"
+          min="0"
+          max="255"
+          step="1"
+          id="rgba-slider-g"
+          name="rgbaSliderG"
+          value={RGBAInput.g}
+          onChange={(e) => handleRGBAChange("g", e)}
         />
       </div>
 
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerB">B:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgba-picker-b">B:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgba-picker-b"
+            name="rgbaPickerB"
+            value={RGBAInput.b}
+            onChange={(e) => handleRGBAChange("b", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerB"
-          name="rgbaPickerB"
-          value={RGBA.b}
-          onChange={(e) =>
-            setRGBA({
-              r: RGBA.r,
-              g: RGBA.g,
-              b: Number(e.target.value),
-              a: RGBA.a,
-            })
-          }
+          type="range"
+          min="0"
+          max="255"
+          step="1"
+          id="rgba-slider-b"
+          name="rgbaSliderB"
+          value={RGBAInput.b}
+          onChange={(e) => handleRGBAChange("b", e)}
         />
       </div>
 
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerA">A:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgba-picker-a">A:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgba-picker-a"
+            name="rgbaPickerA"
+            min="0"
+            max="1"
+            step="0.1"
+            value={RGBAInput.a}
+            onChange={(e) => handleRGBAChange("a", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerA"
-          name="rgbaPickerA"
-          value={RGBA.a}
-          onChange={(e) =>
-            setRGBA({
-              r: RGBA.r,
-              g: RGBA.g,
-              b: RGBA.b,
-              a: Number(e.target.value),
-            })
-          }
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          id="rgba-slider-a"
+          name="rgbaSliderA"
+          value={RGBAInput.a}
+          onChange={(e) => handleRGBAChange("a", e)}
         />
       </div>
     </div>

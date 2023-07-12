@@ -1,53 +1,108 @@
+import React from "react";
 import { useColor } from "../contexts/ColorContext";
+import { isRGB } from "../utils/helpers";
+import { RGB } from "../types/types";
 
 export function ColorPickerRGB() {
   const { color, setRGB } = useColor();
   const { RGB } = color;
 
+  const [RGBInput, setRGBInput] = React.useState<RGB>(RGB);
+
+  const handleRGBChange = (
+    channel: keyof RGB,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    e.preventDefault();
+
+    const updatedChannel: Partial<RGB> = {};
+    updatedChannel[channel] = Number(e.target.value);
+    const newRGB = { ...RGBInput, ...updatedChannel };
+    setRGBInput(newRGB);
+
+    if (isRGB(newRGB)) setRGB(newRGB);
+  };
+
   return (
     <div className="huetility-code-input-container">
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerR">R:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgb-picker-r">R:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgb-picker-r"
+            name="rgbPickerR"
+            min={0}
+            max={255}
+            value={RGBInput.r}
+            onChange={(e) => handleRGBChange("r", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerR"
-          name="rgbaPickerR"
-          value={RGB.r}
-          onChange={(e) =>
-            setRGB({ r: Number(e.target.value), g: RGB.g, b: RGB.b })
-          }
+          type="range"
+          min="0"
+          max="255"
+          step="1"
+          id="rgb-slider-r"
+          name="rgbSliderR"
+          value={RGBInput.r}
+          onChange={(e) => handleRGBChange("r", e)}
         />
       </div>
 
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerG">G:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgb-picker-g">G:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgb-picker-g"
+            name="rgbPickerG"
+            min={0}
+            max={255}
+            value={RGBInput.g}
+            onChange={(e) => handleRGBChange("g", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerG"
-          name="rgbaPickerG"
-          value={RGB.g}
-          onChange={(e) =>
-            setRGB({ r: RGB.r, g: Number(e.target.value), b: RGB.b })
-          }
+          type="range"
+          min="0"
+          max="255"
+          step="1"
+          id="rgb-slider-g"
+          name="rgbSliderG"
+          value={RGBInput.g}
+          onChange={(e) => handleRGBChange("g", e)}
         />
       </div>
 
       <div className="huetility-code-input">
-        <label htmlFor="rgbaPickerB">B:</label>
+        <div className="huetility-code-number-input">
+          <label htmlFor="rgb-picker-b">B:</label>
+          <input
+            required
+            className="huetility-number-input"
+            type="number"
+            id="rgb-picker-b"
+            name="rgbPickerB"
+            min={0}
+            max={255}
+            value={RGBInput.b}
+            onChange={(e) => handleRGBChange("b", e)}
+          />
+        </div>
         <input
-          required
-          className="huetility-number-input"
-          type="text"
-          id="rgbaPickerB"
-          name="rgbaPickerB"
-          value={RGB.b}
-          onChange={(e) =>
-            setRGB({ r: RGB.r, g: RGB.g, b: Number(e.target.value) })
-          }
+          type="range"
+          min="0"
+          max="255"
+          step="1"
+          id="rgb-slider-b"
+          name="rgbSliderB"
+          value={RGBInput.b}
+          onChange={(e) => handleRGBChange("b", e)}
         />
       </div>
     </div>
