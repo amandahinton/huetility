@@ -1,16 +1,16 @@
-import { CSSValues, ColorPicker, Shades, Swatch, Tints } from "./components";
+import { CSSValues, ColorPicker, ScaleShades, Swatch, ScaleTints } from "./components";
 import { ColorProvider } from "./contexts/ColorContext";
 import "./App.css";
+import "../src/components/index.css"
 
 function App() {
   return (
     <ColorProvider>
       <h1>HUETILITY</h1>
       <ColorPicker />
-      <Swatch />
       <CSSValues />
-      <Tints />
-      <Shades />
+      <ScaleTints />
+      <ScaleShades />
     </ColorProvider>
   );
 }

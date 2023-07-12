@@ -1,5 +1,10 @@
 import { useColor } from "../contexts/ColorContext";
-import { ColorPickerHEX, ColorPickerRGB, ColorPickerRGBA } from "../components";
+import {
+  ColorPickerHEX,
+  ColorPickerRGB,
+  ColorPickerRGBA,
+  Swatch,
+} from "../components";
 import { ColorMode } from "../types/enums";
 import "./ColorPicker.css";
 
@@ -16,12 +21,13 @@ export function ColorPicker() {
   const PickerInput = pickerComponents[colorMode];
 
   return (
-    <div className="huetility-picker-container">
+    <div className="huetility-component-container">
+      <h2 className="huetility-component-title">Color Picker</h2>
       <select
         required
         className="huetility-mode-select"
         id="colorMode"
-        value={color.colorMode}
+        value={colorMode}
         onChange={(e) =>
           setMode(ColorMode[e.target.value as keyof typeof ColorMode])
         }
@@ -34,6 +40,7 @@ export function ColorPicker() {
       </select>
 
       <PickerInput />
+      <Swatch />
     </div>
   );
 }
