@@ -1,6 +1,7 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
-import { cssColorValue } from "../utils/helpers";
+import { cssColorValue, isWhite } from "../utils/helpers";
+import { WHITE_RGB_CSS } from "../utils/constants";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
 
@@ -9,8 +10,27 @@ export function ScaleTints() {
   const { RGB } = color;
 
   const [tintCount, setTintCount] = React.useState<number>(3);
-  const source = cssColorValue(ColorMode.RGB, RGB);
-  const cssTints = [source];
+
+  if (isWhite(ColorMode.RGB, RGB)) {
+    return (
+      <div className="huetility-component-container">
+        <h2 className="huetility-component-title">RGB Tints</h2>
+
+        <div className="huetility-shade-tint-buttons-container">
+          <button
+            className="huetility-shade-tint-button"
+            title={WHITE_RGB_CSS}
+            style={{
+              backgroundColor: WHITE_RGB_CSS,
+              width: 300,
+            }}
+          ></button>
+        </div>
+      </div>
+    );
+  }
+
+  const cssTints = [cssColorValue(ColorMode.RGB, RGB)];
 
   const tintMultiplier = 1 / (tintCount - 1);
 
@@ -29,7 +49,7 @@ export function ScaleTints() {
     cssTints.push(cssColorValue(ColorMode.RGB, newtint));
   }
 
-  cssTints.push("rgb(255, 255, 255)");
+  cssTints.push(WHITE_RGB_CSS);
 
   return (
     <div className="huetility-component-container">
