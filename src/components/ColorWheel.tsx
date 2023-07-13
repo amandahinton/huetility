@@ -9,7 +9,7 @@ export function ColorWheel() {
   const canvasHeight = 300;
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
-    const results = [
+    const hues = [
       { color: "lime - 90", total: 30, hue: "#80ff00ff" },
       { color: "green - 120", total: 30, hue: "#00ff00ff" },
       { color: "mint - 150", total: 30, hue: "#00ff80ff" },
@@ -25,11 +25,9 @@ export function ColorWheel() {
     ];
 
     let currentAngle = 0;
-
-    for (let colorValue of results) {
-      //calculating the angle the slice (portion) will take in the chart
+    for (let colorValue of hues) {
       let portionAngle = (colorValue.total / 360) * 2 * Math.PI;
-      //drawing an arc and a line to the center to differentiate the slice from the rest
+      // draw the pie slice
       canvasContext.beginPath();
       canvasContext.arc(
         canvasHeight / 2,
