@@ -5,12 +5,12 @@ import { RGB, RGBA } from "../../types/types";
 export const RGBAToHexcode = (rgba: RGBA): string => {
   let aValue = Math.round(rgba.a * 255);
 
-  let hexcode =
-    "#" +
-    rgba.r.toString(16) +
-    rgba.g.toString(16) +
-    rgba.b.toString(16) +
-    aValue.toString(16);
+  let red = rgba.r < 9 ? "0" + rgba.r.toString() : rgba.r.toString(16);
+  let green = rgba.g < 9 ? "0" + rgba.g.toString() : rgba.g.toString(16);
+  let blue = rgba.b < 9 ? "0" + rgba.b.toString() : rgba.b.toString(16);
+  let alpha = aValue < 9 ? "0" + aValue.toString() : aValue.toString(16);
+
+  let hexcode = "#" + red + green + blue + alpha;
 
   if (isHexcode(hexcode)) {
     return hexcode;
