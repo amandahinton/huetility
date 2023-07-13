@@ -94,6 +94,8 @@ export function ColorPickerRGBA() {
             type="number"
             id="rgba-picker-b"
             name="rgbaPickerB"
+            min={0}
+            max={255}
             value={RGBAInput.b}
             onChange={(e) => handleRGBAChange("b", e)}
           />

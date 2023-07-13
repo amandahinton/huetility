@@ -3,6 +3,7 @@ import {
   ColorPickerHEX,
   ColorPickerRGB,
   ColorPickerRGBA,
+  RGBColorWheel,
   Swatch,
 } from "../components";
 import { ColorMode } from "../types/enums";
@@ -39,7 +40,10 @@ export function ColorPicker() {
         ))}
       </select>
 
-      <PickerInput />
+      <div className="huetility-color-selection-container">
+        <RGBColorWheel />
+        <PickerInput />
+      </div>
       <Swatch />
     </div>
   );
