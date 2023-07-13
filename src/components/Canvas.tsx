@@ -6,7 +6,10 @@ type Props = {
   width: number;
   classNames?: string;
   id?: string;
-  onClick?: (canvasContext: CanvasRenderingContext2D) => void;
+  onClick?: (
+    canvasContext: CanvasRenderingContext2D,
+    event: React.MouseEvent<HTMLElement>
+  ) => void;
 };
 
 export function Canvas({
@@ -29,7 +32,9 @@ export function Canvas({
     if (onClick) {
       draw(canvasContext);
 
-      canvas.addEventListener("click", () => onClick(canvasContext));
+      canvas.addEventListener("click", (event: React.MouseEvent<HTMLElement>) =>
+        onClick(canvasContext, event)
+      );
 
       return () => canvas.removeEventListener("click", onClick);
     }

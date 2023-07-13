@@ -3,7 +3,7 @@ import { Canvas } from "../components";
 import "./ColorSpace.css";
 
 export function ColorSpace() {
-  const [pixelValue, setPixelValue] = React.useState<string>("GOOOOO");
+  const [pixelValue, setPixelValue] = React.useState<string>("Select a color");
 
   const canvasWidth = 300;
   const canvasHeight = 300;
@@ -11,21 +11,29 @@ export function ColorSpace() {
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
     canvasContext.fillStyle = "red";
     canvasContext.fillRect(0, 0, 75, canvasHeight);
-    canvasContext.fillStyle = "blue";
+    canvasContext.fillStyle = "lime";
     canvasContext.fillRect(75, 0, 75, canvasHeight);
-    canvasContext.fillStyle = "green";
+    canvasContext.fillStyle = "blue";
     canvasContext.fillRect(150, 0, 75, canvasHeight);
     canvasContext.fillStyle = "yellow";
     canvasContext.fillRect(225, 0, 75, canvasHeight);
   };
 
-  const handleClick = (canvasContext: CanvasRenderingContext2D) => {
-    canvasContext.fillStyle = "black";
-    canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
+  const handleClick = (
+    canvasContext: CanvasRenderingContext2D,
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    const coordinates = [event.offsetX, event.offsetY];
 
-    setTimeout(() => {
-      canvasDraw(canvasContext);
-    }, 500);
+    const data = canvasContext.getImageData(
+      coordinates[0],
+      coordinates[1],
+      1,
+      1
+    ).data;
+
+    const rgba = [data[0], data[1], data[2], data[3] / 255];
+    setPixelValue(`rgba(${rgba.join(", ")})`);
   };
 
   return (
