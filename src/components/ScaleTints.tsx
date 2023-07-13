@@ -65,16 +65,18 @@ export function ScaleTints() {
         onChange={(e) => setTintCount(Number(e.target.value))}
       />
       <div className="huetility-shade-tint-buttons-container">
-        {cssTints.map((tintValue) => (
+        {cssTints.map((tintValue, i) => (
           <button
-            key={`tints-${tintValue}`}
+            key={`${i}-tints-${tintValue}`}
             className="huetility-shade-tint-button"
             title={tintValue}
             style={{
               backgroundColor: tintValue,
               width: 900 / tintCount,
             }}
-          ></button>
+          >
+            {tintValue}
+          </button>
         ))}
       </div>
     </div>

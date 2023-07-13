@@ -43,8 +43,6 @@ export function ScaleShades() {
     cssShades.push(cssColorValue(ColorMode.RGB, newShade));
   }
 
-  cssShades.push(BLACK_RGB_CSS);
-
   return (
     <div className="huetility-component-container">
       <h2 className="huetility-component-title">RGB Shades</h2>
@@ -59,9 +57,9 @@ export function ScaleShades() {
         onChange={(e) => setShadeCount(Number(e.target.value))}
       />
       <div className="huetility-shade-tint-buttons-container">
-        {cssShades.map((shadeValue) => (
+        {cssShades.map((shadeValue, i) => (
           <button
-            key={`shades-${shadeValue}`}
+            key={`${i}-shades-${shadeValue}`}
             className="huetility-shade-tint-button"
             title={shadeValue}
             style={{
