@@ -10,6 +10,11 @@ export const isHexcode = (hexcode: string): boolean => {
   return pattern.test(hexcode);
 };
 
+export const isPartialHexcode = (hexcode: string): boolean => {
+  const pattern = new RegExp(/^#([A-Fa-f0-9]{0,8})$/);
+  return pattern.test(hexcode);
+};
+
 export const isRGB = (rgb: RGB): boolean => {
   return (
     rgb.r >= 0 &&
@@ -89,10 +94,14 @@ export const cssColorValue = (mode: ColorMode, code: any): string => {
       value = code;
       break;
     case ColorMode.RGB:
-      value = `rgb(${code.r}, ${code.g}, ${code.b})`;
+      value = `rgb(${Math.round(code.r)}, ${Math.round(code.g)}, ${Math.round(
+        code.b
+      )})`;
       break;
     case ColorMode.RGBA:
-      value = `rgba(${code.r}, ${code.g}, ${code.b}, ${code.a})`;
+      value = `rgba(${Math.round(code.r)}, ${Math.round(code.g)}, ${Math.round(
+        code.b
+      )}, ${code.a})`;
       break;
   }
 
