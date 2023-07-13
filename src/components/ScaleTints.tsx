@@ -74,9 +74,7 @@ export function ScaleTints() {
               backgroundColor: tintValue,
               width: 900 / tintCount,
             }}
-          >
-            {tintValue}
-          </button>
+          ></button>
         ))}
       </div>
     </div>
