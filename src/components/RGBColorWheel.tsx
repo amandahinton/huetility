@@ -2,7 +2,7 @@ import React from "react";
 import { Canvas } from ".";
 import "./ColorSpace.css";
 
-export function ColorWheel() {
+export function RGBColorWheel() {
   const [pixelValue, setPixelValue] = React.useState<string>("Select a color");
 
   const canvasWidth = 300;
@@ -10,23 +10,24 @@ export function ColorWheel() {
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
     const hues = [
-      { color: "lime - 90", total: 30, hue: "#80ff00ff" },
-      { color: "green - 120", total: 30, hue: "#00ff00ff" },
-      { color: "mint - 150", total: 30, hue: "#00ff80ff" },
-      { color: "cyan - 180", total: 30, hue: "#00ffffff" },
-      { color: "cornflower - 210", total: 30, hue: "#0080ffff" },
-      { color: "blue - 240", total: 30, hue: "#0000ffff" },
-      { color: "violet - 270", total: 30, hue: "#8000ffff" },
-      { color: "magenta - 300", total: 30, hue: "#ff00ffff" },
-      { color: "pink - 330", total: 30, hue: "#ff0080ff" },
-      { color: "red - 0", total: 30, hue: "#ff0000ff" },
-      { color: "orange - 30", total: 30, hue: "#ff8000ff" },
-      { color: "yellow - 60", total: 30, hue: "#ffff00ff" },
+      { color: "lime - 90", wedge: 30, hue: "#80ff00ff" },
+      { color: "green - 120", wedge: 30, hue: "#00ff00ff" },
+      { color: "mint - 150", wedge: 30, hue: "#00ff80ff" },
+      { color: "cyan - 180", wedge: 30, hue: "#00ffffff" },
+      { color: "cornflower - 210", wedge: 30, hue: "#0080ffff" },
+      { color: "blue - 240", wedge: 30, hue: "#0000ffff" },
+      { color: "violet - 270", wedge: 30, hue: "#8000ffff" },
+      { color: "magenta - 300", wedge: 30, hue: "#ff00ffff" },
+      { color: "pink - 330", wedge: 30, hue: "#ff0080ff" },
+      { color: "red - 0", wedge: 30, hue: "#ff0000ff" },
+      { color: "orange - 30", wedge: 30, hue: "#ff8000ff" },
+      { color: "yellow - 60", wedge: 30, hue: "#ffff00ff" },
     ];
 
     let currentAngle = 0;
     for (let colorValue of hues) {
-      let portionAngle = (colorValue.total / 360) * 2 * Math.PI;
+      // determine slice size
+      let portionAngle = (colorValue.wedge / 360) * 2 * Math.PI;
       // draw the pie slice
       canvasContext.beginPath();
       canvasContext.arc(
@@ -63,7 +64,6 @@ export function ColorWheel() {
 
   return (
     <div className="huetility-component-container">
-      <h2 className="huetility-component-title">Pixel Clicker</h2>
       <div className="huetility-colorspace-container">
         <Canvas
           draw={canvasDraw}
