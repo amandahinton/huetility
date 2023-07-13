@@ -10,13 +10,13 @@ export function ColorSpace() {
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
     canvasContext.fillStyle = "red";
-    canvasContext.fillRect(0, 0, 50, 200);
+    canvasContext.fillRect(0, 0, 75, canvasHeight);
     canvasContext.fillStyle = "blue";
-    canvasContext.fillRect(50, 0, 50, 200);
+    canvasContext.fillRect(75, 0, 75, canvasHeight);
     canvasContext.fillStyle = "green";
-    canvasContext.fillRect(100, 0, 50, 200);
+    canvasContext.fillRect(150, 0, 75, canvasHeight);
     canvasContext.fillStyle = "yellow";
-    canvasContext.fillRect(150, 0, 50, 200);
+    canvasContext.fillRect(225, 0, 75, canvasHeight);
   };
 
   const handleClick = (canvasContext: CanvasRenderingContext2D) => {
@@ -32,7 +32,12 @@ export function ColorSpace() {
     <div className="huetility-component-container">
       <h2 className="huetility-component-title">Pixel Clicker</h2>
       <div className="huetility-colorspace-container">
-        <Canvas draw={canvasDraw} onClick={handleClick} />
+        <Canvas
+          draw={canvasDraw}
+          onClick={handleClick}
+          height={canvasHeight}
+          width={canvasWidth}
+        />
         <h3 className="huetility-clicked-pixel">{pixelValue}</h3>
       </div>
     </div>
