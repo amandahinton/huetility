@@ -67,7 +67,7 @@ export function ScaleTints() {
       <div className="huetility-shade-tint-buttons-container">
         {cssTints.map((tintValue) => (
           <button
-            key={tintValue}
+            key={`tints-${tintValue}`}
             className="huetility-shade-tint-button"
             title={tintValue}
             style={{
