@@ -9,13 +9,13 @@ export function ColorSpace() {
   const canvasHeight = 300;
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
-    canvasContext.fillStyle = "red";
+    canvasContext.fillStyle = "#ff0000ff";
     canvasContext.fillRect(0, 0, 75, canvasHeight);
-    canvasContext.fillStyle = "lime";
+    canvasContext.fillStyle = "#00ff00ff";
     canvasContext.fillRect(75, 0, 75, canvasHeight);
-    canvasContext.fillStyle = "blue";
+    canvasContext.fillStyle = "#0000ffff";
     canvasContext.fillRect(150, 0, 75, canvasHeight);
-    canvasContext.fillStyle = "yellow";
+    canvasContext.fillStyle = "#ffff00ff";
     canvasContext.fillRect(225, 0, 75, canvasHeight);
   };
 
@@ -45,6 +45,7 @@ export function ColorSpace() {
           onClick={handleClick}
           height={canvasHeight}
           width={canvasWidth}
+          classNames=""
         />
         <h3 className="huetility-clicked-pixel">{pixelValue}</h3>
       </div>

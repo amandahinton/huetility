@@ -1,7 +1,8 @@
 import {
   ColorPicker,
   ScaleShades,
-  ColorSpace,
+  // ColorSpace,
+  ColorWheel,
   CSSValues,
   ScaleTints,
 } from "./components";
@@ -13,7 +14,22 @@ function App() {
   return (
     <ColorProvider>
       <h1>HUETILITY</h1>
-      <ColorSpace />
+      {/* <ColorSpace /> */}
+      <ColorWheel />
+      <div
+        style={{
+          marginTop: 100,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <h3>REFERENCE PHOTOS</h3>
+        <div>
+          <img src="/hue-wheel.png" width="200" height="200" />
+          <img src="/rgb-colorspace.png" width="200" height="200" />
+        </div>
+      </div>
       <ColorPicker />
       <CSSValues />
       <ScaleTints />
