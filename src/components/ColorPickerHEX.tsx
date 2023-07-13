@@ -1,6 +1,6 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
-import { isHexcode } from "../utils/helpers";
+import { isHexcode, isPartialHexcode } from "../utils/helpers";
 
 export function ColorPickerHEX() {
   const { color, setHEX } = useColor();
@@ -9,8 +9,10 @@ export function ColorPickerHEX() {
 
   const handleHexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setHexInput(e.target.value);
-    if (isHexcode(e.target.value)) setHEX(e.target.value);
+    let input = e.target.value;
+    if (input[0] !== "#") input = "#" + input;
+    if (isPartialHexcode(input)) setHexInput(input);
+    if (isHexcode(input)) setHEX(input);
   };
 
   return (
