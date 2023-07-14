@@ -58,7 +58,8 @@ export function RGBColorWheel() {
       1
     ).data;
 
-    const rgba = [data[0], data[1], data[2], data[3] / 255];
+    const alpha = data[3] / 255 === 1 ? 1 : (data[3] / 255).toFixed(2);
+    const rgba = [data[0], data[1], data[2], alpha];
     setPixelValue(`rgba(${rgba.join(", ")})`);
   };
 

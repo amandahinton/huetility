@@ -99,9 +99,10 @@ export const cssColorValue = (mode: ColorMode, code: any): string => {
       )})`;
       break;
     case ColorMode.RGBA:
+      const alpha = code.a == 1 ? 1 : (code.a).toFixed(2);
       value = `rgba(${Math.round(code.r)}, ${Math.round(code.g)}, ${Math.round(
         code.b
-      )}, ${code.a})`;
+      )}, ${alpha})`;
       break;
   }
 
