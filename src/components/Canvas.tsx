@@ -26,7 +26,7 @@ export function Canvas({
     const canvas = canvasRef.current;
     if (canvas == null) return;
 
-    const canvasContext: CanvasRenderingContext2D = canvas.getContext("2d");
+    const canvasContext: CanvasRenderingContext2D = canvas.getContext("2d", { willReadFrequently: true });
     if (canvasContext == null) return;
 
     if (onClick) {
