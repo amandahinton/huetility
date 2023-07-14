@@ -5,8 +5,7 @@ import "./ColorSpace.css";
 export function RGBColorWheel() {
   const [pixelValue, setPixelValue] = React.useState<string>("Select a color");
 
-  const canvasWidth = 300;
-  const canvasHeight = 300;
+  const canvasWidth = 300; // use square canvas, height set to same
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
     const hues = [
@@ -19,7 +18,7 @@ export function RGBColorWheel() {
       { color: "violet - 270", wedge: 30, hue: "#8000ffff" },
       { color: "magenta - 300", wedge: 30, hue: "#ff00ffff" },
       { color: "pink - 330", wedge: 30, hue: "#ff0080ff" },
-      { color: "red - 0", wedge: 30, hue: "#ff0000ff" },
+      { color: "red - 0/360", wedge: 30, hue: "#ff0000ff" },
       { color: "orange - 30", wedge: 30, hue: "#ff8000ff" },
       { color: "yellow - 60", wedge: 30, hue: "#ffff00ff" },
     ];
@@ -28,18 +27,19 @@ export function RGBColorWheel() {
     for (let colorValue of hues) {
       // determine slice size
       let portionAngle = (colorValue.wedge / 360) * 2 * Math.PI;
-      // draw the pie slice
+      // draw pie slice arc
       canvasContext.beginPath();
       canvasContext.arc(
-        canvasHeight / 2,
         canvasWidth / 2,
-        canvasHeight / 2,
+        canvasWidth / 2,
+        canvasWidth / 2,
         currentAngle,
         currentAngle + portionAngle
       );
       currentAngle += portionAngle;
-      canvasContext.lineTo(canvasHeight / 2, canvasHeight / 2);
-      // color the slices
+      // make wedge to center of circle
+      canvasContext.lineTo(canvasWidth / 2, canvasWidth / 2);
+      // color slice
       canvasContext.fillStyle = colorValue.hue;
       canvasContext.fill();
     }
@@ -69,7 +69,7 @@ export function RGBColorWheel() {
         <Canvas
           draw={canvasDraw}
           onClick={handleClick}
-          height={canvasHeight}
+          height={canvasWidth}
           width={canvasWidth}
           classNames=""
         />
