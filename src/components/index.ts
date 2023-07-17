@@ -5,7 +5,7 @@ export * from "./ColorPickerRGB.tsx";
 export * from "./ColorPickerRGBA.tsx";
 export * from "./ColorSpace.tsx";
 export * from "./CSSValues.tsx";
-export * from "./RGBColorWheel.tsx";
+export * from "./RGBAColorWheel.tsx";
 export * from "./ScaleShades.tsx";
 export * from "./Swatch.tsx";
 export * from "./ScaleTints.tsx";

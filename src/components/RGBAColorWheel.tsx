@@ -1,10 +1,17 @@
 import React from "react";
 import { Canvas } from "../components";
+import { useColor } from "../contexts/ColorContext";
 import { HUES } from "../utils/constants";
+import { cssColorValue, isRGBA } from "../utils/helpers";
+import { RGBA } from "../types/types";
+import { ColorMode } from "../types/enums";
 import "./ColorSpace.css";
 
-export function RGBColorWheel() {
-  const [pixelValue, setPixelValue] = React.useState<string>("");
+export function RGBAColorWheel() {
+  const { color, setRGBA } = useColor();
+  const { RGBA } = color;
+
+  const [pixelValue, setPixelValue] = React.useState<RGBA>(RGBA);
 
   const canvasWidth = 300; // use square canvas, height set to same
 
@@ -55,10 +62,11 @@ export function RGBColorWheel() {
 
   const handleClick = (
     canvasContext: CanvasRenderingContext2D,
-    event: React.MouseEvent<HTMLElement>
+    e: React.MouseEvent<HTMLElement>
   ) => {
-    const coordinates = [event.offsetX, event.offsetY];
+    e.preventDefault();
 
+    const coordinates = [e.offsetX, e.offsetY];
     const data = canvasContext.getImageData(
       coordinates[0],
       coordinates[1],
@@ -67,8 +75,10 @@ export function RGBColorWheel() {
     ).data;
 
     const alpha = data[3] / 255 === 1 ? 1 : (data[3] / 255).toFixed(2);
-    const rgba = [data[0], data[1], data[2], alpha];
-    setPixelValue(`rgba(${rgba.join(", ")})`);
+    const newRGBA = { r: data[0], g: data[1], b: data[2], a: Number(alpha) };
+    setPixelValue(newRGBA);
+
+    if (isRGBA(newRGBA)) setRGBA(newRGBA);
   };
 
   return (
@@ -81,7 +91,9 @@ export function RGBColorWheel() {
           width={canvasWidth}
           classNames=""
         />
-        <h3 className="huetility-clicked-pixel">{pixelValue}</h3>
+        <h3 className="huetility-clicked-pixel">
+          {cssColorValue(ColorMode.RGBA, pixelValue)}
+        </h3>
       </div>
     </div>
   );
