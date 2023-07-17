@@ -1,48 +1,56 @@
 import React from "react";
-import { Canvas } from ".";
+import { Canvas } from "../components";
+import { HUES } from "../utils/constants";
 import "./ColorSpace.css";
 
 export function RGBColorWheel() {
-  const [pixelValue, setPixelValue] = React.useState<string>("Select a color");
+  const [pixelValue, setPixelValue] = React.useState<string>("");
 
   const canvasWidth = 300; // use square canvas, height set to same
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
-    const hues = [
-      { color: "lime - 90", wedge: 30, hue: "#80ff00ff" },
-      { color: "green - 120", wedge: 30, hue: "#00ff00ff" },
-      { color: "mint - 150", wedge: 30, hue: "#00ff80ff" },
-      { color: "cyan - 180", wedge: 30, hue: "#00ffffff" },
-      { color: "cornflower - 210", wedge: 30, hue: "#0080ffff" },
-      { color: "blue - 240", wedge: 30, hue: "#0000ffff" },
-      { color: "violet - 270", wedge: 30, hue: "#8000ffff" },
-      { color: "magenta - 300", wedge: 30, hue: "#ff00ffff" },
-      { color: "pink - 330", wedge: 30, hue: "#ff0080ff" },
-      { color: "red - 0/360", wedge: 30, hue: "#ff0000ff" },
-      { color: "orange - 30", wedge: 30, hue: "#ff8000ff" },
-      { color: "yellow - 60", wedge: 30, hue: "#ffff00ff" },
-    ];
+    // create a sweeping gradient
+    const gradient = canvasContext.createConicGradient(
+      0,
+      canvasWidth / 2,
+      canvasWidth / 2
+    );
 
-    let currentAngle = 0;
-    for (let colorValue of hues) {
-      // determine slice size
-      let portionAngle = (colorValue.wedge / 360) * 2 * Math.PI;
-      // draw pie slice arc
-      canvasContext.beginPath();
-      canvasContext.arc(
-        canvasWidth / 2,
-        canvasWidth / 2,
-        canvasWidth / 2,
-        currentAngle,
-        currentAngle + portionAngle
-      );
-      currentAngle += portionAngle;
-      // make wedge to center of circle
-      canvasContext.lineTo(canvasWidth / 2, canvasWidth / 2);
-      // color slice
-      canvasContext.fillStyle = colorValue.hue;
-      canvasContext.fill();
+    for (let colorValue of HUES) {
+      gradient.addColorStop((30 / 360) * colorValue.id, colorValue.cssRGB);
     }
+
+    canvasContext.fillStyle = gradient;
+    canvasContext.fillRect(0, 0, canvasWidth, canvasWidth);
+
+    // crop canvas to make circular
+    canvasContext.globalCompositeOperation = "destination-in";
+    canvasContext.beginPath();
+    canvasContext.arc(
+      canvasWidth / 2,
+      canvasWidth / 2,
+      canvasWidth / 2,
+      0,
+      Math.PI * 2
+    );
+    canvasContext.closePath();
+    canvasContext.fill();
+
+    // /*
+    // radial gradient from white to transparent
+    const radialGradient = canvasContext.createRadialGradient(
+      canvasWidth / 2,
+      canvasWidth / 2,
+      0,
+      canvasWidth / 2,
+      canvasWidth / 2,
+      canvasWidth / 2 - 20
+    );
+    radialGradient.addColorStop(0, "#ffffff00");
+    radialGradient.addColorStop(1, "#ffffffff");
+    canvasContext.fillStyle = radialGradient;
+    canvasContext.fillRect(0, 0, 300, 300);
+    // */
   };
 
   const handleClick = (
