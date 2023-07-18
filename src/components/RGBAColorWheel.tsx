@@ -62,14 +62,15 @@ export function RGBAColorWheel() {
 
   const handleClick = (
     canvasContext: CanvasRenderingContext2D,
-    e: React.MouseEvent<HTMLElement>
+    event: React.MouseEvent<HTMLElement>
   ) => {
-    e.preventDefault();
+    event.preventDefault();
 
-    const coordinates = [e.offsetX, e.offsetY];
     const data = canvasContext.getImageData(
-      coordinates[0],
-      coordinates[1],
+      // @ts-ignore
+      event.offsetX,
+      // @ts-ignore
+      event.offsetY,
       1,
       1
     ).data;
