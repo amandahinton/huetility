@@ -21,10 +21,14 @@
   gap: 2rem;
 }
 
+.huetility-code-input-group {
+  display: flex;
+  gap: 1rem;
+}
+
 .huetility-code-input {
   display: flex;
-  align-items: row;
-  gap: 1rem;
+  flex-direction: column;
 }
 
 .huetility-code-number-input {
