@@ -16,13 +16,15 @@ export function RGBAColorWheel() {
   const canvasWidth = 300; // use square canvas, height set to same
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
-    // create a sweeping gradient
+    // create a sweeping gradient with red at top
+    // one radian counterclockwise, x,y center of canvas
     const gradient = canvasContext.createConicGradient(
-      0,
+      -Math.PI / 2,
       canvasWidth / 2,
       canvasWidth / 2
     );
 
+    // hue every 30 degrees
     for (let colorValue of HUES) {
       gradient.addColorStop((30 / 360) * colorValue.id, colorValue.cssRGB);
     }
@@ -43,7 +45,6 @@ export function RGBAColorWheel() {
     canvasContext.closePath();
     canvasContext.fill();
 
-    // /*
     // radial gradient from white to transparent
     const radialGradient = canvasContext.createRadialGradient(
       canvasWidth / 2,
@@ -57,7 +58,6 @@ export function RGBAColorWheel() {
     radialGradient.addColorStop(1, "#ffffffff");
     canvasContext.fillStyle = radialGradient;
     canvasContext.fillRect(0, 0, 300, 300);
-    // */
   };
 
   const handleClick = (
