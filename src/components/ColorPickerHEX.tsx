@@ -7,17 +7,18 @@ export function ColorPickerHEX() {
   const { HEX } = color;
 
   const [hexInput, setHexInput] = React.useState<string>(HEX);
-  
-  React.useEffect(() => {
-    setHexInput(HEX)
-  }, [HEX]);
 
+  // React.useEffect(() => {
+  //   setHexInput(HEX)
+  // }, [HEX]);
 
   const handleHexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+
     let input = e.target.value;
     if (input[0] !== "#") input = "#" + input;
     if (isPartialHexcode(input)) setHexInput(input);
+
     if (isHexcode(input)) setHEX(input);
   };
 
