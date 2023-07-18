@@ -4,8 +4,14 @@ import { isHexcode, isPartialHexcode } from "../utils/helpers";
 
 export function ColorPickerHEX() {
   const { color, setHEX } = useColor();
+  const { HEX } = color;
 
-  const [hexInput, setHexInput] = React.useState<string>(color.HEX);
+  const [hexInput, setHexInput] = React.useState<string>(HEX);
+  
+  React.useEffect(() => {
+    setHexInput(HEX)
+  }, [HEX]);
+
 
   const handleHexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
