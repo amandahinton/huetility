@@ -6,8 +6,13 @@ import { RGBA } from "../types/types";
 export function ColorPickerRGBA() {
   const { color, setRGBA } = useColor();
   const { RGBA } = color;
+  console.log("ColorPickerRGBA", color)
 
   const [RGBAInput, setRGBAInput] = React.useState<RGBA>(RGBA);
+
+  React.useEffect(() => {
+    setRGBAInput(RGBA);
+  }, [RGBA]);
 
   const handleRGBAChange = (
     channel: keyof RGBA,

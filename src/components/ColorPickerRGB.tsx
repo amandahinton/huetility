@@ -4,10 +4,15 @@ import { isRGB } from "../utils/helpers";
 import { RGB } from "../types/types";
 
 export function ColorPickerRGB() {
+  console.log("ColorPickerRGB")
   const { color, setRGB } = useColor();
   const { RGB } = color;
 
   const [RGBInput, setRGBInput] = React.useState<RGB>(RGB);
+
+  React.useEffect(() => {
+    setRGBInput(RGB);
+  }, [RGB]);
 
   const handleRGBChange = (
     channel: keyof RGB,

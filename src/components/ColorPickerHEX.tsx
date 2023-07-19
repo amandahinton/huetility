@@ -5,14 +5,15 @@ import { isHexcode, isPartialHexcode } from "../utils/helpers";
 export function ColorPickerHEX() {
   const { color, setHEX } = useColor();
   const { HEX } = color;
+  console.log("ColorPickerHEX", color)
 
   const [hexInput, setHexInput] = React.useState<string>(HEX);
 
-  // React.useEffect(() => {
-  //   setHexInput(HEX)
-  // }, [HEX]);
+  React.useEffect(() => {
+    setHexInput(HEX);
+  }, [HEX]);
 
-  const handleHexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleHexChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     let input = e.target.value;
@@ -20,7 +21,7 @@ export function ColorPickerHEX() {
     if (isPartialHexcode(input)) setHexInput(input);
 
     if (isHexcode(input)) setHEX(input);
-  };
+  }, [])
 
   return (
     <div className="huetility-code-input-container">
@@ -29,7 +30,7 @@ export function ColorPickerHEX() {
           <label htmlFor="hexPicker">Hexcode:</label>
           <input
             required
-            className="huetility-hex-input"
+            className="huetility-string-input"
             type="text"
             id="hexPicker"
             name="hexPicker"
