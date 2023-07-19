@@ -1,4 +1,4 @@
-import { hexcodeToRGB } from "./translations.ts/fromHEX";
+import { hexcodeToRGBA } from "./translations.ts/fromHEX";
 import { BLACK_HEXCODE, WHITE_HEXCODE } from "./constants";
 import { RGB, RGBA } from "../types/types";
 import { ColorMode } from "../types/enums";
@@ -75,9 +75,11 @@ export const contrastText = (hexcode: string): string => {
   if (!isHexcode(hexcode)) return BLACK_HEXCODE;
 
   try {
-    const rgb = hexcodeToRGB(hexcode);
-    if (rgb) {
-      const luminance = rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114;
+    const rgba = hexcodeToRGBA(hexcode);
+    if (rgba) {
+      if (rgba.a < 0.3) return BLACK_HEXCODE;
+
+      const luminance = rgba.r * 0.299 + rgba.g * 0.587 + rgba.b * 0.114;
       return luminance > 150 ? BLACK_HEXCODE : WHITE_HEXCODE;
     }
   } catch (error) {
@@ -99,7 +101,7 @@ export const cssColorValue = (mode: ColorMode, code: any): string => {
       )})`;
       break;
     case ColorMode.RGBA:
-      const alpha = code.a == 1 ? 1 : (code.a).toFixed(2);
+      const alpha = code.a == 1 ? 1 : code.a.toFixed(2);
       value = `rgba(${Math.round(code.r)}, ${Math.round(code.g)}, ${Math.round(
         code.b
       )}, ${alpha})`;
