@@ -10,8 +10,13 @@ import "./ColorSpace.css";
 export function RGBAColorWheel() {
   const { color, setRGBA } = useColor();
   const { RGBA } = color;
+  console.log("ColorPickerRGBA", color)
 
   const [pixelValue, setPixelValue] = React.useState<RGBA>(RGBA);
+
+  React.useEffect(() => {
+    setPixelValue(RGBA);
+  }, [RGBA]);
 
   const canvasWidth = 300; // use square canvas, height set to same
 
