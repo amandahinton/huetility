@@ -4,7 +4,6 @@ import { isRGB } from "../utils/helpers";
 import { RGB } from "../types/types";
 
 export function ColorPickerRGB() {
-  console.log("ColorPickerRGB")
   const { color, setRGB } = useColor();
   const { RGB } = color;
 
@@ -14,19 +13,19 @@ export function ColorPickerRGB() {
     setRGBInput(RGB);
   }, [RGB]);
 
-  const handleRGBChange = (
-    channel: keyof RGB,
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    e.preventDefault();
+  const handleRGBChange = React.useCallback(
+    (channel: keyof RGB, e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
 
-    const updatedChannel: Partial<RGB> = {};
-    updatedChannel[channel] = Number(e.target.value);
-    const newRGB = { ...RGBInput, ...updatedChannel };
-    setRGBInput(newRGB);
+      const updatedChannel: Partial<RGB> = {};
+      updatedChannel[channel] = Number(e.target.value);
+      const newRGB = { ...RGBInput, ...updatedChannel };
+      setRGBInput(newRGB);
 
-    if (isRGB(newRGB)) setRGB(newRGB);
-  };
+      if (isRGB(newRGB)) setRGB(newRGB);
+    },
+    [setRGB]
+  );
 
   return (
     <div className="huetility-code-input-container">

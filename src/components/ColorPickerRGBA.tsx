@@ -6,7 +6,6 @@ import { RGBA } from "../types/types";
 export function ColorPickerRGBA() {
   const { color, setRGBA } = useColor();
   const { RGBA } = color;
-  console.log("ColorPickerRGBA", color)
 
   const [RGBAInput, setRGBAInput] = React.useState<RGBA>(RGBA);
 
@@ -14,19 +13,19 @@ export function ColorPickerRGBA() {
     setRGBAInput(RGBA);
   }, [RGBA]);
 
-  const handleRGBAChange = (
-    channel: keyof RGBA,
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    e.preventDefault();
+  const handleRGBAChange = React.useCallback(
+    (channel: keyof RGBA, e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
 
-    const updatedChannel: Partial<RGBA> = {};
-    updatedChannel[channel] = Number(e.target.value);
-    const newRGBA = { ...RGBAInput, ...updatedChannel };
-    setRGBAInput(newRGBA);
+      const updatedChannel: Partial<RGBA> = {};
+      updatedChannel[channel] = Number(e.target.value);
+      const newRGBA = { ...RGBAInput, ...updatedChannel };
+      setRGBAInput(newRGBA);
 
-    if (isRGBA(newRGBA)) setRGBA(newRGBA);
-  };
+      if (isRGBA(newRGBA)) setRGBA(newRGBA);
+    },
+    [setRGBA]
+  );
 
   return (
     <div className="huetility-code-input-container">
