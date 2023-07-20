@@ -2,9 +2,8 @@ import React from "react";
 import { Canvas } from "../components";
 import { useColor } from "../contexts/ColorContext";
 import { HUES } from "../utils/constants";
-import { cssColorValue, isRGBA } from "../utils/helpers";
+import { isRGBA } from "../utils/helpers";
 import { RGBA } from "../types/types";
-import { ColorMode } from "../types/enums";
 import "./ColorSpace.css";
 
 export function RGBAColorWheel() {
