@@ -94,9 +94,6 @@ export function RGBAColorWheel() {
           width={canvasWidth}
           classNames=""
         />
-        <h3 className="huetility-clicked-pixel">
-          {cssColorValue(ColorMode.RGBA, pixelValue)}
-        </h3>
       </div>
     </div>
   );
