@@ -9,7 +9,7 @@
 
 .huetility-color-selection-container {
   display: flex;
-  gap: 2rem;
+  gap: 40px;
 }
 
 /* ColorPickerHEX, ColorPickerRGB, etc  */

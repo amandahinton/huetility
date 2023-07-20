@@ -1,6 +1,7 @@
 .huetility-css-rules-container {
   display: flex;
   gap: 1rem;
+  margin-bottom: 20px;
 }
 
 .huetility-css-rule {
