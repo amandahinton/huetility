@@ -22,6 +22,18 @@ export function Canvas({
 }: Props) {
   const canvasRef = React.useRef(null);
 
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const canvas = canvasRef.current;
+    if (canvas == null) return;
+
+    const canvasContext: CanvasRenderingContext2D = canvas.getContext("2d", {
+      willReadFrequently: true,
+    });
+    if (canvasContext == null) return;
+
+    if (onClick) onClick(canvasContext, event);
+  };
+
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas == null) return;
@@ -31,15 +43,7 @@ export function Canvas({
     });
     if (canvasContext == null) return;
 
-    if (onClick) {
-      draw(canvasContext);
-
-      canvas.addEventListener("click", (event: React.MouseEvent<HTMLElement>) =>
-        onClick(canvasContext, event)
-      );
-
-      return () => canvas.removeEventListener("click", onClick);
-    }
+    draw(canvasContext);
   }, []);
 
   return (
@@ -49,6 +53,7 @@ export function Canvas({
       width={width}
       height={height}
       className={classNames}
+      onClick={handleClick}
     ></canvas>
   );
 }
