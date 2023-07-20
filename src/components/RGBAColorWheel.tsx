@@ -10,7 +10,6 @@ import "./ColorSpace.css";
 export function RGBAColorWheel() {
   const { color, setRGBA } = useColor();
   const { RGBA } = color;
-  console.log("ColorPickerRGBA", color)
 
   const [pixelValue, setPixelValue] = React.useState<RGBA>(RGBA);
 
@@ -72,10 +71,8 @@ export function RGBAColorWheel() {
     event.preventDefault();
 
     const data = canvasContext.getImageData(
-      // @ts-ignore
-      event.offsetX,
-      // @ts-ignore
-      event.offsetY,
+      event.nativeEvent.offsetX,
+      event.nativeEvent.offsetY,
       1,
       1
     ).data;
