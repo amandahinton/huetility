@@ -24,7 +24,7 @@ export function ColorPickerRGB() {
 
       if (isRGB(newRGB)) setRGB(newRGB);
     },
-    [setRGB]
+    [RGBInput, setRGB]
   );
 
   return (

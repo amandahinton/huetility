@@ -24,7 +24,7 @@ export function ColorPickerRGBA() {
 
       if (isRGBA(newRGBA)) setRGBA(newRGBA);
     },
-    [setRGBA]
+    [RGBAInput, setRGBA]
   );
 
   return (
