@@ -57,3 +57,9 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+hr {
+  border: 2px solid black;
+  width: 900px;
+  margin: 4rem 0;
+}
