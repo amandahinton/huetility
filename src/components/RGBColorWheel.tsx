@@ -1,20 +1,20 @@
 import React from "react";
-import { Canvas } from "../components";
+import { Canvas } from ".";
 import { useColor } from "../contexts/ColorContext";
 import { HUES } from "../utils/constants";
-import { isRGBA } from "../utils/helpers";
-import { RGBA } from "../types/types";
+import { isRGB } from "../utils/helpers";
+import { RGB } from "../types/types";
 import "./ColorSpace.css";
 
-export function RGBAColorWheel() {
-  const { color, setRGBA } = useColor();
-  const { RGBA } = color;
+export function RGBColorWheel() {
+  const { color, setRGB } = useColor();
+  const { RGB } = color;
 
-  const [pixelValue, setPixelValue] = React.useState<RGBA>(RGBA);
+  const [pixelValue, setPixelValue] = React.useState<RGB>(RGB);
 
   React.useEffect(() => {
-    setPixelValue(RGBA);
-  }, [RGBA]);
+    setPixelValue(RGB);
+  }, [RGB]);
 
   const canvasWidth = 300; // use square canvas, height set to same
 
@@ -39,7 +39,7 @@ export function RGBAColorWheel() {
       canvasWidth / 2
     );
 
-    // hue every 30 degrees
+    // hue every 30 degrees (center will have no black or white overlay)
     for (let colorValue of HUES) {
       gradient.addColorStop((30 / 360) * colorValue.id, colorValue.cssRGB);
     }
@@ -47,11 +47,11 @@ export function RGBAColorWheel() {
     canvasContext.fillStyle = gradient;
     canvasContext.fillRect(0, 0, canvasWidth, canvasWidth);
 
-    // add black gradient to for shades
+    // add outer black gradient for shades
     const radialGradientW = canvasContext.createRadialGradient(
       canvasWidth / 2,
       canvasWidth / 2,
-      150,
+      155, // go past edge a bit to decrease darkness at perimeter
       canvasWidth / 2,
       canvasWidth / 2,
       100
@@ -59,21 +59,21 @@ export function RGBAColorWheel() {
     radialGradientW.addColorStop(0, "#000000ff");
     radialGradientW.addColorStop(1, "#00000000");
     canvasContext.fillStyle = radialGradientW;
-    canvasContext.fillRect(0, 0, 300, 300);
+    canvasContext.fillRect(0, 0, canvasWidth, canvasWidth);
 
-    // add white gradient for tints
+    // add inner white gradient for tints
     const radialGradientB = canvasContext.createRadialGradient(
       canvasWidth / 2,
       canvasWidth / 2,
       0,
       canvasWidth / 2,
       canvasWidth / 2,
-      75
+      60
     );
     radialGradientB.addColorStop(0, "#ffffffff");
     radialGradientB.addColorStop(1, "#ffffff00");
     canvasContext.fillStyle = radialGradientB;
-    canvasContext.fillRect(0, 0, 300, 300);
+    canvasContext.fillRect(0, 0, canvasWidth, canvasWidth);
   };
 
   const handleClick = (
@@ -89,11 +89,10 @@ export function RGBAColorWheel() {
       1
     ).data;
 
-    const alpha = data[3] / 255 === 1 ? 1 : (data[3] / 255).toFixed(2);
-    const newRGBA = { r: data[0], g: data[1], b: data[2], a: Number(alpha) };
-    setPixelValue(newRGBA);
+    const newRGB = { r: data[0], g: data[1], b: data[2] };
+    setPixelValue(newRGB);
 
-    if (isRGBA(newRGBA)) setRGBA(newRGBA);
+    if (isRGB(newRGB)) setRGB(newRGB);
   };
 
   return (
