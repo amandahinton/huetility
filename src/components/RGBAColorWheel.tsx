@@ -19,6 +19,18 @@ export function RGBAColorWheel() {
   const canvasWidth = 300; // use square canvas, height set to same
 
   const canvasDraw = (canvasContext: CanvasRenderingContext2D) => {
+    // make a round clipping mask to draw inside
+    canvasContext.beginPath();
+    canvasContext.arc(
+      canvasWidth / 2,
+      canvasWidth / 2,
+      canvasWidth / 2,
+      0,
+      Math.PI * 2
+    );
+    canvasContext.closePath();
+    canvasContext.clip();
+
     // create a sweeping gradient with red at top
     // one radian counterclockwise, x,y center of canvas
     const gradient = canvasContext.createConicGradient(
@@ -35,31 +47,32 @@ export function RGBAColorWheel() {
     canvasContext.fillStyle = gradient;
     canvasContext.fillRect(0, 0, canvasWidth, canvasWidth);
 
-    // crop canvas to make circular
-    canvasContext.globalCompositeOperation = "destination-in";
-    canvasContext.beginPath();
-    canvasContext.arc(
+    // add black gradient to for shades
+    const radialGradientW = canvasContext.createRadialGradient(
       canvasWidth / 2,
       canvasWidth / 2,
+      150,
       canvasWidth / 2,
-      0,
-      Math.PI * 2
+      canvasWidth / 2,
+      100
     );
-    canvasContext.closePath();
-    canvasContext.fill();
+    radialGradientW.addColorStop(0, "#000000ff");
+    radialGradientW.addColorStop(1, "#00000000");
+    canvasContext.fillStyle = radialGradientW;
+    canvasContext.fillRect(0, 0, 300, 300);
 
-    // radial gradient from white to transparent
-    const radialGradient = canvasContext.createRadialGradient(
+    // add white gradient for tints
+    const radialGradientB = canvasContext.createRadialGradient(
       canvasWidth / 2,
       canvasWidth / 2,
       0,
       canvasWidth / 2,
       canvasWidth / 2,
-      canvasWidth / 2 - 20
+      75
     );
-    radialGradient.addColorStop(0, "#ffffff00");
-    radialGradient.addColorStop(1, "#ffffffff");
-    canvasContext.fillStyle = radialGradient;
+    radialGradientB.addColorStop(0, "#ffffffff");
+    radialGradientB.addColorStop(1, "#ffffff00");
+    canvasContext.fillStyle = radialGradientB;
     canvasContext.fillRect(0, 0, 300, 300);
   };
 
