@@ -19,6 +19,12 @@ export type ColorData = {
   RGBA: RGBA;
 };
 
+export type ColorCodes = {
+  HEX: string;
+  RGB: RGB;
+  RGBA: RGBA;
+};
+
 // HEX: # + 3 or 6 characters for rgb or 8 chars for for rgba
 
 // hue: 0-360

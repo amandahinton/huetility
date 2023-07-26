@@ -1,7 +1,49 @@
-import { hexcodeToRGBA, hexcodeToRGB } from "./translations.ts/fromHEX";
+import {
+  hexcodeToRGB,
+  hexcodeToRGBA,
+  RGBToHexcode,
+  RGBToRGBA,
+  RGBAToHexcode,
+  RGBAToRGB,
+} from "./translations.ts";
 import { BLACK_HEXCODE, WHITE_HEXCODE } from "./constants";
-import { RGB, RGBA } from "../types/types";
+import { ColorCodes, RGB, RGBA } from "../types/types";
 import { ColorMode } from "../types/enums";
+
+export const hexToColor = (hexcode: string): ColorCodes => {
+  return {
+    HEX: hexcode,
+    RGB: hexcodeToRGB(hexcode),
+    RGBA: hexcodeToRGBA(hexcode),
+  };
+};
+
+export const rgbToColor = (rgb: RGB): ColorCodes => {
+  const formattedRGB = {
+    r: Math.round(rgb.r),
+    g: Math.round(rgb.g),
+    b: Math.round(rgb.b),
+  };
+  return {
+    HEX: RGBToHexcode(formattedRGB),
+    RGB: formattedRGB,
+    RGBA: RGBToRGBA(formattedRGB),
+  };
+};
+
+export const rgbaToColor = (rgba: RGBA): ColorCodes => {
+  const formattedRGBA = {
+    r: Math.round(rgba.r),
+    g: Math.round(rgba.g),
+    b: Math.round(rgba.b),
+    a: rgba.a,
+  };
+  return {
+    HEX: RGBAToHexcode(formattedRGBA),
+    RGB: RGBAToRGB(formattedRGBA),
+    RGBA: formattedRGBA,
+  };
+};
 
 export const isHexcode = (hexcode: string): boolean => {
   const pattern = new RegExp(
@@ -39,37 +81,14 @@ export const isRGBA = (rgba: RGBA): boolean => {
   );
 };
 
-export const isBlack = (mode: ColorMode, code: any): boolean => {
-  let isBlack = false;
-
-  switch (mode) {
-    case ColorMode.HEX:
-      if (code === "#000000") isBlack = true;
-      break;
-    case ColorMode.RGB:
-    case ColorMode.RGBA:
-      if (code.r === 0 && code.g === 0 && code.b === 0) isBlack = true;
-      break;
-  }
-
-  return isBlack;
+export const isBlack = (color: ColorCodes): boolean => {
+  return color.RGB.r === 0 && color.RGB.g === 0 && color.RGB.b === 0;
 };
 
-export const isWhite = (mode: ColorMode, code: any): boolean => {
-  let isWhite = false;
-
-  switch (mode) {
-    case ColorMode.HEX:
-      if (code === "#ffffff") isWhite = true;
-      break;
-    case ColorMode.RGB:
-    case ColorMode.RGBA:
-      if (code.r === 255 && code.g === 255 && code.b === 255) isWhite = true;
-      break;
-  }
-
-  return isWhite;
+export const isWhite = (color: ColorCodes): boolean => {
+  return color.RGB.r === 255 && color.RGB.g === 255 && color.RGB.b === 255;
 };
+
 /*
 https://www.w3.org/TR/WCAG20/
 relative brightness of point in colorspace
@@ -110,7 +129,7 @@ export const approximateRGBFromRGBA = (
 };
 
 const channelLuminance = (channelValue: number): number => {
-  let output = channelValue / 255;
+  const output = channelValue / 255;
   return output <= 0.03928
     ? output / 12.92
     : Math.pow((output + 0.055) / 1.055, 2.4);
@@ -154,23 +173,27 @@ export const contrastText = (hexcode: string): string => {
   return BLACK_HEXCODE;
 };
 
-export const cssColorValue = (mode: ColorMode, code: any): string => {
-  let value;
+export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
+  let value = "";
+  let alpha;
 
   switch (mode) {
     case ColorMode.HEX:
-      value = code;
+      value = color.HEX;
       break;
     case ColorMode.RGB:
-      value = `rgb(${Math.round(code.r)}, ${Math.round(code.g)}, ${Math.round(
-        code.b
-      )})`;
+      value = `rgb(${Math.round(color.RGB.r)}, ${Math.round(
+        color.RGB.g
+      )}, ${Math.round(color.RGB.b)})`;
       break;
     case ColorMode.RGBA:
-      const alpha = code.a == 1 ? 1 : code.a.toFixed(2);
-      value = `rgba(${Math.round(code.r)}, ${Math.round(code.g)}, ${Math.round(
-        code.b
-      )}, ${alpha})`;
+      alpha =
+        color.RGBA.a == 1 || color.RGBA.a == 0
+          ? color.RGBA.a
+          : color.RGBA.a.toFixed(2);
+      value = `rgba(${Math.round(color.RGBA.r)}, ${Math.round(
+        color.RGBA.g
+      )}, ${Math.round(color.RGBA.b)}, ${alpha})`;
       break;
   }
 
