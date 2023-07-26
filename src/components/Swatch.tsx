@@ -5,10 +5,9 @@ import "./Swatch.css";
 export function Swatch() {
   const { color } = useColor();
   const { colorMode } = color;
-  const colorCode = color[colorMode];
 
   const labelColor = contrastText(color.HEX);
-  const cssValue = cssColorValue(colorMode, colorCode);
+  const cssValue = cssColorValue(colorMode, color);
 
   return (
     <div className="huetility-component-container">

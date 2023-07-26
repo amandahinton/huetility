@@ -14,7 +14,7 @@ export function CSSValues() {
           const colorMode = mode as keyof typeof ColorMode;
           return (
             <button key={mode} className="huetility-css-rule">
-              {cssColorValue(ColorMode[colorMode], color[colorMode])}
+              {cssColorValue(ColorMode[colorMode], color)}
             </button>
           );
         })}

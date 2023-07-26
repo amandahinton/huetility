@@ -1,6 +1,6 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
-import { cssColorValue, isBlack } from "../utils/helpers";
+import { cssColorValue, isBlack, rgbToColor } from "../utils/helpers";
 import { BLACK_RGB_CSS } from "../utils/constants";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
@@ -11,7 +11,7 @@ export function ScaleShades() {
 
   const [shadeCount, setShadeCount] = React.useState<number>(3);
 
-  if (isBlack(ColorMode.RGB, RGB)) {
+  if (isBlack(color)) {
     return (
       <div className="huetility-component-container">
         <h2 className="huetility-component-title">RGB Shades</h2>
@@ -30,7 +30,7 @@ export function ScaleShades() {
     );
   }
 
-  const cssShades = [cssColorValue(ColorMode.RGB, RGB)];
+  const cssShades = [cssColorValue(ColorMode.RGB, color)];
 
   const shadeMultiplier = 1 / (shadeCount - 1);
 
@@ -40,7 +40,7 @@ export function ScaleShades() {
       g: RGB.g * shadeMultiplier * i,
       b: RGB.b * shadeMultiplier * i,
     };
-    cssShades.push(cssColorValue(ColorMode.RGB, newShade));
+    cssShades.push(cssColorValue(ColorMode.RGB, rgbToColor(newShade)));
   }
 
   cssShades.push(BLACK_RGB_CSS);
