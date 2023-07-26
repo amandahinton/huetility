@@ -20,7 +20,7 @@ export const RGBAToHexcode = (rgba: RGBA): string => {
   const blue = twoCharHex(rgba.b.toString(16));
   const alpha = twoCharHex(aValue.toString(16));
 
-  let hexcode = "#" + red + green + blue + alpha;
+  const hexcode = "#" + red + green + blue + alpha;
 
   if (isHexcode(hexcode)) {
     return hexcode;

@@ -26,10 +26,10 @@ const defaultData = {
     RGB: { r: 242, g: 0, b: 145 },
     RGBA: { r: 241, g: 0, b: 145, a: 1 },
   },
-  setMode: () => {},
-  setHEX: () => {},
-  setRGB: () => {},
-  setRGBA: () => {},
+  setMode: () => undefined,
+  setHEX: () => undefined,
+  setRGB: () => undefined,
+  setRGBA: () => undefined,
 };
 
 export const ColorContext = React.createContext<ColorContextType>(defaultData);

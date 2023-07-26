@@ -3,18 +3,10 @@ import { Canvas } from ".";
 import { useColor } from "../contexts/ColorContext";
 import { HUES } from "../utils/constants";
 import { isRGB } from "../utils/helpers";
-import { RGB } from "../types/types";
 import "./ColorSpace.css";
 
 export function RGBColorWheel() {
-  const { color, setRGB } = useColor();
-  const { RGB } = color;
-
-  const [pixelValue, setPixelValue] = React.useState<RGB>(RGB);
-
-  React.useEffect(() => {
-    setPixelValue(RGB);
-  }, [RGB]);
+  const { setRGB } = useColor();
 
   const canvasWidth = 300; // use square canvas, height set to same
 
@@ -32,18 +24,17 @@ export function RGBColorWheel() {
     canvasContext.clip();
 
     // create a sweeping gradient with red at top
-    // one radian counterclockwise, x,y center of canvas
+    // start one radian counterclockwise, x,y center of canvas
     const gradient = canvasContext.createConicGradient(
       -Math.PI / 2,
       canvasWidth / 2,
       canvasWidth / 2
     );
 
-    // hue every 30 degrees (center will have no black or white overlay)
-    for (let colorValue of HUES) {
+    // hue every 30 degrees
+    for (const colorValue of HUES) {
       gradient.addColorStop((30 / 360) * colorValue.id, colorValue.cssRGB);
     }
-
     canvasContext.fillStyle = gradient;
     canvasContext.fillRect(0, 0, canvasWidth, canvasWidth);
 
@@ -90,8 +81,6 @@ export function RGBColorWheel() {
     ).data;
 
     const newRGB = { r: data[0], g: data[1], b: data[2] };
-    setPixelValue(newRGB);
-
     if (isRGB(newRGB)) setRGB(newRGB);
   };
 

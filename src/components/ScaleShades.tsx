@@ -1,7 +1,7 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
 import { cssColorValue, isBlack } from "../utils/helpers";
-import { BLACK_RGB, BLACK_RGB_CSS } from "../utils/constants";
+import { BLACK_RGB_CSS } from "../utils/constants";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
 
@@ -43,7 +43,7 @@ export function ScaleShades() {
     cssShades.push(cssColorValue(ColorMode.RGB, newShade));
   }
 
-  cssShades.push(BLACK_RGB_CSS)
+  cssShades.push(BLACK_RGB_CSS);
 
   return (
     <div className="huetility-component-container">
