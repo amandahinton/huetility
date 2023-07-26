@@ -3,16 +3,24 @@ import { BLACK_HEXCODE } from "../constants";
 import { RGB, RGBA } from "../../types/types";
 
 export const RGBToHexcode = (rgb: RGB): string => {
-  const red = rgb.r < 9 ? "0" + rgb.r.toString() : rgb.r.toString(16);
-  const green = rgb.g < 9 ? "0" + rgb.g.toString() : rgb.g.toString(16);
-  const blue = rgb.b < 9 ? "0" + rgb.b.toString() : rgb.b.toString(16);
+  let red = rgb.r.toString(16);
+  let green = rgb.g.toString(16);
+  let blue = rgb.b.toString(16);
+
+  if (red.length == 1) red = "0" + red;
+  if (green.length == 1) green = "0" + green;
+  if (blue.length == 1) blue = "0" + blue;
 
   const hexcode = "#" + red + green + blue;
 
   if (isHexcode(hexcode)) {
     return hexcode;
   } else {
-    console.error("Error: improper rgb input, defaulting to black hexcode");
+    console.error(
+      "Error: improper rgb input, defaulting to black hexcode",
+      rgb,
+      hexcode
+    );
     return BLACK_HEXCODE;
   }
 };

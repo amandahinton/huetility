@@ -3,22 +3,15 @@ import { BLACK_HEXCODE } from "../constants";
 import { RGB, RGBA } from "../../types/types";
 
 export const RGBAToHexcode = (rgba: RGBA): string => {
-  const aValue = Math.round(rgba.a * 255);
+  let red = rgba.r.toString(16);
+  let green = rgba.g.toString(16);
+  let blue = rgba.b.toString(16);
+  let alpha = Math.round(rgba.a * 255).toString(16);
 
-  const twoCharHex = (hexFragment: string): string => {
-    if (hexFragment.length === 1) {
-      return "0" + hexFragment;
-    } else if (hexFragment.length === 0) {
-      return "00";
-    } else {
-      return hexFragment.slice(0, 2);
-    }
-  };
-
-  const red = twoCharHex(rgba.r.toString(16));
-  const green = twoCharHex(rgba.g.toString(16));
-  const blue = twoCharHex(rgba.b.toString(16));
-  const alpha = twoCharHex(aValue.toString(16));
+  if (red.length == 1) red = "0" + red;
+  if (green.length == 1) green = "0" + green;
+  if (blue.length == 1) blue = "0" + blue;
+  if (alpha.length == 1) alpha = "0" + alpha;
 
   const hexcode = "#" + red + green + blue + alpha;
 
@@ -26,9 +19,9 @@ export const RGBAToHexcode = (rgba: RGBA): string => {
     return hexcode;
   } else {
     console.error(
-      `Error: improper rgba ${JSON.stringify(
-        rgba
-      )}, defaulting to black hexcode`
+      "Error: improper rgb input, defaulting to black hexcode",
+      rgba,
+      hexcode
     );
     return BLACK_HEXCODE;
   }
