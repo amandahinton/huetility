@@ -89,18 +89,6 @@ export const isWhite = (color: ColorCodes): boolean => {
   return color.RGB.r === 255 && color.RGB.g === 255 && color.RGB.b === 255;
 };
 
-/*
-https://www.w3.org/TR/WCAG20/
-relative brightness of point in colorspace
-normalized to 0 for darkest black and 1 for lightest white
-contrast:
-difference in perceived luminance/brightness between colors
-ratio from 1:1 white:white to 21:1 black:white
-WCAG standard:
-text and interactive elements at least 4.5:1 (20/40 vision)
-large-scale text at least 3:1
-*/
-
 // output RGB for foreground color on background color
 // background color will use opaque RGB
 export const approximateRGBFromRGBA = (
@@ -127,13 +115,10 @@ export const approximateRGBFromRGBA = (
   const flatG = (1 - foreA) * backG + foreA * foreG;
   const flatB = (1 - foreA) * backB + foreA * foreB;
 
-  console.log(1111, flatR, flatG, flatB);
-
   let transformedR = Math.round(flatR * 255);
   let transformedG = Math.round(flatG * 255);
   let transformedB = Math.round(flatB * 255);
 
-  console.log(1111, transformedR, transformedG, transformedB);
   // cap at 255 if calculation was overexposed
   if (transformedR > 255) transformedR = 255;
   if (transformedG > 255) transformedG = 255;
@@ -141,6 +126,19 @@ export const approximateRGBFromRGBA = (
 
   return { r: transformedR, g: transformedG, b: transformedB };
 };
+
+/*
+https://www.w3.org/TR/WCAG20/
+luminance is relative brightness of point in colorspace
+normalized to 0 for black and 1 for white
+
+contrast is difference in perceived luminance/brightness between colors
+ratio from 1:1 white:white to 21:1 black:white
+
+WCAG standard:
+text and interactive elements at least 4.5:1
+large text at least 3:1
+*/
 
 export const channelLuminance = (channelValue: number): number => {
   const output = channelValue / 255;
@@ -171,7 +169,11 @@ export const contrast = (
   try {
     const luminanceOne = relativeLuminance(colorOne);
     const luminanceTwo = relativeLuminance(colorTwo);
-    if (luminanceOne && luminanceTwo) return luminanceTwo / luminanceOne;
+    if (luminanceOne !== undefined && luminanceTwo !== undefined) {
+      const sortedLuminance = [luminanceOne, luminanceTwo].sort();
+      const [L2, L1] = sortedLuminance;
+      return Number(((L1 + 0.05) / (L2 + 0.05)).toFixed(2));
+    }
   } catch (error) {
     console.error("Could not calculate luminance:", error);
   }
@@ -180,14 +182,17 @@ export const contrast = (
 };
 
 // output: black or white hexcode to use for text on color background
-export const contrastText = (color: ColorCodes): string => {
+export const contrastText = (
+  color: ColorCodes,
+  background: ColorCodes
+): string => {
   try {
-    const rgba = color.RGBA;
-    // if transparent on light background, use black
-    if (rgba.a <= 0.3) return BLACK_HEXCODE;
+    // get luminance by taking opacity on background into account
+    const luminance = relativeLuminance(
+      rgbToColor(approximateRGBFromRGBA(color, background))
+    );
     // choose black or white text
-    const luminance = relativeLuminance(color);
-    if (luminance) return luminance > 150 ? BLACK_HEXCODE : WHITE_HEXCODE;
+    if (luminance) return luminance > 0.5 ? BLACK_HEXCODE : WHITE_HEXCODE;
   } catch (error) {
     console.error("Could not calculate text color:", error);
   }
