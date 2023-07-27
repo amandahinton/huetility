@@ -128,25 +128,21 @@ export const approximateRGBFromRGBA = (
   return { r: transformedR, g: transformedG, b: transformedB };
 };
 
-const channelLuminance = (channelValue: number): number => {
+export const channelLuminance = (channelValue: number): number => {
   const output = channelValue / 255;
   return output <= 0.03928
     ? output / 12.92
     : Math.pow((output + 0.055) / 1.055, 2.4);
 };
 
-export const relativeLuminance = (hexcode: string): number | undefined => {
-  if (!isHexcode(hexcode)) return undefined;
-
+export const relativeLuminance = (color: ColorCodes): number | undefined => {
   try {
-    const rgb = hexcodeToRGB(hexcode);
-    if (rgb) {
-      const R = channelLuminance(rgb.r);
-      const G = channelLuminance(rgb.g);
-      const B = channelLuminance(rgb.b);
-      // For sRGB colorspace, relative luminance defined as...
-      return 0.2126 * R + 0.7152 * G + 0.0722 * B;
-    }
+    const rgb = color.RGB;
+    const R = channelLuminance(rgb.r);
+    const G = channelLuminance(rgb.g);
+    const B = channelLuminance(rgb.b);
+    // For sRGB colorspace, relative luminance defined as...
+    return 0.2126 * R + 0.7152 * G + 0.0722 * B;
   } catch (error) {
     console.error("Could not calculate luminance:", error);
   }
@@ -154,25 +150,22 @@ export const relativeLuminance = (hexcode: string): number | undefined => {
   return undefined;
 };
 
-export const contrastText = (hexcode: string): string => {
-  if (!isHexcode(hexcode)) return BLACK_HEXCODE;
-
+// output: black or white hexcode to use for text on color background
+export const contrastText = (color: ColorCodes): string => {
   try {
-    if (hexcode.length == 9) {
-      const alpha = hexcode.slice(8);
-      // if transparent on light background, use black
-      if (parseInt(alpha, 16) <= 0.3) return BLACK_HEXCODE;
-
-      // choose black or white text
-      const luminance = relativeLuminance(hexcode);
-      if (luminance) return luminance > 150 ? BLACK_HEXCODE : WHITE_HEXCODE;
-    }
+    const rgba = color.RGBA;
+    // if transparent on light background, use black
+    if (rgba.a <= 0.3) return BLACK_HEXCODE;
+    // choose black or white text
+    const luminance = relativeLuminance(color);
+    if (luminance) return luminance > 150 ? BLACK_HEXCODE : WHITE_HEXCODE;
   } catch (error) {
     console.error("Could not calculate text color:", error);
   }
   return BLACK_HEXCODE;
 };
 
+// output: a string with the css color rule for the input mode
 export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
   let value = "";
   let alpha;

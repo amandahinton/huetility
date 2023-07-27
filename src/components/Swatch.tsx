@@ -6,7 +6,7 @@ export function Swatch() {
   const { color } = useColor();
   const { colorMode } = color;
 
-  const labelColor = contrastText(color.HEX);
+  const labelColor = contrastText(color);
   const cssValue = cssColorValue(colorMode, color);
 
   return (
