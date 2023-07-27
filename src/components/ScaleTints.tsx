@@ -9,7 +9,7 @@ export function ScaleTints() {
   const { color } = useColor();
   const { RGB } = color;
 
-  const [tintCount, setTintCount] = React.useState<number>(3);
+  const [tintCount, setTintCount] = React.useState<number>(5);
 
   if (isWhite(color)) {
     return (

@@ -3,12 +3,11 @@
   justify-content: center;
   align-items: center;
   margin: 20px;
-  height: 100px;
   width: 900px;
+  border: 3px black solid;
 }
 
 .huetility-shade-tint-button {
-  border-radius: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -9,7 +9,7 @@ export function ScaleShades() {
   const { color } = useColor();
   const { RGB } = color;
 
-  const [shadeCount, setShadeCount] = React.useState<number>(3);
+  const [shadeCount, setShadeCount] = React.useState<number>(5);
 
   if (isBlack(color)) {
     return (
