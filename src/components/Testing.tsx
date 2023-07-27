@@ -1,5 +1,5 @@
 import { useColor } from "../contexts/ColorContext";
-import { WHITE_RGB } from "../utils/constants";
+import { WHITE_HEXCODE, WHITE_RGB, WHITE_RGBA } from "../utils/constants";
 import {
   isHexcode,
   isPartialHexcode,
@@ -10,6 +10,7 @@ import {
   approximateRGBFromRGBA,
   channelLuminance,
   relativeLuminance,
+  contrast,
   contrastText,
   cssColorValue,
 } from "../utils/helpers";
@@ -47,13 +48,30 @@ export function Testing() {
       <p>{JSON.stringify(isWhite(color))}</p>
 
       <h4 className="space-above">approximateRGBFromRGBA</h4>
-      <p>{JSON.stringify(approximateRGBFromRGBA(color.RGBA, WHITE_RGB))}</p>
+      <p>
+        {JSON.stringify(
+          approximateRGBFromRGBA(color, {
+            HEX: "#f5f5f5",
+            RGB: { r: 245, g: 245, b: 245 },
+            RGBA: { r: 245, g: 245, b: 245, a: 1 },
+          })
+        )}
+      </p>
 
       <h4 className="space-above">channelLuminance</h4>
       <p>{channelLuminance(color.RGB.r)}</p>
 
       <h4 className="space-above">relativeLuminance</h4>
       <p>{relativeLuminance(color)}</p>
+
+      <h4 className="space-above">contrast (to white)</h4>
+      <p>
+        {contrast(color, {
+          HEX: WHITE_HEXCODE,
+          RGB: WHITE_RGB,
+          RGBA: WHITE_RGBA,
+        })}
+      </p>
 
       <h4 className="space-above">contrastText</h4>
       <p>{contrastText(color)}</p>

@@ -101,29 +101,43 @@ text and interactive elements at least 4.5:1 (20/40 vision)
 large-scale text at least 3:1
 */
 
+// output RGB for foreground color on background color
+// background color will use opaque RGB
 export const approximateRGBFromRGBA = (
-  foregroundColor: RGBA,
-  backgroundColor: RGB
+  foregroundColor: ColorCodes,
+  backgroundColor: ColorCodes
 ): RGB => {
+  const foreRGBA = foregroundColor.RGBA;
+  const backRGB = backgroundColor.RGB;
+  if (foreRGBA.a == 1) return foregroundColor.RGB;
+
   // source - normalize foreground RGBA channels
-  const foreR = foregroundColor.r / 255;
-  const foreG = foregroundColor.g / 255;
-  const foreB = foregroundColor.b / 255;
-  const foreA = foregroundColor.a;
+  const foreR = foreRGBA.r / 255;
+  const foreG = foreRGBA.g / 255;
+  const foreB = foreRGBA.b / 255;
+  const foreA = foreRGBA.a;
 
   // matte - normalize background RGB channels
-  const backR = backgroundColor.r / 255;
-  const backG = backgroundColor.g / 255;
-  const backB = backgroundColor.b / 255;
+  const backR = backRGB.r / 255;
+  const backG = backRGB.g / 255;
+  const backB = backRGB.b / 255;
 
   // convert from transparent color on background to flat RGB
-  let transformedR = (1 - foreA) * backR + foreA * foreR;
-  let transformedG = (1 - foreA) * backG + foreA * foreG;
-  let transformedB = (1 - foreA) * backB + foreA * foreB;
+  const flatR = (1 - foreA) * backR + foreA * foreR;
+  const flatG = (1 - foreA) * backG + foreA * foreG;
+  const flatB = (1 - foreA) * backB + foreA * foreB;
+
+  console.log(1111, flatR, flatG, flatB);
+
+  let transformedR = Math.round(flatR * 255);
+  let transformedG = Math.round(flatG * 255);
+  let transformedB = Math.round(flatB * 255);
+
+  console.log(1111, transformedR, transformedG, transformedB);
   // cap at 255 if calculation was overexposed
-  if (transformedR > 1) transformedR = 255;
-  if (transformedG > 1) transformedG = 255;
-  if (transformedB > 1) transformedB = 255;
+  if (transformedR > 255) transformedR = 255;
+  if (transformedG > 255) transformedG = 255;
+  if (transformedB > 255) transformedB = 255;
 
   return { r: transformedR, g: transformedG, b: transformedB };
 };
@@ -143,6 +157,21 @@ export const relativeLuminance = (color: ColorCodes): number | undefined => {
     const B = channelLuminance(rgb.b);
     // For sRGB colorspace, relative luminance defined as...
     return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+  } catch (error) {
+    console.error("Could not calculate luminance:", error);
+  }
+
+  return undefined;
+};
+
+export const contrast = (
+  colorOne: ColorCodes,
+  colorTwo: ColorCodes
+): number | undefined => {
+  try {
+    const luminanceOne = relativeLuminance(colorOne);
+    const luminanceTwo = relativeLuminance(colorTwo);
+    if (luminanceOne && luminanceTwo) return luminanceTwo / luminanceOne;
   } catch (error) {
     console.error("Could not calculate luminance:", error);
   }
