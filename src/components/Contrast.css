@@ -1,0 +1,21 @@
+.huetility-contrast-input-container {
+  display: flex;
+  gap: 4rem;
+}
+
+.huetility-contrast-swatch-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.huetility-contrast-swatch {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.huetility-contrast-ratio,
+.huetility-contrast-advice {
+  margin-top: 20px;
+}

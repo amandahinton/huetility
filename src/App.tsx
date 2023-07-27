@@ -1,4 +1,11 @@
-import { ColorPicker, CSSValues, ScaleShades, ScaleTints, Testing } from "./components";
+import {
+  ColorPicker,
+  Contrast,
+  CSSValues,
+  ScaleShades,
+  ScaleTints,
+  Testing,
+} from "./components";
 import { ColorProvider } from "./contexts/ColorContext";
 import "./App.css";
 import "../src/components/index.css";
@@ -11,6 +18,7 @@ function App() {
       <CSSValues />
       <ScaleTints />
       <ScaleShades />
+      <Contrast />
       <hr />
       <Testing />
     </ColorProvider>
