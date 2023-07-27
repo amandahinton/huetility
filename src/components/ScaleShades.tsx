@@ -4,6 +4,7 @@ import { cssColorValue, isBlack, rgbToColor } from "../utils/helpers";
 import { BLACK_RGB_CSS } from "../utils/constants";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
+import "./index.css";
 
 export function ScaleShades() {
   const { color } = useColor();
@@ -16,7 +17,7 @@ export function ScaleShades() {
       <div className="huetility-component-container">
         <h2 className="huetility-component-title">RGB Shades</h2>
 
-        <div className="huetility-shade-tint-buttons-container">
+        <div className="huetility-shade-tint-button huetility-bordered">
           <button
             className="huetility-shade-tint-button"
             title={BLACK_RGB_CSS}
@@ -58,7 +59,7 @@ export function ScaleShades() {
         value={shadeCount}
         onChange={(e) => setShadeCount(Number(e.target.value))}
       />
-      <div className="huetility-shade-tint-buttons-container">
+      <div className="huetility-shade-tint-buttons-container huetility-bordered">
         {cssShades.map((shadeValue, i) => (
           <button
             key={`${i}-shades-${shadeValue}`}

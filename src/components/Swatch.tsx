@@ -2,6 +2,7 @@ import { useColor } from "../contexts/ColorContext";
 import { WHITE_CODES } from "../utils/constants";
 import { contrastText, cssColorValue } from "../utils/helpers";
 import "./Swatch.css";
+import "./index.css"
 
 export function Swatch() {
   const { color } = useColor();
@@ -12,7 +13,10 @@ export function Swatch() {
 
   return (
     <div className="huetility-component-container">
-      <div className="huetility-swatch" style={{ backgroundColor: cssValue }}>
+      <div
+        className="huetility-picker-swatch huetility-bordered"
+        style={{ backgroundColor: cssValue }}
+      >
         <p style={{ color: labelColor }}>{cssValue}</p>
       </div>
     </div>

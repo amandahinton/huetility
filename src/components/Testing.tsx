@@ -25,52 +25,52 @@ export function Testing() {
     <>
       <h2>Testing Helper Functions</h2>
 
-      <h4 className="space-above">Color Selected</h4>
+      <h4 className="huetility-space-above">Color Selected</h4>
       <p>Hexcode: {JSON.stringify(color.HEX)}</p>
       <p>RGB: {JSON.stringify(color.RGB)}</p>
       <p>RGBA: {JSON.stringify(color.RGBA)}</p>
 
-      <h4 className="space-above">hexToColor</h4>
+      <h4 className="huetility-space-above">hexToColor</h4>
       <p>white {JSON.stringify(hexToColor("#fff"))}</p>
       <p>black {JSON.stringify(hexToColor("#000"))}</p>
 
-      <h4 className="space-above">isPartialHexcode</h4>
+      <h4 className="huetility-space-above">isPartialHexcode</h4>
       <p>{JSON.stringify(isPartialHexcode(color.HEX))}</p>
 
-      <h4 className="space-above">isHexcode</h4>
+      <h4 className="huetility-space-above">isHexcode</h4>
       <p>{JSON.stringify(isHexcode(color.HEX))}</p>
 
-      <h4 className="space-above">isRGB</h4>
+      <h4 className="huetility-space-above">isRGB</h4>
       <p>{JSON.stringify(isRGB(color.RGB))}</p>
 
-      <h4 className="space-above">isRGBA</h4>
+      <h4 className="huetility-space-above">isRGBA</h4>
       <p>{JSON.stringify(isRGBA(color.RGBA))}</p>
 
-      <h4 className="space-above">isBlack</h4>
+      <h4 className="huetility-space-above">isBlack</h4>
       <p>{JSON.stringify(isBlack(color))}</p>
 
-      <h4 className="space-above">isWhite</h4>
+      <h4 className="huetility-space-above">isWhite</h4>
       <p>{JSON.stringify(isWhite(color))}</p>
 
-      <h4 className="space-above">approximateRGBFromRGBA</h4>
+      <h4 className="huetility-space-above">approximateRGBFromRGBA</h4>
       <p>{JSON.stringify(approximateRGBFromRGBA(color, WHITE_CODES))}</p>
 
-      <h4 className="space-above">channelLuminance</h4>
+      <h4 className="huetility-space-above">channelLuminance</h4>
       <p>{channelLuminance(color.RGB.r)}</p>
 
-      <h4 className="space-above">relativeLuminance</h4>
+      <h4 className="huetility-space-above">relativeLuminance</h4>
       <p>{relativeLuminance(color)}</p>
 
-      <h4 className="space-above">contrast</h4>
+      <h4 className="huetility-space-above">contrast</h4>
       <p>white should be 4.05</p>
       <p>{contrast(color, WHITE_CODES)}</p>
       <p>black should be 5.18</p>
       <p>{contrast(color, BLACK_CODES)}</p>
 
-      <h4 className="space-above">contrastText</h4>
+      <h4 className="huetility-space-above">contrastText</h4>
       <p>{contrastText(color, WHITE_CODES)}</p>
 
-      <h4 className="space-above">cssColorValue</h4>
+      <h4 className="huetility-space-above">cssColorValue</h4>
       <p>{cssColorValue(ColorMode.HEX, color)}</p>
       <p>{cssColorValue(ColorMode.RGB, color)}</p>
       <p>{cssColorValue(ColorMode.RGBA, color)}</p>
