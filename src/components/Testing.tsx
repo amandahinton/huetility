@@ -1,21 +1,20 @@
 import { useColor } from "../contexts/ColorContext";
 import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
 import {
-  isHexcode,
-  isPartialHexcode,
-  isRGB,
-  isRGBA,
-  isBlack,
-  isWhite,
-  approximateRGBFromRGBA,
+  blendForegroundToBackground,
   channelLuminance,
-  relativeLuminance,
   contrast,
   contrastText,
   cssColorValue,
   hexToColor,
+  isBlack,
+  isHexcode,
+  isPartialHexcode,
+  isRGB,
+  isRGBA,
+  isWhite,
+  relativeLuminance,
 } from "../utils/helpers";
-import { RGBToHexcode } from "../utils/translations.ts";
 import { ColorMode } from "../types/enums";
 import "./index.css";
 
@@ -53,10 +52,10 @@ export function Testing() {
       <h4 className="huetility-space-above">isWhite</h4>
       <p>{JSON.stringify(isWhite(color))}</p>
 
-      <h4 className="huetility-space-above">approximateRGBFromRGBA</h4>
+      <h4 className="huetility-space-above">blendForegroundToBackground</h4>
       <p>picker RGBA: {JSON.stringify(color.RGBA)}</p>
-      <p>approximate RGB: {JSON.stringify(approximateRGBFromRGBA(color, WHITE_CODES))}</p>
-      <p>approximate HEX: {RGBToHexcode(approximateRGBFromRGBA(color, WHITE_CODES))}</p>
+      <p>approximate blended RGB: {JSON.stringify(blendForegroundToBackground(color, WHITE_CODES).RGB)}</p>
+      <p>approximate blended HEX: {blendForegroundToBackground(color, WHITE_CODES).HEX}</p>
 
       <h4 className="huetility-space-above">channelLuminance</h4>
       <p>{channelLuminance(color.RGB.r)}</p>
