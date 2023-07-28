@@ -89,6 +89,10 @@ export const isWhite = (color: ColorCodes): boolean => {
   return color.RGB.r === 255 && color.RGB.g === 255 && color.RGB.b === 255;
 };
 
+export const colorLabel = (color: ColorCodes): string => {
+  return isWhite(color) ? "white" : isBlack(color) ? "black" : color.HEX;
+};
+
 // output RGB for foreground color on background color
 // background color will use opaque RGB
 export const approximateRGBFromRGBA = (
@@ -182,16 +186,9 @@ export const contrast = (
 };
 
 // output: black or white hexcode to use for text on color background
-export const contrastText = (
-  color: ColorCodes,
-  background: ColorCodes
-): string => {
+export const contrastText = (color: ColorCodes): string => {
   try {
-    // get luminance by taking opacity on background into account
-    const luminance = relativeLuminance(
-      rgbToColor(approximateRGBFromRGBA(color, background))
-    );
-    // choose black or white text
+    const luminance = relativeLuminance(color);
     if (luminance) return luminance > 0.5 ? BLACK_HEXCODE : WHITE_HEXCODE;
   } catch (error) {
     console.error("Could not calculate text color:", error);
@@ -226,3 +223,17 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
 
   return value;
 };
+
+/*
+input
+color: ColorCodes
+
+output 
+vision = [
+  {
+    name: "Protanomaly",
+    description: "reduced red",
+    color: helper to calculate protanomoly {HEX: "xxx", RGB: {}, RGBA: {}},
+  }
+]
+*/
