@@ -93,15 +93,15 @@ export const colorLabel = (color: ColorCodes): string => {
   return isWhite(color) ? "white" : isBlack(color) ? "black" : color.HEX;
 };
 
-// output RGB for foreground color on background color
-// background color will use opaque RGB
-export const approximateRGBFromRGBA = (
+// background color will use opaque RGB only
+// pre-blend background if it was transparent
+export const blendForegroundToBackground = (
   foregroundColor: ColorCodes,
   backgroundColor: ColorCodes
-): RGB => {
+): ColorCodes => {
   const foreRGBA = foregroundColor.RGBA;
-  if (foreRGBA.a == 1) return foregroundColor.RGB;
-
+  if (foreRGBA.a == 1) return foregroundColor;
+  
   const backRGB = backgroundColor.RGB;
 
   // source - normalize foreground RGBA channels
@@ -129,7 +129,7 @@ export const approximateRGBFromRGBA = (
   if (transformedG > 255) transformedG = 255;
   if (transformedB > 255) transformedB = 255;
 
-  return { r: transformedR, g: transformedG, b: transformedB };
+  return rgbToColor({ r: transformedR, g: transformedG, b: transformedB });
 };
 
 /*
