@@ -15,6 +15,7 @@ import {
   cssColorValue,
   hexToColor,
 } from "../utils/helpers";
+import { RGBToHexcode } from "../utils/translations.ts";
 import { ColorMode } from "../types/enums";
 import "./index.css";
 
@@ -53,7 +54,9 @@ export function Testing() {
       <p>{JSON.stringify(isWhite(color))}</p>
 
       <h4 className="huetility-space-above">approximateRGBFromRGBA</h4>
-      <p>{JSON.stringify(approximateRGBFromRGBA(color, WHITE_CODES))}</p>
+      <p>picker RGBA: {JSON.stringify(color.RGBA)}</p>
+      <p>approximate RGB: {JSON.stringify(approximateRGBFromRGBA(color, WHITE_CODES))}</p>
+      <p>approximate HEX: {RGBToHexcode(approximateRGBFromRGBA(color, WHITE_CODES))}</p>
 
       <h4 className="huetility-space-above">channelLuminance</h4>
       <p>{channelLuminance(color.RGB.r)}</p>
@@ -68,7 +71,7 @@ export function Testing() {
       <p>{contrast(color, BLACK_CODES)}</p>
 
       <h4 className="huetility-space-above">contrastText</h4>
-      <p>{contrastText(color, WHITE_CODES)}</p>
+      <p>{contrastText(color)}</p>
 
       <h4 className="huetility-space-above">cssColorValue</h4>
       <p>{cssColorValue(ColorMode.HEX, color)}</p>
