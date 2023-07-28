@@ -17,7 +17,7 @@ const defaultData = {
     colorMode: ColorMode.HEX,
     HEX: "#f20091",
     RGB: { r: 242, g: 0, b: 145 },
-    RGBA: { r: 241, g: 0, b: 145, a: 1 },
+    RGBA: { r: 242, g: 0, b: 145, a: 1 },
   },
   setMode: () => undefined,
   setHEX: () => undefined,
