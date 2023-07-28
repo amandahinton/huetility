@@ -27,9 +27,7 @@ const defaultData = {
 
 export const ColorContext = React.createContext<ColorContextType>(defaultData);
 
-type ColorProviderProps = { children: React.ReactNode };
-
-export function ColorProvider({ children }: ColorProviderProps) {
+export function ColorProvider({ children }: { children: React.ReactNode }) {
   const [color, setColor] = React.useState<ColorData>(defaultData.color);
 
   function setMode(mode: ColorMode) {
