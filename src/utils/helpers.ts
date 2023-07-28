@@ -100,8 +100,9 @@ export const approximateRGBFromRGBA = (
   backgroundColor: ColorCodes
 ): RGB => {
   const foreRGBA = foregroundColor.RGBA;
-  const backRGB = backgroundColor.RGB;
   if (foreRGBA.a == 1) return foregroundColor.RGB;
+
+  const backRGB = backgroundColor.RGB;
 
   // source - normalize foreground RGBA channels
   const foreR = foreRGBA.r / 255;
