@@ -57,6 +57,10 @@ export const isHexcode = (hexcode: string): boolean => {
   return pattern.test(hexcode);
 };
 
+export const isOpaque = (color: ColorCodes): boolean => {
+  return color.RGBA.a == 1
+}
+
 export const isPartialHexcode = (hexcode: string): boolean => {
   const pattern = new RegExp(/^#([A-Fa-f0-9]{0,8})$/);
   return pattern.test(hexcode);
