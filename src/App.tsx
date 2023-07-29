@@ -4,7 +4,7 @@ import {
   CSSValues,
   ScaleShades,
   ScaleTints,
-  Testing,
+  // Testing,
 } from "./components";
 import { ColorProvider } from "./contexts/ColorContext";
 import "./App.css";
@@ -15,12 +15,12 @@ function App() {
     <ColorProvider>
       <h1>HUETILITY</h1>
       <ColorPicker />
-      <CSSValues />
+      <Contrast />
       <ScaleTints />
       <ScaleShades />
-      <Contrast />
-      <hr />
-      <Testing />
+      <CSSValues />
+      {/* <hr />
+      <Testing /> */}
     </ColorProvider>
   );
 }
