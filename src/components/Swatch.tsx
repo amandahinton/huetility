@@ -1,13 +1,20 @@
 import { useColor } from "../contexts/ColorContext";
-import { contrastText, cssColorValue } from "../utils/helpers";
+import { WHITE_CODES } from "../utils/constants";
+import {
+  blendForegroundToBackground,
+  contrastTextHex,
+  cssColorValue,
+} from "../utils/helpers";
 import "./Swatch.css";
-import "./index.css"
+import "./index.css";
 
 export function Swatch() {
   const { color } = useColor();
   const { colorMode } = color;
 
-  const labelColor = contrastText(color);
+  const blendedColor = blendForegroundToBackground(color, WHITE_CODES);
+
+  const labelColor = contrastTextHex(blendedColor);
   const cssValue = cssColorValue(colorMode, color);
 
   return (
