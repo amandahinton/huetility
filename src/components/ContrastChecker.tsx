@@ -3,59 +3,139 @@ import { InputHex } from ".";
 import { ColorCodes } from "../types/types";
 import "./Contrast.css";
 import { useColor } from "../contexts/ColorContext";
-import { contrast, hexToColor, isBlack, isWhite } from "../utils/helpers";
+import {
+  blendForegroundToBackground,
+  contrast,
+  hexToColor,
+  isOpaque,
+} from "../utils/helpers";
+import { WHITE_CODES } from "../utils/constants";
 
-type Props = {
+export function ContrastChecker({
+  contrastColor,
+}: {
   contrastColor: ColorCodes;
-};
-export function ContrastChecker({ contrastColor }: Props) {
+}) {
   const { color } = useColor();
 
-  const [selectedColor, setSelectedColor] =
-    React.useState<ColorCodes>(contrastColor);
+  const [selection, setSelection] = React.useState<ColorCodes>(contrastColor);
 
-  const contrastRatio = contrast(color, selectedColor) || 0;
-  const colorLabel = isWhite(selectedColor)
-    ? "white"
-    : isBlack(selectedColor)
-    ? "black"
-    : selectedColor.HEX;
+  // use if opaque color and selection
+  const colorContrast = contrast(color, selection);
 
-  const contrastMessage =
-    contrastRatio >= 4.5
-      ? "Good for text of all sizes"
-      : contrastRatio < 3
-      ? "Low contrast, not accessible"
-      : "Good for large text only";
+  /*
+  if color and/or selection has transparency, blend first
+  example color = transparent red #ff004080
+  example selection = transparent black #00000080
+  page = WHITE_CODES
+
+  color on selection              selection on color
+   ----------------------         ------------------------
+  | transparent red text |       | transparent black text | 
+  |                      |       |                        |
+  | transparent black bg |       |  transparent red bg    | 
+   ----------------------         ------------------------
+
+  bg1 = blend selection to page     bg2 = blend color to page
+  text1 = blend color to bg1        text2 = blend selection to bg2
+  contrast(text1, bg1)              contrast(text2, bg2)
+*/
+
+  const background1 = blendForegroundToBackground(selection, WHITE_CODES);
+  const text1 = blendForegroundToBackground(color, background1);
+  const contrast1 = contrast(text1, background1);
+
+  const background2 = blendForegroundToBackground(color, WHITE_CODES);
+  const text2 = blendForegroundToBackground(selection, background2);
+  const contrast2 = contrast(text2, background2);
+
+  function contrastMessage(contrast: number): string {
+    if (contrast >= 4.5) {
+      return "Good for text of all sizes";
+    } else if (contrast < 3) {
+      return "Low contrast, hard to read";
+    } else {
+      return "Good for large text only";
+    }
+  }
 
   return (
     <div className="huetility-component-container">
-      <InputHex
-        onChange={(hexcode: string) => setSelectedColor(hexToColor(hexcode))}
-        color={selectedColor}
-      />
-
-      <p className="huetility-contrast-advice">{contrastMessage}</p>
-
-      <div className="huetility-contrast-swatch-container">
-        <div
-          className="huetility-contrast-swatch huetility-bordered"
-          style={{ backgroundColor: color.HEX }}
-        >
-          <p style={{ color: selectedColor.HEX }}>14 point</p>
-        </div>
-
-        <div
-          className="huetility-contrast-swatch huetility-bordered"
-          style={{ backgroundColor: selectedColor.HEX }}
-        >
-          <p style={{ color: color.HEX }}>14 point</p>
-        </div>
+      <div className="huetility-contrast-hex-input">
+        <InputHex
+          onChange={(hexcode: string) => setSelection(hexToColor(hexcode))}
+          color={selection}
+        />
       </div>
 
-      <h3 className="huetility-contrast-ratio">
-        {contrastRatio} contrast with {colorLabel}
-      </h3>
+      {isOpaque(color) && isOpaque(selection) && (
+        <>
+          <div className="huetility-contrast-swatch-container">
+            <div>
+              <div
+                className="huetility-contrast-swatch huetility-bordered"
+                style={{ backgroundColor: color.HEX }}
+              >
+                <ContrastSamples textHex={selection.HEX} />
+              </div>
+            </div>
+
+            <div>
+              <div
+                className="huetility-contrast-swatch huetility-bordered"
+                style={{ backgroundColor: selection.HEX }}
+              >
+                <ContrastSamples textHex={color.HEX} />
+              </div>
+            </div>
+          </div>
+          <h3 className="huetility-contrast-ratio">{colorContrast}</h3>
+          {colorContrast && <p>{contrastMessage(colorContrast)}</p>}
+        </>
+      )}
+
+      {(!isOpaque(color) || !isOpaque(selection)) && (
+        <>
+          <div className="huetility-contrast-swatch-container">
+            <div>
+              <div
+                className="huetility-contrast-swatch huetility-bordered"
+                style={{ backgroundColor: background1.HEX }}
+              >
+                <ContrastSamples textHex={text1.HEX} />
+              </div>
+              <div className="huetility-contrast-text-ratios">
+                <h3 className="huetility-contrast-ratio">{contrast1}</h3>
+                {contrast1 && <p>{contrastMessage(contrast1)}</p>}
+              </div>
+            </div>
+
+            <div>
+              <div
+                className="huetility-contrast-swatch huetility-bordered"
+                style={{ backgroundColor: background2.HEX }}
+              >
+                <ContrastSamples textHex={text2.HEX} />
+              </div>
+              <div className="huetility-contrast-text-ratios">
+                <h3 className="huetility-contrast-ratio">{contrast2}</h3>
+                {contrast2 && <p>{contrastMessage(contrast2)}</p>}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ContrastSamples({ textHex }: { textHex: string }) {
+  return (
+    <div className="huetility-contrast-text-samples" style={{ color: textHex }}>
+      <p style={{ fontSize: "14pt" }}>14 point</p>
+      <p style={{ fontSize: "14pt", fontWeight: "bold" }}>14 point bold</p>
+      <p style={{ fontSize: "18pt" }}>18 point</p>
+      <p style={{ fontSize: "24pt" }}>24 point</p>
     </div>
   );
 }
