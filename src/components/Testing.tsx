@@ -4,7 +4,7 @@ import {
   blendForegroundToBackground,
   channelLuminance,
   contrast,
-  contrastText,
+  contrastTextHex,
   cssColorValue,
   hexToColor,
   isBlack,
@@ -70,7 +70,7 @@ export function Testing() {
       <p>{contrast(color, BLACK_CODES)}</p>
 
       <h4 className="huetility-space-above">contrastText</h4>
-      <p>{contrastText(color)}</p>
+      <p>{contrastTextHex(color)}</p>
 
       <h4 className="huetility-space-above">cssColorValue</h4>
       <p>{cssColorValue(ColorMode.HEX, color)}</p>
