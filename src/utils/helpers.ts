@@ -6,7 +6,12 @@ import {
   RGBAToHexcode,
   RGBAToRGB,
 } from "./translations.ts";
-import { BLACK_HEXCODE, WHITE_HEXCODE } from "./constants";
+import {
+  BLACK_CODES,
+  BLACK_HEXCODE,
+  WHITE_CODES,
+  WHITE_HEXCODE,
+} from "./constants";
 import { ColorCodes, RGB, RGBA } from "../types/types";
 import { ColorMode } from "../types/enums";
 
@@ -101,7 +106,7 @@ export const blendForegroundToBackground = (
 ): ColorCodes => {
   const foreRGBA = foregroundColor.RGBA;
   if (foreRGBA.a == 1) return foregroundColor;
-  
+
   const backRGB = backgroundColor.RGB;
 
   // source - normalize foreground RGBA channels
@@ -186,13 +191,15 @@ export const contrast = (
   return undefined;
 };
 
+// blend out transparency before calculating text, uses RGB only
 // output: black or white hexcode to use for text on color background
-export const contrastText = (color: ColorCodes): string => {
+export const contrastTextHex = (color: ColorCodes): string => {
   try {
-    const luminance = relativeLuminance(color);
-    if (luminance) return luminance > 0.5 ? BLACK_HEXCODE : WHITE_HEXCODE;
+    const whiteContrast = contrast(color, WHITE_CODES) || 0;
+    const blackContrast = contrast(color, BLACK_CODES) || 0;
+    return blackContrast > whiteContrast ? BLACK_HEXCODE : WHITE_HEXCODE;
   } catch (error) {
-    console.error("Could not calculate text color:", error);
+    console.error("Could not calculate contrast color for text:", error);
   }
   return BLACK_HEXCODE;
 };
