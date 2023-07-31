@@ -22,8 +22,11 @@ export function ColorPicker() {
   const PickerInput = pickerComponents[colorMode];
 
   return (
-    <div className="huetility-component-container">
-      <h2 className="huetility-component-title">Color Picker</h2>
+    <div className="huetility-component-container huetility-outer">
+      <Swatch />
+      <h2 className="huetility-component-title huetility-space-above">
+        Color Picker
+      </h2>
       <select
         required
         className="huetility-mode-select"
@@ -44,7 +47,6 @@ export function ColorPicker() {
         <RGBColorWheel />
         <PickerInput />
       </div>
-      <Swatch />
     </div>
   );
 }

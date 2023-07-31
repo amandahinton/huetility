@@ -1,8 +1,8 @@
 .huetility-picker-swatch {
-  height: 100px;
+  height: 300px;
   width: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }

@@ -21,7 +21,7 @@ export function ScaleTints() {
 
   if (isWhite(color)) {
     return (
-      <div className="huetility-component-container">
+      <div className="huetility-component-container huetility-outer">
         <h2 className="huetility-component-title">
           {isOpaque(color) ? "Tints" : "Tints with Transparency"}
         </h2>
@@ -63,7 +63,7 @@ export function ScaleTints() {
   cssTints.push(whiteWithAlphaCSS);
 
   return (
-    <div className="huetility-component-container">
+    <div className="huetility-component-container huetility-outer">
       <h2 className="huetility-component-title">
         {isOpaque(color) ? "Tints" : "Tints with Transparency"}
       </h2>

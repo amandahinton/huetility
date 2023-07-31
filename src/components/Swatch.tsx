@@ -18,13 +18,11 @@ export function Swatch() {
   const cssValue = cssColorValue(colorMode, color);
 
   return (
-    <div className="huetility-component-container">
-      <div
-        className="huetility-picker-swatch huetility-bordered"
-        style={{ backgroundColor: cssValue }}
-      >
-        <p style={{ color: labelColor }}>{cssValue}</p>
-      </div>
+    <div
+      className="huetility-picker-swatch huetility-bordered"
+      style={{ backgroundColor: cssValue }}
+    >
+      <p style={{ color: labelColor }}>{cssValue}</p>
     </div>
   );
 }

@@ -33,8 +33,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
+  padding: 0 2rem;
   line-height: 2.5rem;
+  height: 194px;
+  width: 194px;
 }
 
 .huetility-contrast-text-ratios {

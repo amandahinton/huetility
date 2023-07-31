@@ -22,7 +22,7 @@ export function ScaleShades() {
 
   if (isBlack(color)) {
     return (
-      <div className="huetility-component-container">
+      <div className="huetility-component-container huetility-outer">
         <h2 className="huetility-component-title">
           {isOpaque(color) ? "Shades" : "Shades with Transparency"}
         </h2>
@@ -58,7 +58,7 @@ export function ScaleShades() {
   cssShades.push(blackWithAlphaCSS);
 
   return (
-    <div className="huetility-component-container">
+    <div className="huetility-component-container huetility-outer">
       <h2 className="huetility-component-title">
         {isOpaque(color) ? "Shades" : "Shades with Transparency"}
       </h2>

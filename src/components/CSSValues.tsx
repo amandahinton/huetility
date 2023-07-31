@@ -7,7 +7,7 @@ export function CSSValues() {
   const { color } = useColor();
 
   return (
-    <div className="huetility-component-container">
+    <div className="huetility-component-container huetility-outer">
       <h2 className="huetility-component-title">CSS Values</h2>
       <div className="huetility-css-rules-container">
         {Object.keys(ColorMode).map((mode) => {
