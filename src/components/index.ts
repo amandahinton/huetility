@@ -12,3 +12,4 @@ export * from "./ScaleShades.tsx";
 export * from "./Swatch.tsx";
 export * from "./ScaleTints.tsx";
 export * from "./Testing.tsx";
+export * from "./Vision";

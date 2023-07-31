@@ -12,8 +12,8 @@ import {
   WHITE_CODES,
   WHITE_HEXCODE,
 } from "./constants";
-import { ColorCodes, RGB, RGBA } from "../types/types";
-import { ColorMode } from "../types/enums";
+import { ColorCodes, PerceivedColor, RGB, RGBA } from "../types/types";
+import { ColorMode, VisionCategory, VisionDescription } from "../types/enums";
 
 export const hexToColor = (hexcode: string): ColorCodes => {
   return {
@@ -58,8 +58,8 @@ export const isHexcode = (hexcode: string): boolean => {
 };
 
 export const isOpaque = (color: ColorCodes): boolean => {
-  return color.RGBA.a == 1
-}
+  return color.RGBA.a == 1;
+};
 
 export const isPartialHexcode = (hexcode: string): boolean => {
   const pattern = new RegExp(/^#([A-Fa-f0-9]{0,8})$/);
@@ -236,16 +236,16 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
   return value;
 };
 
-/*
-input
-color: ColorCodes
-
-output 
-vision = [
-  {
-    name: "Protanomaly",
-    description: "reduced red",
-    color: helper to calculate protanomoly {HEX: "xxx", RGB: {}, RGBA: {}},
+export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
+  const colors = [];
+  const categories = Object.keys(VisionCategory);
+  for (const cat of categories) {
+    colors.push({
+      name: VisionCategory[cat as keyof typeof VisionCategory],
+      description:
+        VisionDescription[VisionCategory[cat as keyof typeof VisionCategory]],
+      color: color,
+    });
   }
-]
-*/
+  return colors;
+};

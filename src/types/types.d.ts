@@ -1,4 +1,4 @@
-import { ColorMode } from "./enums";
+import { ColorMode, VisionCategory, VisionDescription } from "./enums";
 
 // sRGB color space: hsl(), hwb(), rgb();
 // CIELAB color space: lab(), lch();
@@ -92,4 +92,10 @@ export type RGBA = {
   g: number;
   b: number;
   a: number;
+};
+
+type PerceivedColor = {
+  name: VisionCategory;
+  description: VisionDescription;
+  color: ColorCodes;
 };

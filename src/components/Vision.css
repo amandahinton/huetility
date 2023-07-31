@@ -1,0 +1,22 @@
+.huetility-vision-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  justify-content: space-between;
+}
+
+.huetility-vision-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.huetility-vision-swatch {
+  height: 100px;
+  width: 160px;
+}
+
+.huetility-vision-category {
+  font-weight: bold;
+}
