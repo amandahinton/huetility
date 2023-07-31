@@ -1,28 +1,38 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
-import { cssColorValue, isBlack, rgbToColor } from "../utils/helpers";
-import { BLACK_RGB_CSS } from "../utils/constants";
+import {
+  cssColorValue,
+  isBlack,
+  isOpaque,
+  rgbaToColor,
+} from "../utils/helpers";
+import { BLACK_RGB } from "../utils/constants";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
 import "./index.css";
 
 export function ScaleShades() {
   const { color } = useColor();
-  const { RGB } = color;
+  const { RGBA } = color;
 
   const [shadeCount, setShadeCount] = React.useState<number>(5);
+
+  const blackWithAlpha = rgbaToColor({ ...BLACK_RGB, a: RGBA.a });
+  const blackWithAlphaCSS = cssColorValue(ColorMode.RGBA, blackWithAlpha);
 
   if (isBlack(color)) {
     return (
       <div className="huetility-component-container">
-        <h2 className="huetility-component-title">RGB Shades</h2>
+        <h2 className="huetility-component-title">
+          {isOpaque(color) ? "Shades" : "Shades with Transparency"}
+        </h2>
 
         <div className="huetility-shade-tint-button huetility-bordered">
           <button
             className="huetility-shade-tint-button"
-            title={BLACK_RGB_CSS}
+            title={blackWithAlphaCSS}
             style={{
-              backgroundColor: BLACK_RGB_CSS,
+              backgroundColor: blackWithAlphaCSS,
               width: 300,
             }}
           ></button>
@@ -31,24 +41,27 @@ export function ScaleShades() {
     );
   }
 
-  const cssShades = [cssColorValue(ColorMode.RGB, color)];
+  const cssShades = [cssColorValue(ColorMode.RGBA, color)];
 
   const shadeMultiplier = 1 / (shadeCount - 1);
 
   for (let i = shadeCount - 2; i > 0; i--) {
     const newShade = {
-      r: RGB.r * shadeMultiplier * i,
-      g: RGB.g * shadeMultiplier * i,
-      b: RGB.b * shadeMultiplier * i,
+      r: RGBA.r * shadeMultiplier * i,
+      g: RGBA.g * shadeMultiplier * i,
+      b: RGBA.b * shadeMultiplier * i,
+      a: RGBA.a,
     };
-    cssShades.push(cssColorValue(ColorMode.RGB, rgbToColor(newShade)));
+    cssShades.push(cssColorValue(ColorMode.RGBA, rgbaToColor(newShade)));
   }
 
-  cssShades.push(BLACK_RGB_CSS);
+  cssShades.push(blackWithAlphaCSS);
 
   return (
     <div className="huetility-component-container">
-      <h2 className="huetility-component-title">RGB Shades</h2>
+      <h2 className="huetility-component-title">
+        {isOpaque(color) ? "Shades" : "Shades with Transparency"}
+      </h2>
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>
       <input
         type="range"

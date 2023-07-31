@@ -1,27 +1,37 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
-import { cssColorValue, isWhite, rgbToColor } from "../utils/helpers";
-import { WHITE_RGB_CSS } from "../utils/constants";
+import {
+  cssColorValue,
+  isOpaque,
+  isWhite,
+  rgbaToColor,
+} from "../utils/helpers";
+import { WHITE_RGB } from "../utils/constants";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
 
 export function ScaleTints() {
   const { color } = useColor();
-  const { RGB } = color;
+  const { RGBA } = color;
 
   const [tintCount, setTintCount] = React.useState<number>(5);
+
+  const whiteWithAlpha = rgbaToColor({ ...WHITE_RGB, a: RGBA.a });
+  const whiteWithAlphaCSS = cssColorValue(ColorMode.RGBA, whiteWithAlpha);
 
   if (isWhite(color)) {
     return (
       <div className="huetility-component-container">
-        <h2 className="huetility-component-title">RGB Tints</h2>
+        <h2 className="huetility-component-title">
+          {isOpaque(color) ? "Tints" : "Shades with Transparency"}
+        </h2>
 
         <div className="huetility-shade-tint-buttons-container">
           <button
             className="huetility-shade-tint-button huetility-bordered"
-            title={WHITE_RGB_CSS}
+            title={whiteWithAlphaCSS}
             style={{
-              backgroundColor: WHITE_RGB_CSS,
+              backgroundColor: whiteWithAlphaCSS,
               width: 300,
             }}
           ></button>
@@ -30,30 +40,33 @@ export function ScaleTints() {
     );
   }
 
-  const cssTints = [cssColorValue(ColorMode.RGB, color)];
+  const cssTints = [cssColorValue(ColorMode.RGBA, color)];
 
   const tintMultiplier = 1 / (tintCount - 1);
 
   const divergenceFromWhite = {
-    r: 255 - RGB.r,
-    g: 255 - RGB.g,
-    b: 255 - RGB.b,
+    r: 255 - RGBA.r,
+    g: 255 - RGBA.g,
+    b: 255 - RGBA.b,
   };
 
   for (let i = 1; i < tintCount - 1; i++) {
     const newTint = {
-      r: RGB.r + divergenceFromWhite.r * tintMultiplier * i,
-      g: RGB.g + divergenceFromWhite.g * tintMultiplier * i,
-      b: RGB.b + divergenceFromWhite.b * tintMultiplier * i,
+      r: RGBA.r + divergenceFromWhite.r * tintMultiplier * i,
+      g: RGBA.g + divergenceFromWhite.g * tintMultiplier * i,
+      b: RGBA.b + divergenceFromWhite.b * tintMultiplier * i,
+      a: RGBA.a,
     };
-    cssTints.push(cssColorValue(ColorMode.RGB, rgbToColor(newTint)));
+    cssTints.push(cssColorValue(ColorMode.RGBA, rgbaToColor(newTint)));
   }
 
-  cssTints.push(WHITE_RGB_CSS);
+  cssTints.push(whiteWithAlphaCSS);
 
   return (
     <div className="huetility-component-container">
-      <h2 className="huetility-component-title">RGB Tints</h2>
+      <h2 className="huetility-component-title">
+        {isOpaque(color) ? "Tints" : "Shades with Transparency"}
+      </h2>
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
       <input
         type="range"
