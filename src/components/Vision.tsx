@@ -1,7 +1,8 @@
 import { useColor } from "../contexts/ColorContext";
-import { perceivedColors } from "../utils/helpers";
+import { contrast, perceivedColors } from "../utils/helpers";
 import { PerceivedColor } from "../types/types";
 import "./Vision.css";
+import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
 
 export function Vision() {
   const { color } = useColor();
@@ -17,7 +18,26 @@ export function Vision() {
             <div
               className="huetility-vision-swatch huetility-bordered"
               style={{ backgroundColor: viz.color.HEX }}
-            ></div>
+            >
+              <div className="huetility-vision-text-samples">
+                <p
+                  style={{ color: "#ffffff" }}
+                  className={
+                    viz.name === "Diminished" ? "huetility-blurred-text" : ""
+                  }
+                >
+                  White {contrast(viz.color, WHITE_CODES)}
+                </p>
+                <p
+                  style={{ color: "#000000" }}
+                  className={
+                    viz.name === "Diminished" ? "huetility-blurred-text" : ""
+                  }
+                >
+                  Black {contrast(viz.color, BLACK_CODES)}
+                </p>
+              </div>
+            </div>
             <p className="huetility-vision-category">{viz.name}</p>
             <small>{viz.description}</small>
           </div>

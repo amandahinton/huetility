@@ -15,8 +15,20 @@
 .huetility-vision-swatch {
   height: 100px;
   width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.huetility-vision-text-samples {
+  padding: 2rem;
 }
 
 .huetility-vision-category {
   font-weight: bold;
+}
+
+.huetility-blurred-text {
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
