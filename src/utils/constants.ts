@@ -1,15 +1,22 @@
 export const BLACK_HEXCODE = "#000000";
 export const BLACK_RGB = { r: 0, g: 0, b: 0 };
 export const BLACK_RGBA = { r: 0, g: 0, b: 0, a: 1 };
+export const BLACK_CODES = {
+  HEX: BLACK_HEXCODE,
+  RGB: BLACK_RGB,
+  RGBA: BLACK_RGBA,
+};
 export const BLACK_RGB_CSS = "rgb(0, 0, 0)";
-export const BLACK_CODES = {"HEX": BLACK_HEXCODE,"RGB":BLACK_RGB,"RGBA":BLACK_RGBA};
-
 
 export const WHITE_HEXCODE = "#ffffff";
 export const WHITE_RGB = { r: 255, g: 255, b: 255 };
 export const WHITE_RGBA = { r: 255, g: 255, b: 255, a: 1 };
+export const WHITE_CODES = {
+  HEX: WHITE_HEXCODE,
+  RGB: WHITE_RGB,
+  RGBA: WHITE_RGBA,
+};
 export const WHITE_RGB_CSS = "rgb(255, 255, 255)";
-export const WHITE_CODES = {"HEX": WHITE_HEXCODE,"RGB":WHITE_RGB,"RGBA":WHITE_RGBA};
 
 export const HUES = [
   { id: 0, descriptor: "R - red", degree: 0, cssRGB: "rgb(255, 0, 0)" },
