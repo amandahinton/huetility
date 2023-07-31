@@ -23,7 +23,7 @@ export function ScaleTints() {
     return (
       <div className="huetility-component-container">
         <h2 className="huetility-component-title">
-          {isOpaque(color) ? "Tints" : "Shades with Transparency"}
+          {isOpaque(color) ? "Tints" : "Tints with Transparency"}
         </h2>
 
         <div className="huetility-shade-tint-buttons-container">
@@ -65,7 +65,7 @@ export function ScaleTints() {
   return (
     <div className="huetility-component-container">
       <h2 className="huetility-component-title">
-        {isOpaque(color) ? "Tints" : "Shades with Transparency"}
+        {isOpaque(color) ? "Tints" : "Tints with Transparency"}
       </h2>
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
       <input
