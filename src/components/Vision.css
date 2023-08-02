@@ -28,7 +28,17 @@
   font-weight: bold;
 }
 
-.huetility-blurred-text {
+.huetility-diminished-vision-text {
   filter: blur(1px);
   -webkit-filter: blur(1px);
+}
+
+.huetility-protanomaly-vision-swatch,
+.huetility-protanopia-vision-swatch,
+.huetility-deuteranomaly-vision-swatch,
+.huetility-deuteranopia-vision-swatch,
+.huetility-tritanomaly-vision-swatch,
+.huetility-tritanopia-vision-swatch,
+.huetility-achromatomaly-vision-swatch {
+  border: green dotted 4px;
 }
