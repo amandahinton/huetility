@@ -33,3 +33,69 @@ export const HUES = [
   { id: 11, descriptor: "pink", degree: 330, cssRGB: "rgb(255, 0, 128)" },
   { id: 12, descriptor: "R - red", degree: 360, cssRGB: "rgb(255, 0, 0)" },
 ];
+
+// COLOR VISION DEFICIENCY MATRICES
+// https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html
+
+// normal color vision
+export const TRICHROMATIC_MATRIX = [
+  [1, 0, 0],
+  [0, 1, 0],
+  [0, 0, 1],
+];
+
+// protanomaly .5 severity
+export const PROTANOMALY_MATRIX = [
+  [0.458064, 0.679578, -0.137642],
+  [0.092785, 0.846313, 0.060902],
+  [-0.007494, -0.016807, 1.024301],
+];
+
+//protanomaly 1.0 highest severity dichromacy
+export const PROTANOPIA_MATRIX = [
+  [0.152286, 1.052583, -0.204868],
+  [0.114503, 0.786281, 0.099216],
+  [-0.003882, -0.048116, 1.051998],
+];
+
+// deuteranomaly .5 severity
+export const DEUTERANOMALY_MATRIX = [
+  [0.547494, 0.607765, -0.155259],
+  [0.181692, 0.781742, 0.036566],
+  [-0.01041, 0.027275, 0.983136],
+];
+
+//deuteranomaly 1.0 highest severity dichromacy
+export const DEUTERANOPIA_MATRIX = [
+  [0.367322, 0.860646, -0.227968],
+  [0.280085, 0.672501, 0.047413],
+  [-0.01182, 0.04294, 0.968881],
+];
+
+// tritanomaly .5 severity
+export const TRITANOMALY_MATRIX = [
+  [1.017277, 0.027029, -0.044306],
+  [-0.006113, 0.958479, 0.047634],
+  [0.006379, 0.248708, 0.744913],
+];
+
+//tritanomaly 1.0 highest severity dichromacy
+export const TRITANOPIA_MATRIX = [
+  [1.255528, -0.076749, -0.178779],
+  [-0.078411, 0.930809, 0.147602],
+  [0.004733, 0.691367, 0.3039],
+];
+
+// TODO complete color blindness
+export const ACHROMATOMALY_MATRIX = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
+
+// TODO complete color blindness
+export const ACHROMATOPSIA_MATRIX = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
