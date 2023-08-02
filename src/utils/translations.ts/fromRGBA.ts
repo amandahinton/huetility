@@ -19,7 +19,7 @@ export const RGBAToHexcode = (rgba: RGBA): string => {
     return hexcode;
   } else {
     console.error(
-      "Error: improper rgb input, defaulting to black hexcode",
+      "Error: improper rgba input, defaulting to black hexcode",
       rgba,
       hexcode
     );
