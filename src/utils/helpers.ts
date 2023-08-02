@@ -191,20 +191,28 @@ WCAG standard:
 text and interactive elements at least 4.5:1
 large text at least 3:1
 */
+export const channelLinear = (channelNonlinearValue: number): number => {
+  const nonlinear = channelNonlinearValue / 255;
+  return nonlinear <= 0.04045
+    ? nonlinear / 12.92
+    : Math.pow((nonlinear + 0.055) / 1.055, 2.4);
+};
 
-export const channelLuminance = (channelValue: number): number => {
-  const output = channelValue / 255;
-  return output <= 0.03928
-    ? output / 12.92
-    : Math.pow((output + 0.055) / 1.055, 2.4);
+export const channelNonlinear = (channelLinearValue: number): number => {
+  const linear =
+    channelLinearValue <= 0.0031308
+      ? channelLinearValue * 12.92
+      : 1.055 * Math.pow(channelLinearValue, 1.0 / 2.4) - 0.055;
+  const value = Math.round(linear * 255);
+  return value > 255 ? 255 : value;
 };
 
 export const relativeLuminance = (color: ColorCodes): number | undefined => {
   try {
     const rgb = color.RGB;
-    const R = channelLuminance(rgb.r);
-    const G = channelLuminance(rgb.g);
-    const B = channelLuminance(rgb.b);
+    const R = channelLinear(rgb.r);
+    const G = channelLinear(rgb.g);
+    const B = channelLinear(rgb.b);
     // For sRGB colorspace, relative luminance defined as...
     return 0.2126 * R + 0.7152 * G + 0.0722 * B;
   } catch (error) {
@@ -326,21 +334,21 @@ export function achromatomaly(color: ColorCodes): ColorCodes {
 export function achromatopsia(color: ColorCodes): ColorCodes {
   const { RGB } = color;
 
-  const r = Math.pow(RGB.r / 255, 2.4);
-  const g = Math.pow(RGB.g / 255, 2.4);
-  const b = Math.pow(RGB.b / 255, 2.4);
+  // const r = Math.pow(RGB.r / 255, 2.4);
+  // const g = Math.pow(RGB.g / 255, 2.4);
+  // const b = Math.pow(RGB.b / 255, 2.4);
+  const r = channelLinear(RGB.r);
+  const g = channelLinear(RGB.g);
+  const b = channelLinear(RGB.b);
 
   const linearGray: number = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
-  const nonlinearGray =
-    linearGray <= 0.0031308
-      ? 12.92 * linearGray
-      : 1.055 * Math.pow(linearGray, 1 / 2.4) - 0.055;
+  const nonlinearGray = channelNonlinear(linearGray);
 
   const rgba: RGBA = {
-    r: nonlinearGray * 255,
-    g: nonlinearGray * 255,
-    b: nonlinearGray * 255,
+    r: nonlinearGray,
+    g: nonlinearGray,
+    b: nonlinearGray,
     a: color.RGBA.a,
   };
 

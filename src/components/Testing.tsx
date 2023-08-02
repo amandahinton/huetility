@@ -2,7 +2,8 @@ import { useColor } from "../contexts/ColorContext";
 import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
 import {
   blendForegroundToBackground,
-  channelLuminance,
+  channelLinear,
+  channelNonlinear,
   contrast,
   contrastTextHex,
   cssColorValue,
@@ -54,11 +55,23 @@ export function Testing() {
 
       <h4 className="huetility-space-above">blendForegroundToBackground</h4>
       <p>picker RGBA: {JSON.stringify(color.RGBA)}</p>
-      <p>approximate blended RGB: {JSON.stringify(blendForegroundToBackground(color, WHITE_CODES).RGB)}</p>
-      <p>approximate blended HEX: {blendForegroundToBackground(color, WHITE_CODES).HEX}</p>
+      <p>
+        approximate blended RGB:{" "}
+        {JSON.stringify(blendForegroundToBackground(color, WHITE_CODES).RGB)}
+      </p>
+      <p>
+        approximate blended HEX:{" "}
+        {blendForegroundToBackground(color, WHITE_CODES).HEX}
+      </p>
 
-      <h4 className="huetility-space-above">channelLuminance</h4>
-      <p>{channelLuminance(color.RGB.r)}</p>
+      <h4 className="huetility-space-above">channelLinear</h4>
+      <p>{channelLinear(color.RGB.r)}</p>
+      <p>{channelLinear(255)}</p>
+
+      <h4 className="huetility-space-above">channelNonlinear</h4>
+      <p>{channelNonlinear(0.8879231178819663)}</p>
+      <p>{channelNonlinear(1)}</p>
+      <p>{channelNonlinear(2)}</p>
 
       <h4 className="huetility-space-above">relativeLuminance</h4>
       <p>{relativeLuminance(color)}</p>
