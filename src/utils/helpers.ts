@@ -9,12 +9,14 @@ import {
 import {
   BLACK_CODES,
   BLACK_HEXCODE,
+  PROTANOMALY_MATRIX,
   WHITE_CODES,
   WHITE_HEXCODE,
 } from "./constants";
 import { ColorCodes, PerceivedColor, RGB, RGBA } from "../types/types";
 import { ColorMode, VisionCategory, VisionDescription } from "../types/enums";
 
+// FUNCTIONS FOR CONVERTING TO THE CANONICAL COLOR OBJECT
 export const hexToColor = (hexcode: string): ColorCodes => {
   return {
     HEX: hexcode,
@@ -49,6 +51,8 @@ export const rgbaToColor = (rgba: RGBA): ColorCodes => {
     RGBA: formattedRGBA,
   };
 };
+
+// FUNCTIONS FOR CHECKING VALUE OF INPUT
 
 export const isHexcode = (hexcode: string): boolean => {
   const pattern = new RegExp(
@@ -98,9 +102,41 @@ export const isWhite = (color: ColorCodes): boolean => {
   return color.RGB.r === 255 && color.RGB.g === 255 && color.RGB.b === 255;
 };
 
+// FUNCTIONS FOR USING COLOR IN UI
+
+// output: a string with the css color rule for the input mode
+export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
+  let value = "";
+  let alpha;
+
+  switch (mode) {
+    case ColorMode.HEX:
+      value = color.HEX;
+      break;
+    case ColorMode.RGB:
+      value = `rgb(${Math.round(color.RGB.r)}, ${Math.round(
+        color.RGB.g
+      )}, ${Math.round(color.RGB.b)})`;
+      break;
+    case ColorMode.RGBA:
+      alpha =
+        color.RGBA.a == 1 || color.RGBA.a == 0
+          ? color.RGBA.a
+          : color.RGBA.a.toFixed(2);
+      value = `rgba(${Math.round(color.RGBA.r)}, ${Math.round(
+        color.RGBA.g
+      )}, ${Math.round(color.RGBA.b)}, ${alpha})`;
+      break;
+  }
+
+  return value;
+};
+
 export const colorLabel = (color: ColorCodes): string => {
   return isWhite(color) ? "white" : isBlack(color) ? "black" : color.HEX;
 };
+
+// FUNCTIONS FOR WORKING WITH TRANSPARENCY
 
 // background color will use opaque RGB only
 // pre-blend background if it was transparent
@@ -140,6 +176,8 @@ export const blendForegroundToBackground = (
 
   return rgbToColor({ r: transformedR, g: transformedG, b: transformedB });
 };
+
+// FUNCTIONS RELATED TO COLOR CONTRAST
 
 /*
 https://www.w3.org/TR/WCAG20/
@@ -208,40 +246,50 @@ export const contrastTextHex = (color: ColorCodes): string => {
   return BLACK_HEXCODE;
 };
 
-// output: a string with the css color rule for the input mode
-export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
-  let value = "";
-  let alpha;
+// FUNCTIONS RELATED TO COLOR VISION DEFICIENCY
 
-  switch (mode) {
-    case ColorMode.HEX:
-      value = color.HEX;
-      break;
-    case ColorMode.RGB:
-      value = `rgb(${Math.round(color.RGB.r)}, ${Math.round(
-        color.RGB.g
-      )}, ${Math.round(color.RGB.b)})`;
-      break;
-    case ColorMode.RGBA:
-      alpha =
-        color.RGBA.a == 1 || color.RGBA.a == 0
-          ? color.RGBA.a
-          : color.RGBA.a.toFixed(2);
-      value = `rgba(${Math.round(color.RGBA.r)}, ${Math.round(
-        color.RGBA.g
-      )}, ${Math.round(color.RGBA.b)}, ${alpha})`;
-      break;
-  }
+//TODO check if valid
+export function colorToRGBMatrix(color: ColorCodes): number[][] {
+  const { RGB } = color;
+  return [
+    [RGB.r / 255, 0, 0],
+    [0, RGB.g / 255, 0],
+    [0, 0, RGB.b / 255],
+  ];
+}
 
-  return value;
-};
+//TODO check if valid
+export function rgbMatrixToColor(
+  matrix: number[][],
+  alpha: number
+): ColorCodes {
+  const matrixR = matrix[0][0];
+  const matrixG = matrix[1][1];
+  const matrixB = matrix[2][2];
 
+  // cap at 255
+  const rgba: RGBA = {
+    r: 255 * (matrixR > 1 ? 1 : matrixR),
+    g: 255 * (matrixG > 1 ? 1 : matrixG),
+    b: 255 * (matrixB > 1 ? 1 : matrixB),
+    a: alpha,
+  };
+
+  return rgbaToColor(rgba);
+}
+
+// "normal" vision so return original color
 export function trichromatic(color: ColorCodes): ColorCodes {
   return color;
 }
 
-//TODO
+//TODO matrix multiplication
 export function protanomaly(color: ColorCodes): ColorCodes {
+  const colorMatrix = colorToRGBMatrix(color);
+  // const dichromacyMatrix = colorMatrix * PROTANOMALY_MATRIX;
+  const dichromacyMatrix = PROTANOMALY_MATRIX;
+  const translatedMatrix = rgbMatrixToColor(dichromacyMatrix, color.RGBA.a);
+  // return translatedMatrix;
   return color;
 }
 
@@ -270,14 +318,33 @@ export function tritanopia(color: ColorCodes): ColorCodes {
   return color;
 }
 
-//TODO
+//TODO halfway between achromatopsia and original?
 export function achromatomaly(color: ColorCodes): ColorCodes {
   return color;
 }
 
-//TODO
 export function achromatopsia(color: ColorCodes): ColorCodes {
-  return color;
+  const { RGB } = color;
+
+  const r = Math.pow(RGB.r / 255, 2.4);
+  const g = Math.pow(RGB.g / 255, 2.4);
+  const b = Math.pow(RGB.b / 255, 2.4);
+
+  const linearGray: number = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+  const nonlinearGray =
+    linearGray <= 0.0031308
+      ? 12.92 * linearGray
+      : 1.055 * Math.pow(linearGray, 1 / 2.4) - 0.055;
+
+  const rgba: RGBA = {
+    r: nonlinearGray * 255,
+    g: nonlinearGray * 255,
+    b: nonlinearGray * 255,
+    a: color.RGBA.a,
+  };
+
+  return rgbaToColor(rgba);
 }
 
 export function diminished(color: ColorCodes): ColorCodes {
