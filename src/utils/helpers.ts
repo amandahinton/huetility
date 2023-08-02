@@ -334,9 +334,6 @@ export function achromatomaly(color: ColorCodes): ColorCodes {
 export function achromatopsia(color: ColorCodes): ColorCodes {
   const { RGB } = color;
 
-  // const r = Math.pow(RGB.r / 255, 2.4);
-  // const g = Math.pow(RGB.g / 255, 2.4);
-  // const b = Math.pow(RGB.b / 255, 2.4);
   const r = channelLinear(RGB.r);
   const g = channelLinear(RGB.g);
   const b = channelLinear(RGB.b);
@@ -345,14 +342,12 @@ export function achromatopsia(color: ColorCodes): ColorCodes {
 
   const nonlinearGray = channelNonlinear(linearGray);
 
-  const rgba: RGBA = {
+  return rgbaToColor({
     r: nonlinearGray,
     g: nonlinearGray,
     b: nonlinearGray,
     a: color.RGBA.a,
-  };
-
-  return rgbaToColor(rgba);
+  });
 }
 
 export function diminished(color: ColorCodes): ColorCodes {
