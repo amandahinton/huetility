@@ -23,12 +23,12 @@ export enum VisionCategory {
 
 export enum VisionDescription {
   trichromatic = "regular vision",
-  protanomaly = "reduced red",
-  protanopia = "no red",
-  deuteranomaly = "reduced green",
-  deuteranopia = "no green",
-  tritanomaly = "reduced blue",
-  tritanopia = "no blue",
+  protanomaly = "reduced long waves (red)",
+  protanopia = "no long waves (red)",
+  deuteranomaly = "reduced medium waves (green)",
+  deuteranopia = "no medium waves (green)",
+  tritanomaly = "reduced short waves (blue)",
+  tritanopia = "no short waves (blue)",
   achromatomaly = "partial color blindness",
   achromatopsia = "complete color blindness",
   diminished = "blurred vision",
