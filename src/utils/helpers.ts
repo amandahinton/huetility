@@ -270,21 +270,6 @@ export function colorToRGBMatrix(color: ColorCodes): number[] {
   return [channelLinear(RGB.r), channelLinear(RGB.g), channelLinear(RGB.b)];
 }
 
-/*
-deficiencyMatrix[0][0] deficiencyMatrix[0][1] deficiencyMatrix[0][2]
-deficiencyMatrix[1][0] deficiencyMatrix[1][1] deficiencyMatrix[1][2]
-deficiencyMatrix[2][0] deficiencyMatrix[2][1] deficiencyMatrix[2][2]
-
-colorMatrix[0] 
-colorMatrix[1]
-colorMatrix[2]
-
-deficiencyMatrix[0][0] * colorMatrix[0] + deficiencyMatrix[0][1] * colorMatrix[1]+ deficiencyMatrix[0][2] * colorMatrix[2]
-deficiencyMatrix[1][0] * colorMatrix[0] + deficiencyMatrix[1][1] * colorMatrix[1]+ deficiencyMatrix[1][2] * colorMatrix[2] 
-deficiencyMatrix[2][0] * colorMatrix[0] + deficiencyMatrix[2][1] * colorMatrix[1]+ deficiencyMatrix[2][2] * colorMatrix[2]
-
-*/
-
 export function colorMatrixMultiplication(
   colorMatrix: number[],
   deficiencyMatrix: number[][]
@@ -304,7 +289,6 @@ export function colorMatrixMultiplication(
   return [Math.abs(deficientR), Math.abs(deficientG), Math.abs(deficientB)];
 }
 
-//TODO check if valid
 export function rgbMatrixToColor(matrix: number[], alpha: number): ColorCodes {
   const rgba: RGBA = {
     r: channelNonlinear(matrix[0]),
@@ -373,10 +357,6 @@ export function achromatomaly(color: ColorCodes): ColorCodes {
   });
 }
 
-export function diminished(color: ColorCodes): ColorCodes {
-  return color;
-}
-
 function visionSimulator(
   category: VisionCategory,
   color: ColorCodes
@@ -415,7 +395,6 @@ function visionSimulator(
       perceivedColor.color = achromatopsia(color);
       break;
     case VisionCategory.DIMINISHED:
-      perceivedColor.color = diminished(color);
       break;
   }
   return perceivedColor;
