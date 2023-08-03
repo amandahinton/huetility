@@ -9,7 +9,12 @@ import {
 import {
   BLACK_CODES,
   BLACK_HEXCODE,
+  DEUTERANOMALY_MATRIX,
+  DEUTERANOPIA_MATRIX,
   PROTANOMALY_MATRIX,
+  PROTANOPIA_MATRIX,
+  TRITANOMALY_MATRIX,
+  TRITANOPIA_MATRIX,
   WHITE_CODES,
   WHITE_HEXCODE,
 } from "./constants";
@@ -136,7 +141,7 @@ export const colorLabel = (color: ColorCodes): string => {
   return isWhite(color) ? "white" : isBlack(color) ? "black" : color.HEX;
 };
 
-// FUNCTIONS FOR WORKING WITH TRANSPARENCY
+// FUNCTIONS FOR PROCESSING COLORS
 
 // background color will use opaque RGB only
 // pre-blend background if it was transparent
@@ -177,6 +182,24 @@ export const blendForegroundToBackground = (
   return rgbToColor({ r: transformedR, g: transformedG, b: transformedB });
 };
 
+// process colors in linear space (but display in sRGB)
+export const channelLinear = (channelNonlinearValue: number): number => {
+  const nonlinear = channelNonlinearValue / 255;
+  return nonlinear <= 0.04045
+    ? nonlinear / 12.92
+    : Math.pow((nonlinear + 0.055) / 1.055, 2.4);
+};
+
+//sRGB curve has more darks than lights as sensitivity to light is better at low intensities than high
+export const channelNonlinear = (channelLinearValue: number): number => {
+  const linear =
+    channelLinearValue <= 0.0031308
+      ? channelLinearValue * 12.92
+      : 1.055 * Math.pow(channelLinearValue, 1.0 / 2.4) - 0.055;
+  const value = Math.round(linear * 255);
+  return value > 255 ? 255 : value;
+};
+
 // FUNCTIONS RELATED TO COLOR CONTRAST
 
 /*
@@ -191,21 +214,6 @@ WCAG standard:
 text and interactive elements at least 4.5:1
 large text at least 3:1
 */
-export const channelLinear = (channelNonlinearValue: number): number => {
-  const nonlinear = channelNonlinearValue / 255;
-  return nonlinear <= 0.04045
-    ? nonlinear / 12.92
-    : Math.pow((nonlinear + 0.055) / 1.055, 2.4);
-};
-
-export const channelNonlinear = (channelLinearValue: number): number => {
-  const linear =
-    channelLinearValue <= 0.0031308
-      ? channelLinearValue * 12.92
-      : 1.055 * Math.pow(channelLinearValue, 1.0 / 2.4) - 0.055;
-  const value = Math.round(linear * 255);
-  return value > 255 ? 255 : value;
-};
 
 export const relativeLuminance = (color: ColorCodes): number | undefined => {
   try {
@@ -257,80 +265,75 @@ export const contrastTextHex = (color: ColorCodes): string => {
 // FUNCTIONS RELATED TO COLOR VISION DEFICIENCY
 
 //TODO check if valid
-export function colorToRGBMatrix(color: ColorCodes): number[][] {
+export function colorToRGBMatrix(color: ColorCodes): number[] {
   const { RGB } = color;
-  return [
-    [RGB.r / 255, 0, 0],
-    [0, RGB.g / 255, 0],
-    [0, 0, RGB.b / 255],
-  ];
+  return [channelLinear(RGB.r), channelLinear(RGB.g), channelLinear(RGB.b)];
+}
+
+/*
+deficiencyMatrix[0][0] deficiencyMatrix[0][1] deficiencyMatrix[0][2]
+deficiencyMatrix[1][0] deficiencyMatrix[1][1] deficiencyMatrix[1][2]
+deficiencyMatrix[2][0] deficiencyMatrix[2][1] deficiencyMatrix[2][2]
+
+colorMatrix[0] 
+colorMatrix[1]
+colorMatrix[2]
+
+deficiencyMatrix[0][0] * colorMatrix[0] + deficiencyMatrix[0][1] * colorMatrix[1]+ deficiencyMatrix[0][2] * colorMatrix[2]
+deficiencyMatrix[1][0] * colorMatrix[0] + deficiencyMatrix[1][1] * colorMatrix[1]+ deficiencyMatrix[1][2] * colorMatrix[2] 
+deficiencyMatrix[2][0] * colorMatrix[0] + deficiencyMatrix[2][1] * colorMatrix[1]+ deficiencyMatrix[2][2] * colorMatrix[2]
+
+*/
+
+export function colorMatrixMultiplication(
+  colorMatrix: number[],
+  deficiencyMatrix: number[][]
+): number[] {
+  const deficientR =
+    deficiencyMatrix[0][0] * colorMatrix[0] +
+    deficiencyMatrix[0][1] * colorMatrix[1] +
+    deficiencyMatrix[0][2] * colorMatrix[2];
+  const deficientG =
+    deficiencyMatrix[1][0] * colorMatrix[0] +
+    deficiencyMatrix[1][1] * colorMatrix[1] +
+    deficiencyMatrix[1][2] * colorMatrix[2];
+  const deficientB =
+    deficiencyMatrix[2][0] * colorMatrix[0] +
+    deficiencyMatrix[2][1] * colorMatrix[1] +
+    deficiencyMatrix[2][2] * colorMatrix[2];
+  return [Math.abs(deficientR), Math.abs(deficientG), Math.abs(deficientB)];
 }
 
 //TODO check if valid
-export function rgbMatrixToColor(
-  matrix: number[][],
-  alpha: number
-): ColorCodes {
-  const matrixR = matrix[0][0];
-  const matrixG = matrix[1][1];
-  const matrixB = matrix[2][2];
-
-  // cap at 255
+export function rgbMatrixToColor(matrix: number[], alpha: number): ColorCodes {
   const rgba: RGBA = {
-    r: 255 * (matrixR > 1 ? 1 : matrixR),
-    g: 255 * (matrixG > 1 ? 1 : matrixG),
-    b: 255 * (matrixB > 1 ? 1 : matrixB),
+    r: channelNonlinear(matrix[0]),
+    g: channelNonlinear(matrix[1]),
+    b: channelNonlinear(matrix[2]),
     a: alpha,
   };
-
   return rgbaToColor(rgba);
 }
 
-// "normal" vision so return original color
+// "normal" vision, so return original color
 export function trichromatic(color: ColorCodes): ColorCodes {
   return color;
 }
 
-//TODO matrix multiplication
-export function protanomaly(color: ColorCodes): ColorCodes {
+export function deficientColor(
+  color: ColorCodes,
+  deficiencyMatrix: number[][]
+): ColorCodes {
   const colorMatrix = colorToRGBMatrix(color);
-  // const dichromacyMatrix = colorMatrix * PROTANOMALY_MATRIX;
-  const dichromacyMatrix = PROTANOMALY_MATRIX;
+  const dichromacyMatrix = colorMatrixMultiplication(
+    colorMatrix,
+    deficiencyMatrix
+  );
   const translatedMatrix = rgbMatrixToColor(dichromacyMatrix, color.RGBA.a);
-  // return translatedMatrix;
-  return color;
+  return translatedMatrix;
 }
 
-//TODO
-export function protanopia(color: ColorCodes): ColorCodes {
-  return color;
-}
-
-//TODO
-export function deuteranomaly(color: ColorCodes): ColorCodes {
-  return color;
-}
-
-//TODO
-export function deuteranopia(color: ColorCodes): ColorCodes {
-  return color;
-}
-
-//TODO
-export function tritanomaly(color: ColorCodes): ColorCodes {
-  return color;
-}
-
-//TODO
-export function tritanopia(color: ColorCodes): ColorCodes {
-  return color;
-}
-
-//TODO halfway between achromatopsia and original?
-export function achromatomaly(color: ColorCodes): ColorCodes {
-  return color;
-}
-
+// grayscale vision
 export function achromatopsia(color: ColorCodes): ColorCodes {
   const { RGB } = color;
 
@@ -338,7 +341,7 @@ export function achromatopsia(color: ColorCodes): ColorCodes {
   const g = channelLinear(RGB.g);
   const b = channelLinear(RGB.b);
 
-  const linearGray: number = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  const linearGray = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
   const nonlinearGray = channelNonlinear(linearGray);
 
@@ -346,6 +349,26 @@ export function achromatopsia(color: ColorCodes): ColorCodes {
     r: nonlinearGray,
     g: nonlinearGray,
     b: nonlinearGray,
+    a: color.RGBA.a,
+  });
+}
+
+// mix achromatopsia gray and color
+export function achromatomaly(color: ColorCodes): ColorCodes {
+  const linearR = channelLinear(color.RGB.r);
+  const linearG = channelLinear(color.RGB.g);
+  const linearB = channelLinear(color.RGB.b);
+
+  const linearGray = 0.2126 * linearR + 0.7152 * linearG + 0.0722 * linearB;
+
+  const deficientR = 0.5 * linearR + 0.5 * linearGray;
+  const deficientG = 0.5 * linearG + 0.5 * linearGray;
+  const deficientB = 0.5 * linearB + 0.5 * linearGray;
+
+  return rgbaToColor({
+    r: channelNonlinear(deficientR),
+    g: channelNonlinear(deficientG),
+    b: channelNonlinear(deficientB),
     a: color.RGBA.a,
   });
 }
@@ -366,25 +389,24 @@ function visionSimulator(
 
   switch (category) {
     case VisionCategory.TRICHROMATIC:
-      perceivedColor.color = trichromatic(color);
       break;
     case VisionCategory.PROTOANOMALY:
-      perceivedColor.color = protanomaly(color);
+      perceivedColor.color = deficientColor(color, PROTANOMALY_MATRIX);
       break;
     case VisionCategory.PROTANOPIA:
-      perceivedColor.color = protanopia(color);
+      perceivedColor.color = deficientColor(color, PROTANOPIA_MATRIX);
       break;
     case VisionCategory.DEUTERANOMALY:
-      perceivedColor.color = deuteranomaly(color);
+      perceivedColor.color = deficientColor(color, DEUTERANOMALY_MATRIX);
       break;
     case VisionCategory.DEUTERANOPIA:
-      perceivedColor.color = deuteranopia(color);
+      perceivedColor.color = deficientColor(color, DEUTERANOPIA_MATRIX);
       break;
     case VisionCategory.TRITANOMALY:
-      perceivedColor.color = tritanomaly(color);
+      perceivedColor.color = deficientColor(color, TRITANOMALY_MATRIX);
       break;
     case VisionCategory.TRITANOPIA:
-      perceivedColor.color = tritanopia(color);
+      perceivedColor.color = deficientColor(color, TRITANOPIA_MATRIX);
       break;
     case VisionCategory.ACHROMATOMALY:
       perceivedColor.color = achromatomaly(color);
