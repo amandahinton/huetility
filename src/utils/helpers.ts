@@ -299,11 +299,6 @@ export function rgbMatrixToColor(matrix: number[], alpha: number): ColorCodes {
   return rgbaToColor(rgba);
 }
 
-// "normal" vision, so return original color
-export function trichromatic(color: ColorCodes): ColorCodes {
-  return color;
-}
-
 export function deficientColor(
   color: ColorCodes,
   deficiencyMatrix: number[][]
@@ -357,55 +352,51 @@ export function achromatomaly(color: ColorCodes): ColorCodes {
   });
 }
 
-function visionSimulator(
-  category: VisionCategory,
-  color: ColorCodes
-): PerceivedColor {
-  const perceivedColor = {
-    name: category,
-    description: VisionDescription[category],
-    color: color,
-  };
-
-  switch (category) {
-    case VisionCategory.TRICHROMATIC:
-      break;
-    case VisionCategory.PROTOANOMALY:
-      perceivedColor.color = deficientColor(color, PROTANOMALY_MATRIX);
-      break;
-    case VisionCategory.PROTANOPIA:
-      perceivedColor.color = deficientColor(color, PROTANOPIA_MATRIX);
-      break;
-    case VisionCategory.DEUTERANOMALY:
-      perceivedColor.color = deficientColor(color, DEUTERANOMALY_MATRIX);
-      break;
-    case VisionCategory.DEUTERANOPIA:
-      perceivedColor.color = deficientColor(color, DEUTERANOPIA_MATRIX);
-      break;
-    case VisionCategory.TRITANOMALY:
-      perceivedColor.color = deficientColor(color, TRITANOMALY_MATRIX);
-      break;
-    case VisionCategory.TRITANOPIA:
-      perceivedColor.color = deficientColor(color, TRITANOPIA_MATRIX);
-      break;
-    case VisionCategory.ACHROMATOMALY:
-      perceivedColor.color = achromatomaly(color);
-      break;
-    case VisionCategory.ACHROMATOPSIA:
-      perceivedColor.color = achromatopsia(color);
-      break;
-    case VisionCategory.DIMINISHED:
-      break;
-  }
-  return perceivedColor;
-}
-
 export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
   const colors: PerceivedColor[] = [];
+
   const categories = Object.keys(VisionCategory);
+
   for (const category of categories) {
     const cat = VisionCategory[category as keyof typeof VisionCategory];
-    colors.push(visionSimulator(cat, color));
+    const perceivedColor = {
+      name: cat,
+      description: VisionDescription[cat],
+      color: color,
+    };
+
+    switch (cat) {
+      case VisionCategory.TRICHROMATIC:
+        break;
+      case VisionCategory.PROTOANOMALY:
+        perceivedColor.color = deficientColor(color, PROTANOMALY_MATRIX);
+        break;
+      case VisionCategory.PROTANOPIA:
+        perceivedColor.color = deficientColor(color, PROTANOPIA_MATRIX);
+        break;
+      case VisionCategory.DEUTERANOMALY:
+        perceivedColor.color = deficientColor(color, DEUTERANOMALY_MATRIX);
+        break;
+      case VisionCategory.DEUTERANOPIA:
+        perceivedColor.color = deficientColor(color, DEUTERANOPIA_MATRIX);
+        break;
+      case VisionCategory.TRITANOMALY:
+        perceivedColor.color = deficientColor(color, TRITANOMALY_MATRIX);
+        break;
+      case VisionCategory.TRITANOPIA:
+        perceivedColor.color = deficientColor(color, TRITANOPIA_MATRIX);
+        break;
+      case VisionCategory.ACHROMATOMALY:
+        perceivedColor.color = achromatomaly(color);
+        break;
+      case VisionCategory.ACHROMATOPSIA:
+        perceivedColor.color = achromatopsia(color);
+        break;
+      case VisionCategory.DIMINISHED:
+        break;
+    }
+
+    colors.push(perceivedColor);
   }
   return colors;
 };
