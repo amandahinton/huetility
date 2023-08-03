@@ -34,15 +34,8 @@ export const HUES = [
   { id: 12, descriptor: "R - red", degree: 360, cssRGB: "rgb(255, 0, 0)" },
 ];
 
-// COLOR VISION DEFICIENCY MATRICES
+// COLOR VISION DEFINCY MATRICES
 // https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html
-
-// normal color vision
-export const TRICHROMATIC_MATRIX = [
-  [1, 0, 0],
-  [0, 1, 0],
-  [0, 0, 1],
-];
 
 // protanomaly .5 severity
 export const PROTANOMALY_MATRIX = [
@@ -84,18 +77,4 @@ export const TRITANOPIA_MATRIX = [
   [1.255528, -0.076749, -0.178779],
   [-0.078411, 0.930809, 0.147602],
   [0.004733, 0.691367, 0.3039],
-];
-
-// TODO complete color blindness
-export const ACHROMATOMALY_MATRIX = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-];
-
-// TODO complete color blindness
-export const ACHROMATOPSIA_MATRIX = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
 ];
