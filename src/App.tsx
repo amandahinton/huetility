@@ -22,7 +22,7 @@ function App() {
       <ScaleShades />
       <Vision />
       {/* <hr />
-      <Testing /> */}
+      <Testing />  */}
     </ColorProvider>
   );
 }
