@@ -11,7 +11,7 @@ export function Vision() {
 
   return (
     <div className="huetility-component-container huetility-outer">
-      <h2 className="huetility-component-title">Vision Deficiency</h2>
+      <h2 className="huetility-component-title">Vision Deficiencies</h2>
       <div className="huetility-vision-container">
         {visionDeficiencyColors.map((viz) => (
           <div key={viz.name} className="huetility-vision-display">
