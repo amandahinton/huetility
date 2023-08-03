@@ -10,26 +10,26 @@ export enum ColorMode {
 
 export enum VisionCategory {
   TRICHROMATIC = "trichromatic",
-  PROTOANOMALY = "protanomaly",
   PROTANOPIA = "protanopia",
-  DEUTERANOMALY = "deuteranomaly",
+  PROTOANOMALY = "protanomaly",
   DEUTERANOPIA = "deuteranopia",
-  TRITANOMALY = "tritanomaly",
+  DEUTERANOMALY = "deuteranomaly",
   TRITANOPIA = "tritanopia",
-  ACHROMATOMALY = "achromatomaly",
+  TRITANOMALY = "tritanomaly",
   ACHROMATOPSIA = "achromatopsia",
+  ACHROMATOMALY = "achromatomaly",
   DIMINISHED = "diminished",
 }
 
 export enum VisionDescription {
   trichromatic = "regular vision",
-  protanomaly = "reduced long waves (red)",
-  protanopia = "no long waves (red)",
-  deuteranomaly = "reduced medium waves (green)",
-  deuteranopia = "no medium waves (green)",
-  tritanomaly = "reduced short waves (blue)",
-  tritanopia = "no short waves (blue)",
-  achromatomaly = "partial color blindness",
+  protanopia = "no long (red) waves",
+  protanomaly = "reduced long waves",
+  deuteranopia = "no medium (green) waves",
+  deuteranomaly = "reduced medium waves",
+  tritanopia = "no short (blue) waves ",
+  tritanomaly = "reduced short waves",
   achromatopsia = "complete color blindness",
+  achromatomaly = "partial color blindness",
   diminished = "blurred vision",
 }
