@@ -190,7 +190,7 @@ export const channelLinear = (channelNonlinearValue: number): number => {
     : Math.pow((nonlinear + 0.055) / 1.055, 2.4);
 };
 
-//sRGB curve has more darks than lights as sensitivity to light is better at low intensities than high
+//sRGB curve has more darks than lights as sensitivity is better at low intensities than high
 export const channelNonlinear = (channelLinearValue: number): number => {
   const linear =
     channelLinearValue <= 0.0031308
@@ -204,15 +204,9 @@ export const channelNonlinear = (channelLinearValue: number): number => {
 
 /*
 https://www.w3.org/TR/WCAG20/
-luminance is relative brightness of point in colorspace
-normalized to 0 for black and 1 for white
-
-contrast is difference in perceived luminance/brightness between colors
-ratio from 1:1 white:white to 21:1 black:white
-
-WCAG standard:
-text and interactive elements at least 4.5:1
-large text at least 3:1
+luminance is relative brightness (0 for black 1, for white)
+contrast is difference in perceived luminance/brightness (1:1 white:white, 21:1 black:white)
+WCAG standard: text and interactive elements at least 4.5:1, large text at least 3:1
 */
 
 export const relativeLuminance = (color: ColorCodes): number | undefined => {
