@@ -96,6 +96,7 @@ export type RGBA = {
 
 type PerceivedColor = {
   name: VisionCategory;
-  description: VisionDescription;
+  description: string;
   color: ColorCodes;
+  prevalence?: string;
 };

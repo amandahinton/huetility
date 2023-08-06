@@ -38,6 +38,7 @@ export function Vision() {
               {viz.name.charAt(0).toUpperCase() + viz.name.slice(1)}
             </p>
             <small>{viz.description}</small>
+            {viz.prevalence && <small>{viz.prevalence}</small>}
           </div>
         ))}
       </div>
