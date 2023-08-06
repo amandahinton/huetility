@@ -19,7 +19,7 @@ import {
   WHITE_HEXCODE,
 } from "./constants";
 import { ColorCodes, PerceivedColor, RGB, RGBA } from "../types/types";
-import { ColorMode, VisionCategory, VisionDescription } from "../types/enums";
+import { ColorMode, VisionCategory } from "../types/enums";
 
 // FUNCTIONS FOR CONVERTING TO THE CANONICAL COLOR OBJECT
 export const hexToColor = (hexcode: string): ColorCodes => {
@@ -200,6 +200,32 @@ export const channelNonlinear = (channelLinearValue: number): number => {
   return value > 255 ? 255 : value;
 };
 
+// mix two colors
+export function colorMixer(
+  colorOne: ColorCodes,
+  colorTwo: ColorCodes
+): ColorCodes {
+  const linearROne = channelLinear(colorOne.RGB.r);
+  const linearGOne = channelLinear(colorOne.RGB.g);
+  const linearBOne = channelLinear(colorOne.RGB.b);
+
+  const linearRTwo = channelLinear(colorTwo.RGB.r);
+  const linearGTwo = channelLinear(colorTwo.RGB.g);
+  const linearBTwo = channelLinear(colorTwo.RGB.b);
+
+  const averageR = (linearROne + linearRTwo) / 2;
+  const averageG = (linearGOne + linearGTwo) / 2;
+  const averageB = (linearBOne + linearBTwo) / 2;
+  const averageAlpha = (colorOne.RGBA.a + colorOne.RGBA.a) / 2;
+
+  return rgbaToColor({
+    r: channelNonlinear(averageR),
+    g: channelNonlinear(averageG),
+    b: channelNonlinear(averageB),
+    a: averageAlpha,
+  });
+}
+
 // FUNCTIONS RELATED TO COLOR CONTRAST
 
 /*
@@ -326,26 +352,6 @@ export function achromatopsia(color: ColorCodes): ColorCodes {
   });
 }
 
-// mix achromatopsia gray and color
-export function achromatomaly(color: ColorCodes): ColorCodes {
-  const linearR = channelLinear(color.RGB.r);
-  const linearG = channelLinear(color.RGB.g);
-  const linearB = channelLinear(color.RGB.b);
-
-  const linearGray = 0.2126 * linearR + 0.7152 * linearG + 0.0722 * linearB;
-
-  const deficientR = 0.5 * linearR + 0.5 * linearGray;
-  const deficientG = 0.5 * linearG + 0.5 * linearGray;
-  const deficientB = 0.5 * linearB + 0.5 * linearGray;
-
-  return rgbaToColor({
-    r: channelNonlinear(deficientR),
-    g: channelNonlinear(deficientG),
-    b: channelNonlinear(deficientB),
-    a: color.RGBA.a,
-  });
-}
-
 export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
   const colors: PerceivedColor[] = [];
 
@@ -353,40 +359,55 @@ export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
 
   for (const category of categories) {
     const cat = VisionCategory[category as keyof typeof VisionCategory];
-    const perceivedColor = {
+    const perceivedColor: PerceivedColor = {
       name: cat,
-      description: VisionDescription[cat],
+      description: "",
       color: color,
+      prevalence: "",
     };
 
+    // https://www.colour-blindness.com/general/prevalence/
     switch (cat) {
       case VisionCategory.TRICHROMATIC:
+        perceivedColor.description = "regular vision";
         break;
       case VisionCategory.PROTOANOMALY:
         perceivedColor.color = deficientColor(color, PROTANOMALY_MATRIX);
+        perceivedColor.description = "reduced long waves";
+        perceivedColor.prevalence = "1.3% of population";
         break;
       case VisionCategory.PROTANOPIA:
         perceivedColor.color = deficientColor(color, PROTANOPIA_MATRIX);
+        perceivedColor.description = "no long (red) waves";
+        perceivedColor.prevalence = "1.3% of population";
         break;
       case VisionCategory.DEUTERANOMALY:
         perceivedColor.color = deficientColor(color, DEUTERANOMALY_MATRIX);
+        perceivedColor.description = "reduced medium waves";
+        perceivedColor.prevalence = "5.4% of population";
         break;
       case VisionCategory.DEUTERANOPIA:
         perceivedColor.color = deficientColor(color, DEUTERANOPIA_MATRIX);
+        perceivedColor.description = "no medium (green) waves";
+        perceivedColor.prevalence = "1.2% of population";
         break;
       case VisionCategory.TRITANOMALY:
         perceivedColor.color = deficientColor(color, TRITANOMALY_MATRIX);
+        perceivedColor.description = "reduced short waves";
+        perceivedColor.prevalence = ".02% of population";
         break;
       case VisionCategory.TRITANOPIA:
         perceivedColor.color = deficientColor(color, TRITANOPIA_MATRIX);
-        break;
-      case VisionCategory.ACHROMATOMALY:
-        perceivedColor.color = achromatomaly(color);
+        perceivedColor.description = "no short (blue) waves";
+        perceivedColor.prevalence = ".03% of population";
         break;
       case VisionCategory.ACHROMATOPSIA:
         perceivedColor.color = achromatopsia(color);
+        perceivedColor.description = "complete color blindness";
+        perceivedColor.prevalence = ".00003% of population";
         break;
       case VisionCategory.DIMINISHED:
+        perceivedColor.description = "blurred vision";
         break;
     }
 
