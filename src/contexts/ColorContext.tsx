@@ -14,7 +14,7 @@ type ColorContextType = {
 // todo make this a random color
 const defaultData = {
   color: {
-    colorMode: ColorMode.HEX,
+    colorMode: ColorMode.RGBA,
     HEX: "#f20091",
     RGB: { r: 242, g: 0, b: 145 },
     RGBA: { r: 242, g: 0, b: 145, a: 1 },
