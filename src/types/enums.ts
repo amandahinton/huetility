@@ -10,12 +10,13 @@ export enum ColorMode {
 
 export enum VisionCategory {
   TRICHROMATIC = "trichromatic",
-  DIMINISHED = "diminished",
-  ACHROMATOPSIA = "achromatopsia",
   PROTANOPIA = "protanopia",
   PROTOANOMALY = "protanomaly",
   DEUTERANOPIA = "deuteranopia",
   DEUTERANOMALY = "deuteranomaly",
   TRITANOPIA = "tritanopia",
   TRITANOMALY = "tritanomaly",
+  ACHROMATOPSIA = "achromatopsia",
+  MONOCHROMACY = "monochromacy",
+  DIMINISHED = "diminished",
 }

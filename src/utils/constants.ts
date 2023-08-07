@@ -36,6 +36,10 @@ export const HUES = [
 
 // COLOR VISION DEFINCY MATRICES
 // https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html
+// //https://ixora.io/projects/colorblindness/color-blindness-simulation-research/
+// COLOR VISION DEFICIENCY SPECTRUM SIMS
+// http://cvrl.ucl.ac.uk/gallery/Dichromat_spectra.htm
+// https://www.myndex.com/CVD/
 
 // protanomaly .5 severity
 export const PROTANOMALY_MATRIX = [
@@ -77,4 +81,19 @@ export const TRITANOPIA_MATRIX = [
   [1.255528, -0.076749, -0.178779],
   [-0.078411, 0.930809, 0.147602],
   [0.004733, 0.691367, 0.3039],
+];
+
+// shades of gray
+export const ACHROMATOPSIA_MATRIX = [
+  [0.212656, 0.715158, 0.072186],
+  [0.212656, 0.715158, 0.072186],
+  [0.212656, 0.715158, 0.072186],
+];
+
+// blue cone monochromacy, incomplete achromatopsia,
+// no medium or long cones, photophobia
+export const MONOCHROMACY_MATRIX = [
+  [0.01775, 0.10945, 0.87262],
+  [0.01775, 0.10945, 0.87262],
+  [0.01775, 0.10945, 0.87262],
 ];

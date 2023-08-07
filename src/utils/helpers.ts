@@ -7,8 +7,10 @@ import {
   RGBAToRGB,
 } from "./translations.ts";
 import {
+  ACHROMATOPSIA_MATRIX,
   BLACK_CODES,
   BLACK_HEXCODE,
+  MONOCHROMACY_MATRIX,
   DEUTERANOMALY_MATRIX,
   DEUTERANOPIA_MATRIX,
   PROTANOMALY_MATRIX,
@@ -332,26 +334,7 @@ export function deficientColor(
   return translatedMatrix;
 }
 
-// grayscale vision
-export function achromatopsia(color: ColorCodes): ColorCodes {
-  const { RGB } = color;
-
-  const r = channelLinear(RGB.r);
-  const g = channelLinear(RGB.g);
-  const b = channelLinear(RGB.b);
-
-  const linearGray = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-
-  const nonlinearGray = channelNonlinear(linearGray);
-
-  return rgbaToColor({
-    r: nonlinearGray,
-    g: nonlinearGray,
-    b: nonlinearGray,
-    a: color.RGBA.a,
-  });
-}
-
+// https://www.colour-blindness.com/general/prevalence/
 export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
   const colors: PerceivedColor[] = [];
 
@@ -366,7 +349,6 @@ export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
       prevalence: "",
     };
 
-    // https://www.colour-blindness.com/general/prevalence/
     switch (cat) {
       case VisionCategory.TRICHROMATIC:
         perceivedColor.description = "regular vision";
@@ -402,9 +384,14 @@ export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
         perceivedColor.prevalence = ".03% of population";
         break;
       case VisionCategory.ACHROMATOPSIA:
-        perceivedColor.color = achromatopsia(color);
+        perceivedColor.color = deficientColor(color, ACHROMATOPSIA_MATRIX);
         perceivedColor.description = "complete color blindness";
         perceivedColor.prevalence = ".00003% of population";
+        break;
+      case VisionCategory.MONOCHROMACY:
+        perceivedColor.color = deficientColor(color, MONOCHROMACY_MATRIX);
+        perceivedColor.description = "BCM with photophobia";
+        perceivedColor.prevalence = ".00001% of population";
         break;
       case VisionCategory.DIMINISHED:
         perceivedColor.description = "blurred vision";
