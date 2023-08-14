@@ -28,13 +28,16 @@ export function Testing() {
 
       <h4 className="huetility-space-above">Color Selected</h4>
       <p>Hexcode: {JSON.stringify(color.HEX)}</p>
+      <p>HSL: {JSON.stringify(color.HSL)}</p>
+      <p>HSLA: {JSON.stringify(color.HSLA)}</p>
       <p>RGB: {JSON.stringify(color.RGB)}</p>
       <p>RGBA: {JSON.stringify(color.RGBA)}</p>
 
       <h4 className="huetility-space-above">hexToColor</h4>
-      <p>white {JSON.stringify(hexToColor("#fff"))}</p>
-      <p>black {JSON.stringify(hexToColor("#000"))}</p>
-
+      <p>WHITE {JSON.stringify(hexToColor("#fff"), null, "\n")}</p>
+      <p>BLACK {JSON.stringify(hexToColor("#000"), null, "\n")}</p>
+      <p>PINK {JSON.stringify(hexToColor("#f2009180"), null, "\n")}</p>
+      <p>TEST DARK CYAN {JSON.stringify(hexToColor("#186276"))}</p>
       <h4 className="huetility-space-above">isPartialHexcode</h4>
       <p>{JSON.stringify(isPartialHexcode(color.HEX))}</p>
 
