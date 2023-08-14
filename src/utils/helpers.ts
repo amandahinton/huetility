@@ -77,6 +77,22 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
     case ColorMode.HEX:
       value = color.HEX;
       break;
+    case ColorMode.HSL:
+      value = `hsl(${Math.round(color.HSL.h)}, ${Math.round(
+        color.HSL.s
+      )}%, ${Math.round(color.HSL.l)}%)`;
+      break;
+
+    case ColorMode.HSLA:
+      alpha =
+        color.HSLA.a == 1 || color.HSLA.a == 0
+          ? color.HSLA.a
+          : color.HSLA.a.toFixed(2);
+      value = `hsla(${Math.round(color.HSL.h)}, ${Math.round(
+        color.HSL.s
+      )}%, ${Math.round(color.HSL.l)}%, ${alpha})`;
+      break;
+
     case ColorMode.RGB:
       value = `rgb(${Math.round(color.RGB.r)}, ${Math.round(
         color.RGB.g
