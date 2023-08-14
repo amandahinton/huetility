@@ -1,19 +1,22 @@
 import { isHexcode } from "../helpers";
-import { BLACK_RGB, BLACK_RGBA } from "../constants";
-import type { ColorCodes, RGB, RGBA } from "../../types/types";
+import { BLACK_CODES } from "../constants";
+import { RGBToHSL, RGBAToHSLA } from ".";
+import type { ColorCodes, HSL, HSLA, RGB, RGBA } from "../../types/types";
 
 export const hexToColor = (hexcode: string): ColorCodes => {
   return {
     HEX: hexcode,
     RGB: hexcodeToRGB(hexcode),
     RGBA: hexcodeToRGBA(hexcode),
+    HSL: hexcodeToHSL(hexcode),
+    HSLA: hexcodeToHSLA(hexcode),
   };
 };
 
 export const hexcodeToRGB = (hexcode: string): RGB => {
   if (!isHexcode(hexcode)) {
     console.error("Error: improper hexcode input, defaulting to black RGB");
-    return BLACK_RGB;
+    return BLACK_CODES.RGB;
   }
 
   try {
@@ -44,13 +47,13 @@ export const hexcodeToRGB = (hexcode: string): RGB => {
     console.error("Could not convert to RGB, defaulting to black:", error);
   }
 
-  return BLACK_RGB;
+  return BLACK_CODES.RGB;
 };
 
 export const hexcodeToRGBA = (hexcode: string): RGBA => {
   if (!isHexcode(hexcode)) {
     console.error("Error: improper hexcode input, defaulting to black RGBA");
-    return BLACK_RGBA;
+    return BLACK_CODES.RGBA;
   }
 
   try {
@@ -83,5 +86,27 @@ export const hexcodeToRGBA = (hexcode: string): RGBA => {
   } catch (error) {
     console.error("Could not convert to RGBA, defaulting to black:", error);
   }
-  return BLACK_RGBA;
+  return BLACK_CODES.RGBA;
+};
+
+export const hexcodeToHSL = (hexcode: string): HSL => {
+  if (!isHexcode(hexcode)) {
+    console.error("Error: improper hexcode input, defaulting to black RGB");
+    return BLACK_CODES.HSL;
+  }
+
+  const RGB = hexcodeToRGB(hexcode);
+  const HSL = RGBToHSL(RGB);
+  return HSL;
+};
+
+export const hexcodeToHSLA = (hexcode: string): HSLA => {
+  if (!isHexcode(hexcode)) {
+    console.error("Error: improper hexcode input, defaulting to black RGB");
+    return BLACK_CODES.HSLA;
+  }
+
+  const RGBA = hexcodeToRGBA(hexcode);
+  const HSLA = RGBAToHSLA(RGBA);
+  return HSLA;
 };

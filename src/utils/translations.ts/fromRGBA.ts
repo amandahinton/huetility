@@ -1,6 +1,7 @@
 import { isHexcode } from "../helpers";
-import { BLACK_HEXCODE } from "../constants";
-import { ColorCodes, RGB, RGBA } from "../../types/types";
+import { BLACK_CODES } from "../constants";
+import { RGBToHSL } from ".";
+import { ColorCodes, HSL, HSLA, RGB, RGBA } from "../../types/types";
 
 export const rgbaToColor = (rgba: RGBA): ColorCodes => {
   const formattedRGBA = {
@@ -37,10 +38,22 @@ export const RGBAToHexcode = (rgba: RGBA): string => {
       rgba,
       hexcode
     );
-    return BLACK_HEXCODE;
+    return BLACK_CODES.HEX;
   }
 };
 
 export const RGBAToRGB = (rgba: RGBA): RGB => {
   return { r: rgba.r, g: rgba.g, b: rgba.b };
+};
+
+export const RGBAToHSL = (rgba: RGBA): HSL => {
+  const RGB = RGBAToRGB(rgba);
+  const HSL = RGBToHSL(RGB);
+  return HSL;
+};
+
+export const RGBAToHSLA = (rgba: RGBA): HSLA => {
+  const RGB = RGBAToRGB(rgba);
+  const HSL = RGBToHSL(RGB);
+  return { ...HSL, a: rgba.a };
 };
