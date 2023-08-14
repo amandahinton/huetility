@@ -1,18 +1,27 @@
 export const BLACK_HEXCODE = "#000000";
+export const BLACK_HSL = { h: 0, s: 0, l: 0 };
+export const BLACK_HSLA = { h: 0, s: 0, l: 0, a: 1 };
 export const BLACK_RGB = { r: 0, g: 0, b: 0 };
 export const BLACK_RGBA = { r: 0, g: 0, b: 0, a: 1 };
 export const BLACK_CODES = {
   HEX: BLACK_HEXCODE,
+  HSL: BLACK_HSL,
+  HSLA: BLACK_HSLA,
   RGB: BLACK_RGB,
   RGBA: BLACK_RGBA,
 };
 export const BLACK_RGB_CSS = "rgb(0, 0, 0)";
 
 export const WHITE_HEXCODE = "#ffffff";
+export const WHITE_HSL = { h: 0, s: 0, l: 100 };
+export const WHITE_HSLA = { h: 0, s: 0, l: 100, a: 1 };
 export const WHITE_RGB = { r: 255, g: 255, b: 255 };
 export const WHITE_RGBA = { r: 255, g: 255, b: 255, a: 1 };
+
 export const WHITE_CODES = {
   HEX: WHITE_HEXCODE,
+  HSL: WHITE_HSL,
+  HSLA: WHITE_HSLA,
   RGB: WHITE_RGB,
   RGBA: WHITE_RGBA,
 };

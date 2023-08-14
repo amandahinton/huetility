@@ -8,8 +8,8 @@ import { ColorMode, VisionCategory } from "./enums";
 export type ColorData = {
   colorMode: ColorMode;
   HEX: string;
-  HSL?: HSL;
-  HSLA?: HSLA;
+  HSL: HSL;
+  HSLA: HSLA;
   HWB? = HWB;
   LAB? = LAB;
   OKLAB? = LAB;
@@ -23,6 +23,8 @@ export type ColorCodes = {
   HEX: string;
   RGB: RGB;
   RGBA: RGBA;
+  HSL: HSL;
+  HSLA: HSLA;
 };
 
 // HEX: # + 3 or 6 characters for rgb or 8 chars for for rgba

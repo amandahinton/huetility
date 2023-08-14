@@ -1,6 +1,7 @@
 export enum ColorMode {
   HEX = "HEX",
-  // HSL = "HSL",
+  HSL = "HSL",
+  HSLA = "HSLA",
   // HWB = "HWB",
   // LAB = "LAB",
   // LCH = "LCH",
