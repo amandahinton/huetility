@@ -1,6 +1,19 @@
 import { isHexcode } from "../helpers";
 import { BLACK_HEXCODE } from "../constants";
-import { RGB, RGBA } from "../../types/types";
+import { ColorCodes, RGB, RGBA } from "../../types/types";
+
+export const rgbToColor = (rgb: RGB): ColorCodes => {
+  const formattedRGB = {
+    r: Math.round(rgb.r),
+    g: Math.round(rgb.g),
+    b: Math.round(rgb.b),
+  };
+  return {
+    HEX: RGBToHexcode(formattedRGB),
+    RGB: formattedRGB,
+    RGBA: RGBToRGBA(formattedRGB),
+  };
+};
 
 export const RGBToHexcode = (rgb: RGB): string => {
   let red = rgb.r.toString(16);

@@ -1,6 +1,14 @@
 import { isHexcode } from "../helpers";
 import { BLACK_RGB, BLACK_RGBA } from "../constants";
-import type { RGB, RGBA } from "../../types/types";
+import type { ColorCodes, RGB, RGBA } from "../../types/types";
+
+export const hexToColor = (hexcode: string): ColorCodes => {
+  return {
+    HEX: hexcode,
+    RGB: hexcodeToRGB(hexcode),
+    RGBA: hexcodeToRGBA(hexcode),
+  };
+};
 
 export const hexcodeToRGB = (hexcode: string): RGB => {
   if (!isHexcode(hexcode)) {

@@ -1,4 +1,4 @@
-import { ColorMode, VisionCategory, VisionDescription } from "./enums";
+import { ColorMode, VisionCategory } from "./enums";
 
 // sRGB color space: hsl(), hwb(), rgb();
 // CIELAB color space: lab(), lch();

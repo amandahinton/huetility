@@ -4,12 +4,14 @@ import {
   cssColorValue,
   isBlack,
   isOpaque,
-  rgbaToColor,
 } from "../utils/helpers";
 import { BLACK_RGB } from "../utils/constants";
+import { rgbaToColor } from "../utils/translations.ts";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
 import "./index.css";
+
+
 
 export function ScaleShades() {
   const { color } = useColor();

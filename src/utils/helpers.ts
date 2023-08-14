@@ -1,12 +1,4 @@
 import {
-  hexcodeToRGB,
-  hexcodeToRGBA,
-  RGBToHexcode,
-  RGBToRGBA,
-  RGBAToHexcode,
-  RGBAToRGB,
-} from "./translations.ts";
-import {
   ACHROMATOPSIA_MATRIX,
   BLACK_CODES,
   BLACK_HEXCODE,
@@ -22,42 +14,7 @@ import {
 } from "./constants";
 import { ColorCodes, PerceivedColor, RGB, RGBA } from "../types/types";
 import { ColorMode, VisionCategory } from "../types/enums";
-
-// FUNCTIONS FOR CONVERTING TO THE CANONICAL COLOR OBJECT
-export const hexToColor = (hexcode: string): ColorCodes => {
-  return {
-    HEX: hexcode,
-    RGB: hexcodeToRGB(hexcode),
-    RGBA: hexcodeToRGBA(hexcode),
-  };
-};
-
-export const rgbToColor = (rgb: RGB): ColorCodes => {
-  const formattedRGB = {
-    r: Math.round(rgb.r),
-    g: Math.round(rgb.g),
-    b: Math.round(rgb.b),
-  };
-  return {
-    HEX: RGBToHexcode(formattedRGB),
-    RGB: formattedRGB,
-    RGBA: RGBToRGBA(formattedRGB),
-  };
-};
-
-export const rgbaToColor = (rgba: RGBA): ColorCodes => {
-  const formattedRGBA = {
-    r: Math.round(rgba.r),
-    g: Math.round(rgba.g),
-    b: Math.round(rgba.b),
-    a: rgba.a,
-  };
-  return {
-    HEX: RGBAToHexcode(formattedRGBA),
-    RGB: RGBAToRGB(formattedRGBA),
-    RGBA: formattedRGBA,
-  };
-};
+import { rgbToColor, rgbaToColor } from "../utils/translations.ts";
 
 // FUNCTIONS FOR CHECKING VALUE OF INPUT
 

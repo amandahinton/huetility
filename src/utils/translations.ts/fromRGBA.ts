@@ -1,6 +1,20 @@
 import { isHexcode } from "../helpers";
 import { BLACK_HEXCODE } from "../constants";
-import { RGB, RGBA } from "../../types/types";
+import { ColorCodes, RGB, RGBA } from "../../types/types";
+
+export const rgbaToColor = (rgba: RGBA): ColorCodes => {
+  const formattedRGBA = {
+    r: Math.round(rgba.r),
+    g: Math.round(rgba.g),
+    b: Math.round(rgba.b),
+    a: rgba.a,
+  };
+  return {
+    HEX: RGBAToHexcode(formattedRGBA),
+    RGB: RGBAToRGB(formattedRGBA),
+    RGBA: formattedRGBA,
+  };
+};
 
 export const RGBAToHexcode = (rgba: RGBA): string => {
   let red = rgba.r.toString(16);

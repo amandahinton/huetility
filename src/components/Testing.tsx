@@ -1,4 +1,5 @@
 import { useColor } from "../contexts/ColorContext";
+import { ColorMode } from "../types/enums";
 import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
 import {
   blendForegroundToBackground,
@@ -7,7 +8,6 @@ import {
   contrast,
   contrastTextHex,
   cssColorValue,
-  hexToColor,
   isBlack,
   isHexcode,
   isPartialHexcode,
@@ -16,7 +16,7 @@ import {
   isWhite,
   relativeLuminance,
 } from "../utils/helpers";
-import { ColorMode } from "../types/enums";
+import { hexToColor } from "../utils/translations.ts";
 import "./index.css";
 
 export function Testing() {

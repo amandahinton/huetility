@@ -1,7 +1,7 @@
 import React from "react";
 import type { ColorData, RGB, RGBA } from "../types/types";
 import { ColorMode } from "../types/enums";
-import { hexToColor, rgbToColor, rgbaToColor } from "../utils/helpers.ts";
+import { hexToColor, rgbToColor, rgbaToColor } from "../utils/translations.ts";
 
 type ColorContextType = {
   color: ColorData;

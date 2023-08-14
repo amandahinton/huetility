@@ -1,12 +1,12 @@
 import React from "react";
 import { useColor } from "../contexts/ColorContext";
+import { WHITE_RGB } from "../utils/constants";
 import {
   cssColorValue,
   isOpaque,
   isWhite,
-  rgbaToColor,
 } from "../utils/helpers";
-import { WHITE_RGB } from "../utils/constants";
+import { rgbaToColor } from "../utils/translations.ts";
 import { ColorMode } from "../types/enums";
 import "./Scale.css";
 
