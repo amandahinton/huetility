@@ -40,7 +40,7 @@ export type HSL = {
 // saturation: 0-100 (gray to full color)
 // lightness (black or white added to hue): 0-100 (black to white)
 // alpha/transparency: 0-1 decimal
-export type HSL = {
+export type HSLA = {
   h: number;
   s: number;
   l: number;
