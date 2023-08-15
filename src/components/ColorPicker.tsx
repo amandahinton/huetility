@@ -1,6 +1,8 @@
 import { useColor } from "../contexts/ColorContext";
 import {
   ColorPickerHEX,
+  ColorPickerHSL,
+  ColorPickerHSLA,
   ColorPickerRGB,
   ColorPickerRGBA,
   RGBColorWheel,
@@ -11,6 +13,8 @@ import "./ColorPicker.css";
 
 const pickerComponents = {
   HEX: ColorPickerHEX,
+  HSL: ColorPickerHSL,
+  HSLA: ColorPickerHSLA,
   RGB: ColorPickerRGB,
   RGBA: ColorPickerRGBA,
 };

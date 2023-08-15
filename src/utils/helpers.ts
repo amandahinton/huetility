@@ -12,7 +12,14 @@ import {
   WHITE_CODES,
   WHITE_HEXCODE,
 } from "./constants";
-import { ColorCodes, PerceivedColor, RGB, RGBA } from "../types/types";
+import {
+  ColorCodes,
+  PerceivedColor,
+  HSL,
+  HSLA,
+  RGB,
+  RGBA,
+} from "../types/types";
 import { ColorMode, VisionCategory } from "../types/enums";
 import { rgbToColor, rgbaToColor } from "../utils/translations.ts";
 
@@ -32,6 +39,30 @@ export const isOpaque = (color: ColorCodes): boolean => {
 export const isPartialHexcode = (hexcode: string): boolean => {
   const pattern = new RegExp(/^#([A-Fa-f0-9]{0,8})$/);
   return pattern.test(hexcode);
+};
+
+export const isHSL = (hsl: HSL): boolean => {
+  return (
+    hsl.h >= 0 &&
+    hsl.h <= 360 &&
+    hsl.s >= 0 &&
+    hsl.s <= 100 &&
+    hsl.l >= 0 &&
+    hsl.l <= 100
+  );
+};
+
+export const isHSLA = (hsla: HSLA): boolean => {
+  return (
+    hsla.h >= 0 &&
+    hsla.h <= 360 &&
+    hsla.s >= 0 &&
+    hsla.s <= 100 &&
+    hsla.l >= 0 &&
+    hsla.l <= 100 &&
+    hsla.a >= 0 &&
+    hsla.a <= 1
+  );
 };
 
 export const isRGB = (rgb: RGB): boolean => {
