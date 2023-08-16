@@ -1,6 +1,6 @@
 import React from "react";
-import { isHexcode, isPartialHexcode } from "../utils/helpers";
-import { ColorCodes } from "../types/types";
+import { ColorCodes } from "types/types";
+import { isHexcode, isPartialHexcode } from "utils/helpers";
 
 type Props = {
   onChange: (hexcode: string) => void;

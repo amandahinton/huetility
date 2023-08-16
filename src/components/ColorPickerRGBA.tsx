@@ -1,7 +1,7 @@
 import React from "react";
-import { useColor } from "../contexts/ColorContext";
-import { isRGBA } from "../utils/helpers";
-import { RGBA } from "../types/types";
+import { useColor } from "contexts/ColorContext";
+import { RGBA } from "types/types";
+import { isRGBA } from "utils/helpers";
 
 export function ColorPickerRGBA() {
   const { color, setRGBA } = useColor();

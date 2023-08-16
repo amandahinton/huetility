@@ -1,7 +1,13 @@
 import React from "react";
-import type { ColorData, HSL, HSLA, RGB, RGBA } from "../types/types";
-import { ColorMode } from "../types/enums";
-import { hexToColor, hslToColor, hslaToColor, rgbToColor, rgbaToColor } from "../utils/translations.ts";
+import { ColorMode } from "types/enums";
+import type { ColorData, HSL, HSLA, RGB, RGBA } from "types/types";
+import {
+  hexToColor,
+  hslToColor,
+  hslaToColor,
+  rgbToColor,
+  rgbaToColor,
+} from "@/utils/translations";
 
 type ColorContextType = {
   color: ColorData;
@@ -63,7 +69,6 @@ export function ColorProvider({ children }: { children: React.ReactNode }) {
       ...rgbaToColor(rgba),
     });
   }
-
 
   function setHSL(hsl: HSL) {
     setColor({

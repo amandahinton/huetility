@@ -1,7 +1,7 @@
 import React from "react";
-import { useColor } from "../contexts/ColorContext";
-import { isHSLA } from "../utils/helpers";
-import { HSLA } from "../types/types";
+import { useColor } from "contexts/ColorContext";
+import { HSLA } from "types/types";
+import { isHSLA } from "utils/helpers";
 
 export function ColorPickerHSLA() {
   const { color, setHSLA } = useColor();

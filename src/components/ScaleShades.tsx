@@ -1,17 +1,11 @@
 import React from "react";
-import { useColor } from "../contexts/ColorContext";
-import {
-  cssColorValue,
-  isBlack,
-  isOpaque,
-} from "../utils/helpers";
-import { BLACK_RGB } from "../utils/constants";
-import { rgbaToColor } from "../utils/translations.ts";
-import { ColorMode } from "../types/enums";
-import "./Scale.css";
-import "./index.css";
-
-
+import { useColor } from "contexts/ColorContext";
+import { ColorMode } from "types/enums";
+import { BLACK_RGB } from "utils/constants";
+import { cssColorValue, isBlack, isOpaque } from "utils/helpers";
+import { rgbaToColor } from "@/utils/translations";
+import "components/Scale.css";
+import "components/index.css";
 
 export function ScaleShades() {
   const { color } = useColor();

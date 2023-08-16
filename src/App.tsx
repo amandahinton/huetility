@@ -6,10 +6,10 @@ import {
   ScaleTints,
   Testing,
   Vision,
-} from "./components";
-import { ColorProvider } from "./contexts/ColorContext";
-import "./App.css";
-import "../src/components/index.css";
+} from "components/index";
+import { ColorProvider } from "contexts/ColorContext";
+import "@/App.css";
+import "components/index.css";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
       <ScaleShades />
       <Vision />
       <hr />
-      <Testing /> 
+      <Testing />
     </ColorProvider>
   );
 }

@@ -1,3 +1,5 @@
+import { ColorMode, VisionCategory } from "types/enums";
+import { ColorCodes, PerceivedColor, HSL, HSLA, RGB, RGBA } from "types/types";
 import {
   ACHROMATOPSIA_MATRIX,
   BLACK_CODES,
@@ -11,17 +13,8 @@ import {
   TRITANOPIA_MATRIX,
   WHITE_CODES,
   WHITE_HEXCODE,
-} from "./constants";
-import {
-  ColorCodes,
-  PerceivedColor,
-  HSL,
-  HSLA,
-  RGB,
-  RGBA,
-} from "../types/types";
-import { ColorMode, VisionCategory } from "../types/enums";
-import { rgbToColor, rgbaToColor } from "../utils/translations.ts";
+} from "utils/constants";
+import { rgbToColor, rgbaToColor } from "@/utils/translations";
 
 // FUNCTIONS FOR CHECKING VALUE OF INPUT
 

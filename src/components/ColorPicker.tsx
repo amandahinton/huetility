@@ -1,4 +1,3 @@
-import { useColor } from "../contexts/ColorContext";
 import {
   ColorPickerHEX,
   ColorPickerHSL,
@@ -7,9 +6,10 @@ import {
   ColorPickerRGBA,
   RGBColorWheel,
   Swatch,
-} from "../components";
-import { ColorMode } from "../types/enums";
-import "./ColorPicker.css";
+} from "components/index";
+import { useColor } from "contexts/ColorContext";
+import { ColorMode } from "types/enums";
+import "components/ColorPicker.css";
 
 const pickerComponents = {
   HEX: ColorPickerHEX,

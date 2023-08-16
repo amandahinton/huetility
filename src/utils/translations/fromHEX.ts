@@ -1,7 +1,7 @@
-import { isHexcode } from "../helpers";
-import { BLACK_CODES } from "../constants";
-import { RGBToHSL, RGBAToHSLA } from ".";
-import type { ColorCodes, HSL, HSLA, RGB, RGBA } from "../../types/types";
+import type { ColorCodes, HSL, HSLA, RGB, RGBA } from "types/types";
+import { BLACK_CODES } from "utils/constants";
+import { isHexcode } from "utils/helpers";
+import { RGBToHSL, RGBAToHSLA } from "@/utils/translations";
 
 export const hexToColor = (hexcode: string): ColorCodes => {
   return {

@@ -1,7 +1,7 @@
 import React from "react";
-import { useColor } from "../contexts/ColorContext";
-import { isRGB } from "../utils/helpers";
-import { RGB } from "../types/types";
+import { useColor } from "contexts/ColorContext";
+import { RGB } from "types/types";
+import { isRGB } from "utils/helpers";
 
 export function ColorPickerRGB() {
   const { color, setRGB } = useColor();

@@ -1,8 +1,8 @@
-import { useColor } from "../contexts/ColorContext";
-import { contrast, perceivedColors } from "../utils/helpers";
-import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
-import { PerceivedColor } from "../types/types";
-import "./Vision.css";
+import { useColor } from "contexts/ColorContext";
+import { PerceivedColor } from "types/types";
+import { contrast, perceivedColors } from "utils/helpers";
+import { BLACK_CODES, WHITE_CODES } from "utils/constants";
+import "components/Vision.css";
 
 export function Vision() {
   const { color } = useColor();

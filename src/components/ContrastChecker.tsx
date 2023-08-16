@@ -1,15 +1,11 @@
 import React from "react";
-import { InputHex } from ".";
-import { useColor } from "../contexts/ColorContext";
-import { ColorCodes } from "../types/types";
-import { WHITE_CODES } from "../utils/constants";
-import {
-  blendForegroundToBackground,
-  contrast,
-  isOpaque,
-} from "../utils/helpers";
-import { hexToColor } from "../utils/translations.ts";
-import "./Contrast.css";
+import { InputHex } from "components/index";
+import { useColor } from "contexts/ColorContext";
+import { ColorCodes } from "types/types";
+import { WHITE_CODES } from "utils/constants";
+import { blendForegroundToBackground, contrast, isOpaque } from "utils/helpers";
+import { hexToColor } from "@/utils/translations";
+import "components/Contrast.css";
 
 export function ContrastChecker({
   contrastColor,

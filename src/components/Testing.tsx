@@ -1,6 +1,6 @@
-import { useColor } from "../contexts/ColorContext";
-import { ColorMode } from "../types/enums";
-import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
+import { useColor } from "contexts/ColorContext";
+import { ColorMode } from "types/enums";
+import { BLACK_CODES, WHITE_CODES } from "utils/constants";
 import {
   blendForegroundToBackground,
   channelLinear,
@@ -15,9 +15,9 @@ import {
   isRGBA,
   isWhite,
   relativeLuminance,
-} from "../utils/helpers";
-import { hexToColor } from "../utils/translations.ts";
-import "./index.css";
+} from "utils/helpers";
+import { hexToColor } from "@/utils/translations";
+import "components/index.css";
 
 export function Testing() {
   const { color } = useColor();

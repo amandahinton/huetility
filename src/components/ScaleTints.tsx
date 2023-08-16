@@ -1,14 +1,10 @@
 import React from "react";
-import { useColor } from "../contexts/ColorContext";
-import { WHITE_RGB } from "../utils/constants";
-import {
-  cssColorValue,
-  isOpaque,
-  isWhite,
-} from "../utils/helpers";
-import { rgbaToColor } from "../utils/translations.ts";
-import { ColorMode } from "../types/enums";
-import "./Scale.css";
+import { useColor } from "contexts/ColorContext";
+import { ColorMode } from "types/enums";
+import { WHITE_RGB } from "utils/constants";
+import { cssColorValue, isOpaque, isWhite } from "utils/helpers";
+import { rgbaToColor } from "@/utils/translations";
+import "components/Scale.css";
 
 export function ScaleTints() {
   const { color } = useColor();

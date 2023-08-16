@@ -1,9 +1,9 @@
 import React from "react";
-import { Canvas } from ".";
-import { useColor } from "../contexts/ColorContext";
-import { HUES } from "../utils/constants";
-import { isRGB } from "../utils/helpers";
-import "./ColorSpace.css";
+import { Canvas } from "components/index";
+import { useColor } from "contexts/ColorContext";
+import { HUES } from "utils/constants";
+import { isRGB } from "utils/helpers";
+import "components/ColorSpace.css";
 
 export function RGBColorWheel() {
   const { setRGB } = useColor();

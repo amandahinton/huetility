@@ -1,5 +1,5 @@
-import { BLACK_CODES } from "../constants";
-import { ColorCodes, HSL, HSLA, RGB, RGBA } from "../../types/types";
+import { ColorCodes, HSL, HSLA, RGB, RGBA } from "types/types";
+import { BLACK_CODES } from "utils/constants";
 
 export const hslaToColor = (hsla: HSLA): ColorCodes => {
   const formattedHSLA = {

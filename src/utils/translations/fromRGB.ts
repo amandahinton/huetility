@@ -1,6 +1,6 @@
-import { isHexcode } from "../helpers";
-import { BLACK_CODES } from "../constants";
-import { ColorCodes, HSL, HSLA, RGB, RGBA } from "../../types/types";
+import { ColorCodes, HSL, HSLA, RGB, RGBA } from "types/types";
+import { BLACK_CODES } from "utils/constants";
+import { isHexcode } from "utils/helpers";
 
 export const rgbToColor = (rgb: RGB): ColorCodes => {
   const formattedRGB = {

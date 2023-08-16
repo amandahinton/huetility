@@ -1,6 +1,6 @@
-import { ContrastChecker } from "../components";
-import { BLACK_CODES, WHITE_CODES } from "../utils/constants";
-import "./Contrast.css";
+import { ContrastChecker } from "components/index";
+import { BLACK_CODES, WHITE_CODES } from "utils/constants";
+import "components/Contrast.css";
 
 export function Contrast() {
   return (

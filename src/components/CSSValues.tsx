@@ -1,7 +1,7 @@
-import { useColor } from "../contexts/ColorContext";
-import { cssColorValue } from "../utils/helpers";
-import { ColorMode } from "../types/enums";
-import "./CSSValues.css";
+import { useColor } from "contexts/ColorContext";
+import { ColorMode } from "types/enums";
+import { cssColorValue } from "utils/helpers";
+import "components/CSSValues.css";
 
 export function CSSValues() {
   const { color } = useColor();

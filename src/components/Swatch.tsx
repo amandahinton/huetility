@@ -1,12 +1,12 @@
-import { useColor } from "../contexts/ColorContext";
-import { WHITE_CODES } from "../utils/constants";
+import { useColor } from "contexts/ColorContext";
+import { WHITE_CODES } from "utils/constants";
 import {
   blendForegroundToBackground,
   contrastTextHex,
   cssColorValue,
-} from "../utils/helpers";
-import "./Swatch.css";
-import "./index.css";
+} from "utils/helpers";
+import "components/Swatch.css";
+import "components/index.css";
 
 export function Swatch() {
   const { color } = useColor();
