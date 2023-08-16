@@ -102,9 +102,9 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
       value = color.HEX;
       break;
     case ColorMode.HSL:
-      value = `hsl(${Math.round(color.HSL.h)}, ${Math.round(
+      value = `hsl(${Math.round(color.HSL.h)}deg ${Math.round(
         color.HSL.s
-      )}%, ${Math.round(color.HSL.l)}%)`;
+      )}% ${Math.round(color.HSL.l)}%)`;
       break;
 
     case ColorMode.HSLA:
@@ -112,24 +112,24 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
         color.HSLA.a == 1 || color.HSLA.a == 0
           ? color.HSLA.a
           : color.HSLA.a.toFixed(2);
-      value = `hsla(${Math.round(color.HSL.h)}, ${Math.round(
+      value = `hsla(${Math.round(color.HSL.h)}deg ${Math.round(
         color.HSL.s
-      )}%, ${Math.round(color.HSL.l)}%, ${alpha})`;
+      )}% ${Math.round(color.HSL.l)}% / ${alpha})`;
       break;
 
     case ColorMode.RGB:
-      value = `rgb(${Math.round(color.RGB.r)}, ${Math.round(
+      value = `rgb(${Math.round(color.RGB.r)} ${Math.round(
         color.RGB.g
-      )}, ${Math.round(color.RGB.b)})`;
+      )} ${Math.round(color.RGB.b)})`;
       break;
     case ColorMode.RGBA:
       alpha =
         color.RGBA.a == 1 || color.RGBA.a == 0
           ? color.RGBA.a
           : color.RGBA.a.toFixed(2);
-      value = `rgba(${Math.round(color.RGBA.r)}, ${Math.round(
+      value = `rgba(${Math.round(color.RGBA.r)} ${Math.round(
         color.RGBA.g
-      )}, ${Math.round(color.RGBA.b)}, ${alpha})`;
+      )} ${Math.round(color.RGBA.b)} / ${alpha})`;
       break;
   }
 
