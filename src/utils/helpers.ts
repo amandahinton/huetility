@@ -102,6 +102,7 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
       value = color.HEX;
       break;
 
+    case ColorMode.HSL:
     case ColorMode.HSLA:
       alpha =
         color.HSLA.a == 1 || color.HSLA.a == 0
@@ -112,6 +113,7 @@ export const cssColorValue = (mode: ColorMode, color: ColorCodes): string => {
       )}% ${Math.round(color.HSL.l)}% / ${alpha})`;
       break;
 
+    case ColorMode.RGB:
     case ColorMode.RGBA:
       alpha =
         color.RGBA.a == 1 || color.RGBA.a == 0

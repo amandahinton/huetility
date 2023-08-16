@@ -15,6 +15,7 @@ export function Swatch() {
   const blendedColor = blendForegroundToBackground(color, WHITE_CODES);
 
   const labelColor = contrastTextHex(blendedColor);
+
   const cssValue = cssColorValue(colorMode, color);
 
   return (
