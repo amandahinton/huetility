@@ -1,5 +1,5 @@
 import { ColorCodes, HSL, HSLA, RGB, RGBA } from "types/types";
-import { BLACK_CODES } from "utils/constants";
+import { HSLToRGB, RGBAToHexcode } from ".";
 
 export const hslaToColor = (hsla: HSLA): ColorCodes => {
   const formattedHSLA = {
@@ -18,8 +18,8 @@ export const hslaToColor = (hsla: HSLA): ColorCodes => {
 };
 
 export const HSLAToHexcode = (hsla: HSLA): string => {
-  console.log("TODO", hsla);
-  return BLACK_CODES.HEX;
+  const RGBA = HSLAToRGBA(hsla);
+  return RGBAToHexcode(RGBA);
 };
 
 export const HSLAToHSL = (hsla: HSLA): HSL => {
@@ -27,11 +27,11 @@ export const HSLAToHSL = (hsla: HSLA): HSL => {
 };
 
 export const HSLAToRGB = (hsla: HSLA): RGB => {
-  console.log("TODO", hsla);
-  return BLACK_CODES.RGB;
+  const HSL = HSLAToHSL(hsla);
+  return HSLToRGB(HSL);
 };
 
 export const HSLAToRGBA = (hsla: HSLA): RGBA => {
-  console.log("TODO", hsla);
-  return BLACK_CODES.RGBA;
+  const RGB = HSLAToRGB(hsla);
+  return { ...RGB, a: hsla.a };
 };
