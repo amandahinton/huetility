@@ -275,7 +275,6 @@ export const contrastTextHex = (color: ColorCodes): string => {
 
 // FUNCTIONS RELATED TO COLOR VISION DEFICIENCY
 
-//TODO check if valid
 export function colorToRGBMatrix(color: ColorCodes): number[] {
   const { RGB } = color;
   return [channelLinear(RGB.r), channelLinear(RGB.g), channelLinear(RGB.b)];
