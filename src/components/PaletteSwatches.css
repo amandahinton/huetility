@@ -1,0 +1,23 @@
+.huetility-palette-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.huetility-swatch-group {
+  display: flex;
+  gap: 2px;
+}
+
+.huetility-palette-swatch {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.huetility-palette-name {
+  font-weight: bold;
+}
