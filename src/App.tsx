@@ -2,6 +2,7 @@ import {
   ColorPicker,
   Contrast,
   CSSValues,
+  Harmonies,
   ScaleShades,
   ScaleTints,
   Testing,
@@ -18,6 +19,7 @@ function App() {
       <ColorPicker />
       <Contrast />
       <CSSValues />
+      <Harmonies />
       <ScaleTints />
       <ScaleShades />
       <Vision />
