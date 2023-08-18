@@ -1,5 +1,13 @@
-import { ColorMode, VisionCategory } from "types/enums";
-import { ColorCodes, PerceivedColor, HSL, HSLA, RGB, RGBA } from "types/types";
+import { ColorMode, HarmonyCategory, VisionCategory } from "types/enums";
+import {
+  ColorCodes,
+  HSL,
+  HSLA,
+  Palette,
+  PerceivedColor,
+  RGB,
+  RGBA,
+} from "types/types";
 import {
   ACHROMATOPSIA_MATRIX,
   BLACK_CODES,
@@ -389,4 +397,59 @@ export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
     colors.push(perceivedColor);
   }
   return colors;
+};
+
+// FUNCTIONS RELATED TO COLOR HARMONIES
+
+export function harmonyComplementary(color: ColorCodes): ColorCodes[] {
+  return [color, WHITE_CODES];
+}
+
+export function harmonyTriadic(color: ColorCodes): ColorCodes[] {
+  return [BLACK_CODES, color, WHITE_CODES];
+}
+
+export function harmonyTetradic(color: ColorCodes): ColorCodes[] {
+  return [color, WHITE_CODES, color, BLACK_CODES];
+}
+
+export function harmonySplitComplementary(color: ColorCodes): ColorCodes[] {
+  return [BLACK_CODES, color, WHITE_CODES];
+}
+
+export function harmonyMonochromatic(color: ColorCodes): ColorCodes[] {
+  return [BLACK_CODES, color, WHITE_CODES];
+}
+
+export function harmonyAnalogous(color: ColorCodes): ColorCodes[] {
+  return [BLACK_CODES, color, WHITE_CODES];
+}
+
+export const harmonyPalettes = (color: ColorCodes): Palette[] => {
+  return [
+    {
+      name: HarmonyCategory.COMPLEMENTARY,
+      paletteColors: harmonyComplementary(color),
+    },
+    {
+      name: HarmonyCategory.TRIADIC,
+      paletteColors: harmonyTriadic(color),
+    },
+    {
+      name: HarmonyCategory.TETRADIC,
+      paletteColors: harmonyTetradic(color),
+    },
+    {
+      name: HarmonyCategory.SPLIT,
+      paletteColors: harmonySplitComplementary(color),
+    },
+    {
+      name: HarmonyCategory.MONOCHROMATIC,
+      paletteColors: harmonyMonochromatic(color),
+    },
+    {
+      name: HarmonyCategory.ANALOGOUS,
+      paletteColors: harmonyAnalogous(color),
+    },
+  ];
 };
