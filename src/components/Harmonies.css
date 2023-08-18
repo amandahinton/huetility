@@ -1,0 +1,7 @@
+.huetility-harmonies-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  column-gap: 82px;
+  row-gap: 22px;
+}
