@@ -1,4 +1,4 @@
-import { ColorMode, VisionCategory } from "types/enums";
+import { ColorMode, HarmonyCategory, VisionCategory } from "types/enums";
 
 // sRGB color space: hsl(), hwb(), rgb();
 // CIELAB color space: lab(), lch();
@@ -101,4 +101,9 @@ type PerceivedColor = {
   description: string;
   color: ColorCodes;
   prevalence?: string;
+};
+
+type Palette = {
+  name: HarmonyCategory | string;
+  paletteColors: ColorCodes[];
 };

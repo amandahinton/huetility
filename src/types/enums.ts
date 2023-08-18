@@ -21,3 +21,12 @@ export enum VisionCategory {
   MONOCHROMACY = "monochromacy",
   DIMINISHED = "diminished",
 }
+
+export enum HarmonyCategory {
+  COMPLEMENTARY = "complementary",
+  TRIADIC = "triadic",
+  TETRADIC = "tetradic",
+  SPLIT = "split complementary",
+  MONOCHROMATIC = "monochromatic",
+  ANALOGOUS = "analogous",
+}
