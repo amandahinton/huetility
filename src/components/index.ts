@@ -16,4 +16,5 @@ export * from "components/ScaleShades.tsx";
 export * from "components/Swatch.tsx";
 export * from "components/ScaleTints.tsx";
 export * from "components/Testing.tsx";
+export * from "components/Tooltip";
 export * from "components/Vision.tsx";
