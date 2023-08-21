@@ -5,7 +5,7 @@ import {
   Harmonies,
   ScaleShades,
   ScaleTints,
-  Testing,
+  // Testing,
   Vision,
 } from "components/index";
 import { ColorProvider } from "contexts/ColorContext";
@@ -23,8 +23,8 @@ function App() {
       <ScaleTints />
       <ScaleShades />
       <Vision />
-      <hr />
-      <Testing />
+      {/* <hr />
+      <Testing /> */}
     </ColorProvider>
   );
 }
