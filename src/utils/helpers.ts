@@ -22,7 +22,7 @@ import {
   WHITE_CODES,
   WHITE_HEXCODE,
 } from "utils/constants";
-import { rgbToColor, rgbaToColor } from "@/utils/translations";
+import { hslaToColor, rgbToColor, rgbaToColor } from "@/utils/translations";
 
 // FUNCTIONS FOR CHECKING VALUE OF INPUT
 
@@ -401,28 +401,72 @@ export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
 
 // FUNCTIONS RELATED TO COLOR HARMONIES
 
+export function harmoniousColorAtAngle(
+  color: ColorCodes,
+  angle: number
+): ColorCodes {
+  const harmoniousHSLA = { ...color.HSLA, h: angle };
+  return hslaToColor(harmoniousHSLA);
+}
+
 export function harmonyComplementary(color: ColorCodes): ColorCodes[] {
-  return [color, WHITE_CODES];
+  const hue = color.HSL.h;
+  const angle = (hue + 180) % 360;
+  return [color, harmoniousColorAtAngle(color, angle)];
 }
 
 export function harmonyTriadic(color: ColorCodes): ColorCodes[] {
-  return [BLACK_CODES, color, WHITE_CODES];
+  const hue = color.HSL.h;
+  const angle1 = (hue + 120) % 360;
+  const angle2 = (hue - 120) % 360;
+  return [
+    harmoniousColorAtAngle(color, angle1),
+    color,
+    harmoniousColorAtAngle(color, angle2),
+  ];
 }
 
 export function harmonyTetradic(color: ColorCodes): ColorCodes[] {
-  return [color, WHITE_CODES, color, BLACK_CODES];
+  const hue = color.HSL.h;
+  const angle1 = (hue + 90) % 360;
+  const angle2 = (hue + 180) % 360;
+  const angle3 = (hue + 270) % 360;
+  return [
+    color,
+    harmoniousColorAtAngle(color, angle1),
+    harmoniousColorAtAngle(color, angle2),
+    harmoniousColorAtAngle(color, angle3),
+  ];
 }
 
 export function harmonySplitComplementary(color: ColorCodes): ColorCodes[] {
-  return [BLACK_CODES, color, WHITE_CODES];
+  const hue = color.HSL.h;
+  const angle1 = (hue + 210) % 360;
+  const angle2 = (hue - 210) % 360;
+  return [
+    harmoniousColorAtAngle(color, angle1),
+    color,
+    harmoniousColorAtAngle(color, angle2),
+  ];
 }
 
 export function harmonyMonochromatic(color: ColorCodes): ColorCodes[] {
-  return [BLACK_CODES, color, WHITE_CODES];
+  return [
+    colorMixer(color, WHITE_CODES),
+    color,
+    colorMixer(color, BLACK_CODES),
+  ];
 }
 
 export function harmonyAnalogous(color: ColorCodes): ColorCodes[] {
-  return [BLACK_CODES, color, WHITE_CODES];
+  const hue = color.HSL.h;
+  const angle1 = (hue + 30) % 360;
+  const angle2 = (hue - 30) % 360;
+  return [
+    harmoniousColorAtAngle(color, angle1),
+    color,
+    harmoniousColorAtAngle(color, angle2),
+  ];
 }
 
 export const harmonyPalettes = (color: ColorCodes): Palette[] => {
