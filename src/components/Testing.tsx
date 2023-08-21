@@ -1,3 +1,4 @@
+import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
 import { BLACK_CODES, WHITE_CODES } from "utils/constants";
@@ -92,6 +93,14 @@ export function Testing() {
       <p>{cssColorValue(ColorMode.HEX, color)}</p>
       <p>{cssColorValue(ColorMode.RGB, color)}</p>
       <p>{cssColorValue(ColorMode.RGBA, color)}</p>
+
+      <h4 className="huetility-space-above">Tooltip</h4>
+      <div
+        style={{ backgroundColor: "#00ffff", width: "900px", height: "300px" }}
+      >
+        {cssColorValue(ColorMode.HEX, color)}
+        <Tooltip hasIcon message="Lorem Ipsum" />
+      </div>
     </>
   );
 }
