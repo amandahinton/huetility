@@ -5,11 +5,11 @@ import "components/PaletteSwatches.css";
 export function PaletteSwatches({ palette }: { palette: Palette }) {
   return (
     <div className="huetility-palette-container">
-      <div className="huetility-swatch-group">
+      <div className="huetility-swatch-group huetility-bordered">
         {palette.paletteColors.map((color) => (
           <div
             key={color.HEX}
-            className={"huetility-palette-swatch huetility-bordered"}
+            className={"huetility-palette-swatch"}
             style={{ backgroundColor: color.HEX }}
           >
             <small style={{ color: contrastTextHex(color) }}>{color.HEX}</small>
@@ -17,7 +17,10 @@ export function PaletteSwatches({ palette }: { palette: Palette }) {
         ))}
       </div>
       <p className="huetility-palette-name">
-        {palette.name.charAt(0).toUpperCase() + palette.name.slice(1)}
+        {palette.name
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")}
       </p>
     </div>
   );
