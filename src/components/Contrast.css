@@ -5,6 +5,10 @@
   gap: 4rem;
 }
 
+.huetility-contrast-title-tooltip {
+  text-align: left;
+}
+
 /* ContrastChecker  */
 
 .huetility-contrast-hex-input {
