@@ -4,8 +4,8 @@ import "components/Contrast.css";
 
 export function Contrast() {
   const tooltip = (
-    <div className="huetility-contrast-title-tooltip">
-      <p className="huetility-contrast-title-tooltip">
+    <div className="huetility-tooltip-content-left-align">
+      <p>
         To meet WCAG accessibility standards, text and interactive elements
         should have a contrast ratio of at least 4.5:1.
       </p>
@@ -19,7 +19,6 @@ export function Contrast() {
           bold type
         </li>
         <li>1 is no contrast (ex: black on black)</li>
-        <p></p>
       </ul>
     </div>
   );
