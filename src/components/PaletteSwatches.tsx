@@ -1,3 +1,4 @@
+import { Tooltip } from "components/index";
 import { Palette } from "@/types/types";
 import { contrastTextHex } from "utils/helpers";
 import "components/PaletteSwatches.css";
@@ -16,12 +17,15 @@ export function PaletteSwatches({ palette }: { palette: Palette }) {
           </div>
         ))}
       </div>
-      <p className="huetility-palette-name">
-        {palette.name
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")}
-      </p>
+
+      <Tooltip hoverChildren message={palette.description}>
+        <p className="huetility-palette-name">
+          {palette.name
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")}
+        </p>
+      </Tooltip>
     </div>
   );
 }
