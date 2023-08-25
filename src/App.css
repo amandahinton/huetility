@@ -104,3 +104,11 @@ hr {
   width: 900px;
   margin: 4rem 0;
 }
+
+p {
+  padding-bottom: 0.5rem;
+}
+
+p:last-of-type {
+  padding-bottom: 0;
+}
