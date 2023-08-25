@@ -1,4 +1,5 @@
 import React from "react";
+import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
 import { WHITE_RGB } from "utils/constants";
@@ -12,15 +13,29 @@ export function ScaleTints() {
 
   const [tintCount, setTintCount] = React.useState<number>(5);
 
+  const tooltip = (
+    <div className="huetility-tooltip-content-left-align">
+      <p>Tints are created by mixing a color with white.</p>
+      {!isWhite(color) && (
+        <p>
+          Change the number of tints to produce more mixtures on a scale from
+          the selected color to pure white.
+        </p>
+      )}
+    </div>
+  );
+
   const whiteWithAlpha = rgbaToColor({ ...WHITE_RGB, a: RGBA.a });
   const whiteWithAlphaCSS = cssColorValue(ColorMode.RGBA, whiteWithAlpha);
 
   if (isWhite(color)) {
     return (
       <div className="huetility-component-container huetility-outer">
-        <h2 className="huetility-component-title">
-          {isOpaque(color) ? "Tints" : "Tints with Transparency"}
-        </h2>
+        <Tooltip hasIcon message={tooltip}>
+          <h2 className="huetility-component-title">
+            {isOpaque(color) ? "Tints" : "Tints with Transparency"}
+          </h2>
+        </Tooltip>
 
         <div className="huetility-shade-tint-buttons-container">
           <button
@@ -60,9 +75,12 @@ export function ScaleTints() {
 
   return (
     <div className="huetility-component-container huetility-outer">
-      <h2 className="huetility-component-title">
-        {isOpaque(color) ? "Tints" : "Tints with Transparency"}
-      </h2>
+      <Tooltip hasIcon message={tooltip}>
+        <h2 className="huetility-component-title">
+          {isOpaque(color) ? "Tints" : "Tints with Transparency"}
+        </h2>
+      </Tooltip>
+
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
       <input
         type="range"

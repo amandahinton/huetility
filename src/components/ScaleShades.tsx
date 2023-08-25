@@ -1,4 +1,5 @@
 import React from "react";
+import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
 import { BLACK_RGB } from "utils/constants";
@@ -16,12 +17,26 @@ export function ScaleShades() {
   const blackWithAlpha = rgbaToColor({ ...BLACK_RGB, a: RGBA.a });
   const blackWithAlphaCSS = cssColorValue(ColorMode.RGBA, blackWithAlpha);
 
+  const tooltip = (
+    <div className="huetility-tooltip-content-left-align">
+      <p>Shades are created by mixing a color with black.</p>
+      {!isBlack(color) && (
+        <p>
+          Change the number of shades to produce more mixtures on a scale from
+          the selected color to pure black.
+        </p>
+      )}
+    </div>
+  );
+
   if (isBlack(color)) {
     return (
       <div className="huetility-component-container huetility-outer">
-        <h2 className="huetility-component-title">
-          {isOpaque(color) ? "Shades" : "Shades with Transparency"}
-        </h2>
+        <Tooltip hasIcon message={tooltip}>
+          <h2 className="huetility-component-title">
+            {isOpaque(color) ? "Shades" : "Shades with Transparency"}
+          </h2>
+        </Tooltip>
 
         <div className="huetility-shade-tint-button huetility-bordered">
           <button
@@ -55,9 +70,12 @@ export function ScaleShades() {
 
   return (
     <div className="huetility-component-container huetility-outer">
-      <h2 className="huetility-component-title">
-        {isOpaque(color) ? "Shades" : "Shades with Transparency"}
-      </h2>
+      <Tooltip hasIcon message={tooltip}>
+        <h2 className="huetility-component-title">
+          {isOpaque(color) ? "Shades" : "Shades with Transparency"}
+        </h2>
+      </Tooltip>
+
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>
       <input
         type="range"
