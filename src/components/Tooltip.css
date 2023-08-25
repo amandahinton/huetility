@@ -43,3 +43,7 @@
   padding: 8px;
   z-index: 1;
 }
+
+.huetility-tooltip-content-left-align {
+  text-align: left;
+}
