@@ -106,4 +106,5 @@ type PerceivedColor = {
 type Palette = {
   name: HarmonyCategory | string;
   paletteColors: ColorCodes[];
+  description: React.ReactNode;
 };
