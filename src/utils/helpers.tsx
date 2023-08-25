@@ -347,50 +347,69 @@ export const perceivedColors = (color: ColorCodes): PerceivedColor[] => {
 
     switch (cat) {
       case VisionCategory.TRICHROMATIC:
-        perceivedColor.description = "regular vision";
+        perceivedColor.description =
+          "Regular color vision with all three of the eye's cone cell types functioning correctly.";
         break;
       case VisionCategory.PROTOANOMALY:
         perceivedColor.color = deficientColor(color, PROTANOMALY_MATRIX);
-        perceivedColor.description = "reduced long waves";
-        perceivedColor.prevalence = "1.3% of population";
+        perceivedColor.description =
+          "Defective L-cones. Reduced ability to perceive long (red) wavelengths of light.";
+        perceivedColor.prevalence =
+          "Affects an estimated 1.3% of the population.";
         break;
       case VisionCategory.PROTANOPIA:
         perceivedColor.color = deficientColor(color, PROTANOPIA_MATRIX);
-        perceivedColor.description = "no long (red) waves";
-        perceivedColor.prevalence = "1.3% of population";
+        perceivedColor.description =
+          "Missing or non-functioning L-cones. Cannot perceive long (red) wavelengths of light at all.";
+        perceivedColor.prevalence =
+          "Affects an estimated 1.3% of the population.";
         break;
       case VisionCategory.DEUTERANOMALY:
         perceivedColor.color = deficientColor(color, DEUTERANOMALY_MATRIX);
-        perceivedColor.description = "reduced medium waves";
-        perceivedColor.prevalence = "5.4% of population";
+        perceivedColor.description =
+          "Defective M-cones. Reduced ability to perceive medium (green) wavelengths of light.";
+        perceivedColor.prevalence =
+          "Affects an estimated 5.4% of the population.";
         break;
       case VisionCategory.DEUTERANOPIA:
         perceivedColor.color = deficientColor(color, DEUTERANOPIA_MATRIX);
-        perceivedColor.description = "no medium (green) waves";
-        perceivedColor.prevalence = "1.2% of population";
+        perceivedColor.description =
+          "Missing or non-functioning M-cones. Cannot perceive medium (green) wavelengths of light at all.";
+        perceivedColor.prevalence =
+          "Affects an estimated 1.2% of the population.";
         break;
       case VisionCategory.TRITANOMALY:
         perceivedColor.color = deficientColor(color, TRITANOMALY_MATRIX);
-        perceivedColor.description = "reduced short waves";
-        perceivedColor.prevalence = ".02% of population";
+        perceivedColor.description =
+          "Defective S-cones. Reduced ability to perceive short (blue) wavelengths of light.";
+        perceivedColor.prevalence =
+          "Affects an estimated .02% of the population.";
         break;
       case VisionCategory.TRITANOPIA:
         perceivedColor.color = deficientColor(color, TRITANOPIA_MATRIX);
-        perceivedColor.description = "no short (blue) waves";
-        perceivedColor.prevalence = ".03% of population";
+        perceivedColor.description =
+          "Missing or non-functioning S-cones. Cannot perceive short (blue) wavelengths of light at all.";
+        perceivedColor.prevalence =
+          "Affects an estimated .03% of the population.";
         break;
       case VisionCategory.ACHROMATOPSIA:
         perceivedColor.color = deficientColor(color, ACHROMATOPSIA_MATRIX);
-        perceivedColor.description = "complete color blindness";
-        perceivedColor.prevalence = ".00003% of population";
+        perceivedColor.description =
+          "Complete color blindness. Cannot perceive any colors, seeing only black, white, and grays.";
+        perceivedColor.prevalence =
+          "Affects an estimated .00003% of the population.";
         break;
       case VisionCategory.MONOCHROMACY:
         perceivedColor.color = deficientColor(color, MONOCHROMACY_MATRIX);
-        perceivedColor.description = "BCM with photophobia";
-        perceivedColor.prevalence = ".00001% of population";
+        perceivedColor.description =
+          "Missing or non-functioning M-cones and L-cones. Blue cone monochromacy is incomplete achromatopsia, often accompanied by photophobia.";
+        perceivedColor.prevalence =
+          "Affects an estimated .00001% of the population.";
         break;
       case VisionCategory.DIMINISHED:
-        perceivedColor.description = "blurred vision";
+        perceivedColor.description = "Blurred vision.";
+        perceivedColor.prevalence =
+          "Over 25% of the global population has a near or distance vision impairment.";
         break;
     }
 
@@ -474,26 +493,63 @@ export const harmonyPalettes = (color: ColorCodes): Palette[] => {
     {
       name: HarmonyCategory.COMPLEMENTARY,
       paletteColors: harmonyComplementary(color),
+      description: (
+        <p className="huetility-tooltip-content-left-align">
+          Two colors that are directly opposite each other on the color wheel.
+        </p>
+      ),
     },
     {
       name: HarmonyCategory.TRIADIC,
       paletteColors: harmonyTriadic(color),
+      description: (
+        <p className="huetility-tooltip-content-left-align">
+          Three colors that are equally distant from each other on the color
+          wheel, forming an equilateral triangle.
+        </p>
+      ),
     },
     {
       name: HarmonyCategory.TETRADIC,
       paletteColors: harmonyTetradic(color),
+      description: (
+        <p className="huetility-tooltip-content-left-align">
+          Four colors that are equally distant from each other on the color
+          wheel, forming a square.
+        </p>
+      ),
     },
     {
       name: HarmonyCategory.SPLIT,
       paletteColors: harmonySplitComplementary(color),
+      description: (
+        <p className="huetility-tooltip-content-left-align">
+          Color scheme with colors equally close to the complement of the
+          selected color. Here, two colors are 30 degrees to each side of the
+          selected color's complement.
+        </p>
+      ),
     },
     {
       name: HarmonyCategory.MONOCHROMATIC,
       paletteColors: harmonyMonochromatic(color),
+      description: (
+        <p className="huetility-tooltip-content-left-align">
+          Color scheme with light and/or dark versions of a hue. Here, the
+          selected color is blended with white to make a tint and with black to
+          make a shade.
+        </p>
+      ),
     },
     {
       name: HarmonyCategory.ANALOGOUS,
       paletteColors: harmonyAnalogous(color),
+      description: (
+        <p className="huetility-tooltip-content-left-align">
+          Color scheme with colors equally close to the selected color. Here,
+          two colors are 30 degrees to each side of the selected color.
+        </p>
+      ),
     },
   ];
 };
