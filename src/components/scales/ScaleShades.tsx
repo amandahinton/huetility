@@ -1,7 +1,7 @@
 import React from "react";
 import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
-import { ColorMode } from "types/enums";
+import { ColorCodes } from "types/types";
 import { BLACK_RGB } from "utils/constants";
 import { cssColorValue, isBlack, isOpaque } from "utils/helpers";
 import { rgbaToColor } from "utils/translations";
@@ -10,12 +10,11 @@ import "components/index.css";
 
 export function ScaleShades() {
   const { color } = useColor();
-  const { RGBA } = color;
+  const { colorMode, RGBA } = color;
 
   const [shadeCount, setShadeCount] = React.useState<number>(5);
 
-  const blackWithAlpha = rgbaToColor({ ...BLACK_RGB, a: RGBA.a });
-  const blackWithAlphaCSS = cssColorValue(ColorMode.RGBA, blackWithAlpha);
+  const cssColor = cssColorValue(colorMode, color);
 
   const tooltip = (
     <div className="huetility-tooltip-content-left-align">
@@ -45,12 +44,13 @@ export function ScaleShades() {
           </h2>
         </Tooltip>
 
-        <div className="huetility-shade-tint-button huetility-bordered">
+        <div className="huetility-scale-button huetility-bordered">
           <button
-            className="huetility-shade-tint-button"
-            title={blackWithAlphaCSS}
+            onClick={() => navigator.clipboard.writeText(cssColor)}
+            className="huetility-scale-button"
+            title={`Click to copy: ${cssColor}`}
             style={{
-              backgroundColor: blackWithAlphaCSS,
+              backgroundColor: cssColor,
               width: 300,
             }}
           ></button>
@@ -59,21 +59,21 @@ export function ScaleShades() {
     );
   }
 
-  const cssShades = [cssColorValue(ColorMode.RGBA, color)];
+  const shades: ColorCodes[] = [color];
 
   const shadeMultiplier = 1 / (shadeCount - 1);
 
   for (let i = shadeCount - 2; i > 0; i--) {
-    const newShade = {
+    const newShade = rgbaToColor({
       r: RGBA.r * shadeMultiplier * i,
       g: RGBA.g * shadeMultiplier * i,
       b: RGBA.b * shadeMultiplier * i,
       a: RGBA.a,
-    };
-    cssShades.push(cssColorValue(ColorMode.RGBA, rgbaToColor(newShade)));
+    });
+    shades.push(newShade);
   }
 
-  cssShades.push(blackWithAlphaCSS);
+  shades.push(rgbaToColor({ ...BLACK_RGB, a: RGBA.a }));
 
   return (
     <div className="huetility-component-container huetility-outer">
@@ -93,18 +93,22 @@ export function ScaleShades() {
         value={shadeCount}
         onChange={(e) => setShadeCount(Number(e.target.value))}
       />
-      <div className="huetility-shade-tint-buttons-container huetility-bordered">
-        {cssShades.map((shadeValue, i) => (
-          <button
-            key={`${i}-shades-${shadeValue}`}
-            className="huetility-shade-tint-button"
-            title={shadeValue}
-            style={{
-              backgroundColor: shadeValue,
-              width: 900 / shadeCount,
-            }}
-          ></button>
-        ))}
+      <div className="huetility-scale-buttons-container huetility-bordered">
+        {shades.map((shade, i) => {
+          const cssShade = cssColorValue(colorMode, shade);
+          return (
+            <button
+              key={`${i}-shades-${shade}`}
+              onClick={() => navigator.clipboard.writeText(cssShade)}
+              className="huetility-scale-button"
+              title={`Click to copy: ${cssShade}`}
+              style={{
+                backgroundColor: cssShade,
+                width: 900 / shadeCount,
+              }}
+            ></button>
+          );
+        })}
       </div>
     </div>
   );

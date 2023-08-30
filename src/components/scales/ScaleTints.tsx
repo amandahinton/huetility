@@ -1,17 +1,19 @@
 import React from "react";
 import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
-import { ColorMode } from "types/enums";
 import { WHITE_RGB } from "utils/constants";
 import { cssColorValue, isOpaque, isWhite } from "utils/helpers";
 import { rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
+import { ColorCodes } from "@/types/types";
 
 export function ScaleTints() {
   const { color } = useColor();
-  const { RGBA } = color;
+  const { colorMode, RGBA } = color;
 
   const [tintCount, setTintCount] = React.useState<number>(5);
+
+  const cssColor = cssColorValue(colorMode, color);
 
   const tooltip = (
     <div className="huetility-tooltip-content-left-align">
@@ -32,9 +34,6 @@ export function ScaleTints() {
     </div>
   );
 
-  const whiteWithAlpha = rgbaToColor({ ...WHITE_RGB, a: RGBA.a });
-  const whiteWithAlphaCSS = cssColorValue(ColorMode.RGBA, whiteWithAlpha);
-
   if (isWhite(color)) {
     return (
       <div className="huetility-component-container huetility-outer">
@@ -44,12 +43,13 @@ export function ScaleTints() {
           </h2>
         </Tooltip>
 
-        <div className="huetility-shade-tint-buttons-container">
+        <div className="huetility-scale-buttons-container">
           <button
-            className="huetility-shade-tint-button huetility-bordered"
-            title={whiteWithAlphaCSS}
+            onClick={() => navigator.clipboard.writeText(cssColor)}
+            className="huetility-scale-button huetility-bordered"
+            title={`Click to copy: ${cssColor}`}
             style={{
-              backgroundColor: whiteWithAlphaCSS,
+              backgroundColor: cssColor,
               width: 300,
             }}
           ></button>
@@ -58,7 +58,7 @@ export function ScaleTints() {
     );
   }
 
-  const cssTints = [cssColorValue(ColorMode.RGBA, color)];
+  const tints: ColorCodes[] = [color];
 
   const tintMultiplier = 1 / (tintCount - 1);
 
@@ -69,16 +69,16 @@ export function ScaleTints() {
   };
 
   for (let i = 1; i < tintCount - 1; i++) {
-    const newTint = {
+    const newTint = rgbaToColor({
       r: RGBA.r + divergenceFromWhite.r * tintMultiplier * i,
       g: RGBA.g + divergenceFromWhite.g * tintMultiplier * i,
       b: RGBA.b + divergenceFromWhite.b * tintMultiplier * i,
       a: RGBA.a,
-    };
-    cssTints.push(cssColorValue(ColorMode.RGBA, rgbaToColor(newTint)));
+    });
+    tints.push(newTint);
   }
 
-  cssTints.push(whiteWithAlphaCSS);
+  tints.push(rgbaToColor({ ...WHITE_RGB, a: RGBA.a }));
 
   return (
     <div className="huetility-component-container huetility-outer">
@@ -98,18 +98,22 @@ export function ScaleTints() {
         value={tintCount}
         onChange={(e) => setTintCount(Number(e.target.value))}
       />
-      <div className="huetility-shade-tint-buttons-container huetility-bordered">
-        {cssTints.map((tintValue, i) => (
-          <button
-            key={`${i}-tints-${tintValue}`}
-            className="huetility-shade-tint-button"
-            title={tintValue}
-            style={{
-              backgroundColor: tintValue,
-              width: 900 / tintCount,
-            }}
-          ></button>
-        ))}
+      <div className="huetility-scale-buttons-container huetility-bordered">
+        {tints.map((tint, i) => {
+          const cssTint = cssColorValue(colorMode, tint);
+          return (
+            <button
+              key={`${i}-tints-${tint}`}
+              onClick={() => navigator.clipboard.writeText(cssTint)}
+              className="huetility-scale-button"
+              title={`Click to copy: ${cssTint}`}
+              style={{
+                backgroundColor: cssTint,
+                width: 900 / tintCount,
+              }}
+            ></button>
+          );
+        })}
       </div>
     </div>
   );

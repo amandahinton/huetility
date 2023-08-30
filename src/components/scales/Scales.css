@@ -1,4 +1,4 @@
-.huetility-shade-tint-buttons-container {
+.huetility-scale-buttons-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   width: 900px;
 }
 
-.huetility-shade-tint-button {
+.huetility-scale-button {
   display: flex;
   justify-content: center;
   align-items: center;
