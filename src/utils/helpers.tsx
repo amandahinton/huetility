@@ -22,7 +22,17 @@ import {
   WHITE_CODES,
   WHITE_HEXCODE,
 } from "utils/constants";
-import { hslaToColor, rgbToColor, rgbaToColor } from "@/utils/translations";
+import { hslToColor, hslaToColor, rgbToColor, rgbaToColor } from "@/utils/translations";
+
+export const randomHue = (): ColorCodes => {
+  const newHue = Math.floor(Math.random() * 360);
+  const newHSL = {
+    h: newHue,
+    s: 100,
+    l: 50,
+  }
+  return hslToColor(newHSL)
+}
 
 // FUNCTIONS FOR CHECKING VALUE OF INPUT
 
