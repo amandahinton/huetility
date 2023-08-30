@@ -1,29 +1,20 @@
-import { useColor } from "contexts/ColorContext";
-import { WHITE_CODES } from "utils/constants";
-import {
-  blendForegroundToBackground,
-  contrastTextHex,
-  cssColorValue,
-} from "utils/helpers";
 import "components/Swatch.css";
 import "components/index.css";
 
-export function Swatch() {
-  const { color } = useColor();
-  const { colorMode } = color;
+type Props = {
+  backgroundColor: string;
+  children?: React.ReactNode;
+  height: string;
+  width: string;
+};
 
-  const blendedColor = blendForegroundToBackground(color, WHITE_CODES);
-
-  const labelColor = contrastTextHex(blendedColor);
-
-  const cssValue = cssColorValue(colorMode, color);
-
+export function Swatch({ backgroundColor, children, height, width }: Props) {
   return (
     <div
       className="huetility-swatch huetility-bordered"
-      style={{ backgroundColor: cssValue }}
+      style={{ backgroundColor, height, width }}
     >
-      <p style={{ color: labelColor }}>{cssValue}</p>
+      {children}
     </div>
   );
 }
