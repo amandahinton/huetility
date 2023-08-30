@@ -4,7 +4,7 @@ import { useColor } from "contexts/ColorContext";
 import { ColorCodes } from "types/types";
 import { WHITE_CODES } from "utils/constants";
 import { blendForegroundToBackground, contrast, isOpaque } from "utils/helpers";
-import { hexToColor } from "@/utils/translations";
+import { hexToColor } from "utils/translations";
 import "components/Contrast.css";
 
 export function ContrastChecker({
@@ -23,14 +23,14 @@ export function ContrastChecker({
   if color and/or selection has transparency, blend first
   example color = transparent red #ff004080
   example selection = transparent black #00000080
-  page = WHITE_CODES
+  page = white #fff
 
-  color on selection              selection on color
-   ----------------------         ------------------------
-  | transparent red text |       | transparent black text | 
-  |                      |       |                        |
-  | transparent black bg |       |  transparent red bg    | 
-   ----------------------         ------------------------
+  color on selection                selection on color
+   ----------------------           ------------------------
+  | transparent red text |         | transparent black text | 
+  |                      |         |                        |
+  | transparent black bg |         |  transparent red bg    | 
+   ----------------------           ------------------------
 
   bg1 = blend selection to page     bg2 = blend color to page
   text1 = blend color to bg1        text2 = blend selection to bg2

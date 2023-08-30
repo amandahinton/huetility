@@ -4,7 +4,7 @@ import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
 import { WHITE_RGB } from "utils/constants";
 import { cssColorValue, isOpaque, isWhite } from "utils/helpers";
-import { rgbaToColor } from "@/utils/translations";
+import { rgbaToColor } from "utils/translations";
 import "components/Scale.css";
 
 export function ScaleTints() {

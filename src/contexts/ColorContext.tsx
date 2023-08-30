@@ -1,14 +1,14 @@
 import React from "react";
 import { ColorMode } from "types/enums";
 import type { ColorData, HSL, HSLA, RGB, RGBA } from "types/types";
-import { randomHue } from "@/utils/helpers";
+import { randomHue } from "utils/helpers";
 import {
   hexToColor,
   hslToColor,
   hslaToColor,
   rgbToColor,
   rgbaToColor,
-} from "@/utils/translations";
+} from "utils/translations";
 
 type ColorContextType = {
   color: ColorData;

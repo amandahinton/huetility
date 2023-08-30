@@ -17,7 +17,7 @@ import {
   isWhite,
   relativeLuminance,
 } from "utils/helpers";
-import { hexToColor } from "@/utils/translations";
+import { hexToColor } from "utils/translations";
 import "components/index.css";
 
 export function Testing() {
