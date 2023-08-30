@@ -12,14 +12,6 @@
   width: 162px;
 }
 
-.huetility-vision-swatch {
-  height: 100px;
-  width: 162px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .huetility-vision-text-samples {
   padding: 2rem;
   text-align: center;

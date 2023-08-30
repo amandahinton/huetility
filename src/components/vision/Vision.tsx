@@ -1,4 +1,4 @@
-import { Tooltip } from "components/index";
+import { Swatch, Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { PerceivedColor } from "types/types";
 import { contrast, perceivedColors } from "utils/helpers";
@@ -33,11 +33,10 @@ export function Vision() {
       <div className="huetility-vision-container">
         {visionDeficiencyColors.map((viz) => (
           <div key={viz.name} className="huetility-vision-display">
-            <div
-              className={`huetility-vision-swatch huetility-bordered huetility-${viz.name}-vision-swatch`}
-              style={{ backgroundColor: viz.color.HEX }}
-            >
-              <div className="huetility-vision-text-samples">
+            <Swatch backgroundColor={viz.color.HEX} height="100px" width="162px">
+              <div
+                className={`huetility-vision-text-samples huetility-${viz.name}-vision-swatch`}
+              >
                 <p
                   style={{ color: "#ffffff" }}
                   className={`huetility-${viz.name}-vision-text`}
@@ -51,7 +50,7 @@ export function Vision() {
                   Black {contrast(viz.color, BLACK_CODES)}
                 </p>
               </div>
-            </div>
+            </Swatch>
 
             <Tooltip
               hoverChildren
