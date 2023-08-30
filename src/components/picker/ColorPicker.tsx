@@ -10,7 +10,7 @@ import {
 } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
-import "components/ColorPicker.css";
+import "components/picker/ColorPicker.css";
 
 const pickerComponents = {
   HEX: ColorPickerHEX,

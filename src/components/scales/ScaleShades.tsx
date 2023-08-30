@@ -5,7 +5,7 @@ import { ColorMode } from "types/enums";
 import { BLACK_RGB } from "utils/constants";
 import { cssColorValue, isBlack, isOpaque } from "utils/helpers";
 import { rgbaToColor } from "utils/translations";
-import "components/Scale.css";
+import "components/scales/Scales.css";
 import "components/index.css";
 
 export function ScaleShades() {

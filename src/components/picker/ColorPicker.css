@@ -55,3 +55,14 @@
   width: 7rem;
   font-size: 1.25rem;
 }
+
+/* RGBColorWheel  */
+.huetility-default-canvas {
+  border: solid 1px black;
+}
+
+.huetility-clicked-pixel {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+}

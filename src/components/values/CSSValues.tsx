@@ -2,7 +2,7 @@ import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
 import { cssColorValue } from "utils/helpers";
-import "components/CSSValues.css";
+import "components/values/CSSValues.css";
 
 export enum CSSMode {
   HEX = "HEX",

@@ -2,7 +2,7 @@ import { PaletteSwatches, Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { Palette } from "types/types";
 import { harmonyPalettes } from "utils/helpers";
-import "components/Harmonies.css";
+import "components/harmonies/Harmonies.css";
 
 export function Harmonies() {
   const { color } = useColor();

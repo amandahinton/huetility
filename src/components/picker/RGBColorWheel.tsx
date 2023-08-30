@@ -3,7 +3,7 @@ import { Canvas } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { HUES } from "utils/constants";
 import { isRGB } from "utils/helpers";
-import "components/ColorSpace.css";
+import "components/picker/ColorPicker.css";
 
 export function RGBColorWheel() {
   const { setRGB } = useColor();

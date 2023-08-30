@@ -2,6 +2,7 @@ import React from "react";
 import { useColor } from "contexts/ColorContext";
 import { HSL } from "types/types";
 import { isHSL } from "utils/helpers";
+import "components/picker/ColorPicker.css";
 
 export function ColorPickerHSL() {
   const { color, setHSL } = useColor();

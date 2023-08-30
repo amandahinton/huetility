@@ -3,7 +3,7 @@ import { useColor } from "contexts/ColorContext";
 import { PerceivedColor } from "types/types";
 import { contrast, perceivedColors } from "utils/helpers";
 import { BLACK_CODES, WHITE_CODES } from "utils/constants";
-import "components/Vision.css";
+import "components/vision/Vision.css";
 
 export function Vision() {
   const { color } = useColor();

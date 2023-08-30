@@ -1,6 +1,6 @@
 import { ContrastChecker, Tooltip } from "components/index";
 import { BLACK_CODES, WHITE_CODES } from "utils/constants";
-import "components/Contrast.css";
+import "components/contrast/Contrast.css";
 
 export function Contrast() {
   const tooltip = (

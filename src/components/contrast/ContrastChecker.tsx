@@ -5,7 +5,7 @@ import { ColorCodes } from "types/types";
 import { WHITE_CODES } from "utils/constants";
 import { blendForegroundToBackground, contrast, isOpaque } from "utils/helpers";
 import { hexToColor } from "utils/translations";
-import "components/Contrast.css";
+import "components/contrast/Contrast.css";
 
 export function ContrastChecker({
   contrastColor,
