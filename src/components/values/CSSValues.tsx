@@ -15,7 +15,7 @@ export function CSSValues() {
 
   const tooltip = (
     <p className="huetility-tooltip-content-left-align">
-      Click any of the values to copy to your clipboard for use in CSS
+      Click any of the values to copy to the clipboard for use in CSS
       declarations.
     </p>
   );

@@ -21,10 +21,17 @@ export function ScaleShades() {
     <div className="huetility-tooltip-content-left-align">
       <p>Shades are created by mixing a color with black.</p>
       {!isBlack(color) && (
-        <p>
-          Change the number of shades to produce more mixtures on a scale from
-          the selected color to pure black.
-        </p>
+        <>
+          <p>
+            Change the number of shades to produce more mixtures on a scale from
+            the selected color to pure black.
+          </p>
+          <p>
+            Click any of the swatches to copy the value (formatted in the color
+            mode you have selected in the picker) to your clipboard for use in
+            CSS declarations.
+          </p>
+        </>
       )}
     </div>
   );
