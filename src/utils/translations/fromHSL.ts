@@ -1,6 +1,6 @@
 import { ColorCodes, HSL, HSLA, RGB, RGBA } from "types/types";
-import { RGBToHexcode } from ".";
-import { BLACK_CODES, WHITE_CODES } from "../constants";
+import { RGBToHexcode } from "utils/translations";
+import { BLACK_CODES, WHITE_CODES } from "utils/constants";
 
 export const hslToColor = (hsl: HSL): ColorCodes => {
   const formattedHSL = {
