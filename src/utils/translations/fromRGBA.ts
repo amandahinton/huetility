@@ -1,7 +1,7 @@
 import { ColorCodes, HSL, HSLA, RGB, RGBA } from "types/types";
 import { BLACK_CODES } from "utils/constants";
 import { isHexcode } from "utils/helpers";
-import { RGBToHSL } from "@/utils/translations";
+import { RGBToHSL } from "utils/translations";
 
 export const rgbaToColor = (rgba: RGBA): ColorCodes => {
   const formattedRGBA = {
