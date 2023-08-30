@@ -10,6 +10,12 @@ import {
 } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorMode } from "types/enums";
+import { WHITE_CODES } from "utils/constants";
+import {
+  blendForegroundToBackground,
+  contrastTextHex,
+  cssColorValue,
+} from "utils/helpers";
 import "components/picker/ColorPicker.css";
 
 const pickerComponents = {
@@ -23,6 +29,10 @@ const pickerComponents = {
 export function ColorPicker() {
   const { color, setMode } = useColor();
   const { colorMode } = color;
+
+  const cssValue = cssColorValue(colorMode, color);
+  const blendedColor = blendForegroundToBackground(color, WHITE_CODES);
+  const labelColor = contrastTextHex(blendedColor);
 
   const PickerInput = pickerComponents[colorMode];
 
@@ -56,7 +66,9 @@ export function ColorPicker() {
 
   return (
     <div className="huetility-component-container huetility-outer">
-      <Swatch />
+      <Swatch backgroundColor={cssValue} height="300px" width="900px">
+        <p style={{ color: labelColor }}>{cssValue}</p>
+      </Swatch>
       <div className="huetility-space-above">
         <Tooltip hasIcon message={tooltip}>
           <h2 className="huetility-component-title">Color Picker</h2>
