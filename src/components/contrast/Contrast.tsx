@@ -28,8 +28,8 @@ export function Contrast() {
         <h2 className="huetility-component-title">Color Contrast</h2>
       </Tooltip>
       <div className="huetility-contrast-input-container">
-        <ContrastChecker contrastColor={WHITE_CODES} />
-        <ContrastChecker contrastColor={BLACK_CODES} />
+        <ContrastChecker contrastColor={WHITE_CODES} id="contrast-checker-1" />
+        <ContrastChecker contrastColor={BLACK_CODES} id="contrast-checker-2" />
       </div>
     </div>
   );

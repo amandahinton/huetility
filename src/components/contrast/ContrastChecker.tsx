@@ -7,11 +7,12 @@ import { blendForegroundToBackground, contrast, isOpaque } from "utils/helpers";
 import { hexToColor } from "utils/translations";
 import "components/contrast/Contrast.css";
 
-export function ContrastChecker({
-  contrastColor,
-}: {
+type Props = {
   contrastColor: ColorCodes;
-}) {
+  id: string;
+};
+
+export function ContrastChecker({ contrastColor, id }: Props) {
   const { color } = useColor();
 
   const [selection, setSelection] = React.useState<ColorCodes>(contrastColor);
@@ -61,17 +62,18 @@ export function ContrastChecker({
         <InputHex
           onChange={(hexcode: string) => setSelection(hexToColor(hexcode))}
           color={selection}
+          id={id}
         />
       </div>
 
       {isOpaque(color) && isOpaque(selection) && (
         <>
           <div className="huetility-contrast-swatch-container">
-            <Swatch backgroundColor={color.HEX} height="200" width="200">
-              <ContrastSamples textHex={selection.HEX} />
-            </Swatch>
             <Swatch backgroundColor={selection.HEX} height="200" width="200">
               <ContrastSamples textHex={color.HEX} />
+            </Swatch>
+            <Swatch backgroundColor={color.HEX} height="200" width="200">
+              <ContrastSamples textHex={selection.HEX} />
             </Swatch>
           </div>
           <h3 className="huetility-contrast-ratio">{colorContrast}</h3>

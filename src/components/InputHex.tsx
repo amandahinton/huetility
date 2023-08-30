@@ -6,9 +6,10 @@ import "components/picker/ColorPicker.css";
 type Props = {
   onChange: (hexcode: string) => void;
   color: ColorCodes;
+  id: string;
 };
 
-export function InputHex({ onChange, color }: Props) {
+export function InputHex({ onChange, color, id }: Props) {
   const { HEX } = color;
 
   const [hexInput, setHexInput] = React.useState<string>(HEX);
@@ -34,13 +35,13 @@ export function InputHex({ onChange, color }: Props) {
     <div className="huetility-code-input-container">
       <div className="huetility-code-input">
         <div className="huetility-code-string-input">
-          <label htmlFor="hexPicker">Hexcode:</label>
+          <label htmlFor={`hex-input-${id}`}>Hexcode:</label>
           <input
             required
             className="huetility-string-input"
             type="text"
-            id="hexPicker"
-            name="hexPicker"
+            id={`hex-input-${id}`}
+            name={`hex-input-${id}`}
             value={hexInput}
             onChange={handleHexChange}
           />
