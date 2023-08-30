@@ -23,7 +23,7 @@ type ColorContextType = {
 const randomColor = randomHue();
 const defaultData = {
   color: {
-    colorMode: ColorMode.HSLA,
+    colorMode: ColorMode.RGBA,
     HEX: randomColor.HEX,
     HSL: randomColor.HSL,
     HSLA: randomColor.HSLA,
