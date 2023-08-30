@@ -8,7 +8,7 @@ export function Harmonies() {
   const { color } = useColor();
 
   // don't show harmonies for black or white (or RGB values to low to register luminance)
-  if (color.HSL.l <= 0 || color.HSL.l >= 100) return <></>;
+  if (color.HSL.l <= 0 || color.HSL.l >= 100 || color.HSL.s == 0) return <></>;
 
   const harmonies: Palette[] = harmonyPalettes(color);
 
