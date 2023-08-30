@@ -20,7 +20,7 @@ export function Swatch() {
 
   return (
     <div
-      className="huetility-picker-swatch huetility-bordered"
+      className="huetility-swatch huetility-bordered"
       style={{ backgroundColor: cssValue }}
     >
       <p style={{ color: labelColor }}>{cssValue}</p>

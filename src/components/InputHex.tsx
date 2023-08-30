@@ -1,6 +1,7 @@
 import React from "react";
 import { ColorCodes } from "types/types";
 import { isHexcode, isPartialHexcode } from "utils/helpers";
+import "components/picker/ColorPicker.css";
 
 type Props = {
   onChange: (hexcode: string) => void;
