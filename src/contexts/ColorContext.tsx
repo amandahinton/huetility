@@ -1,6 +1,7 @@
 import React from "react";
 import { ColorMode } from "types/enums";
 import type { ColorData, HSL, HSLA, RGB, RGBA } from "types/types";
+import { randomHue } from "@/utils/helpers";
 import {
   hexToColor,
   hslToColor,
@@ -19,15 +20,15 @@ type ColorContextType = {
   setHSLA: (hsla: HSLA) => void;
 };
 
-// todo make this a random color
+const randomColor = randomHue();
 const defaultData = {
   color: {
-    colorMode: ColorMode.RGBA,
-    HEX: "#f20091",
-    RGB: { r: 242, g: 0, b: 145 },
-    RGBA: { r: 242, g: 0, b: 145, a: 1 },
-    HSL: { h: 324, s: 100, l: 47 },
-    HSLA: { h: 324, s: 100, l: 47, a: 1 },
+    colorMode: ColorMode.HSLA,
+    HEX: randomColor.HEX,
+    HSL: randomColor.HSL,
+    HSLA: randomColor.HSLA,
+    RGB: randomColor.RGB,
+    RGBA: randomColor.RGBA,
   },
   setMode: () => undefined,
   setHEX: () => undefined,
