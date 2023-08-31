@@ -48,6 +48,7 @@ export function Tints() {
             onClick={() => navigator.clipboard.writeText(cssColor)}
             className="huetility-scale-button huetility-bordered"
             title={`Click to copy: ${cssColor}`}
+            aria-label={`Click to copy: ${cssColor}`}
             style={{
               backgroundColor: cssColor,
               width: 300,
@@ -107,6 +108,7 @@ export function Tints() {
               onClick={() => navigator.clipboard.writeText(cssTint)}
               className="huetility-scale-button"
               title={`Click to copy: ${cssTint}`}
+              aria-label={`Click to copy: ${cssTint}`}
               style={{
                 backgroundColor: cssTint,
                 width: 900 / tintCount,

@@ -49,6 +49,7 @@ export function Shades() {
             onClick={() => navigator.clipboard.writeText(cssColor)}
             className="huetility-scale-button"
             title={`Click to copy: ${cssColor}`}
+            aria-label={`Click to copy: ${cssColor}`}
             style={{
               backgroundColor: cssColor,
               width: 300,
@@ -102,6 +103,7 @@ export function Shades() {
               onClick={() => navigator.clipboard.writeText(cssShade)}
               className="huetility-scale-button"
               title={`Click to copy: ${cssShade}`}
+              aria-label={`Click to copy: ${cssShade}`}
               style={{
                 backgroundColor: cssShade,
                 width: 900 / shadeCount,

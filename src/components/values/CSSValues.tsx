@@ -36,6 +36,7 @@ export function CSSValues() {
               onClick={() => navigator.clipboard.writeText(cssColor)}
               className="huetility-css-rule"
               title={`Click to copy: ${cssColor}`}
+              aria-label={`Click to copy: ${cssColor}`}
             >
               {cssColor}
             </button>
