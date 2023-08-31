@@ -3,13 +3,13 @@ import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { WHITE_RGB } from "utils/constants";
 import { cssColorValue, isOpaque, isWhite } from "utils/helpers";
-import { rgbaToColor } from "utils/translations";
+import { hslaToColor, rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
 import { ColorCodes } from "@/types/types";
 
 export function Tints() {
   const { color } = useColor();
-  const { colorMode, RGBA } = color;
+  const { colorMode, HSLA, RGBA } = color;
 
   const [tintCount, setTintCount] = React.useState<number>(5);
 
@@ -61,20 +61,14 @@ export function Tints() {
 
   const tints: ColorCodes[] = [color];
 
-  const tintMultiplier = 1 / (tintCount - 1);
-
-  const divergenceFromWhite = {
-    r: 255 - RGBA.r,
-    g: 255 - RGBA.g,
-    b: 255 - RGBA.b,
-  };
+  const luminanceStep = (100 - HSLA.l) / (tintCount - 1);
 
   for (let i = 1; i < tintCount - 1; i++) {
-    const newTint = rgbaToColor({
-      r: RGBA.r + divergenceFromWhite.r * tintMultiplier * i,
-      g: RGBA.g + divergenceFromWhite.g * tintMultiplier * i,
-      b: RGBA.b + divergenceFromWhite.b * tintMultiplier * i,
-      a: RGBA.a,
+    const newTint = hslaToColor({
+      h: HSLA.h,
+      s: HSLA.s,
+      l: HSLA.l + luminanceStep * i,
+      a: HSLA.a,
     });
     tints.push(newTint);
   }

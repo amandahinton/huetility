@@ -4,13 +4,13 @@ import { useColor } from "contexts/ColorContext";
 import { ColorCodes } from "types/types";
 import { BLACK_RGB } from "utils/constants";
 import { cssColorValue, isBlack, isOpaque } from "utils/helpers";
-import { rgbaToColor } from "utils/translations";
+import { hslaToColor, rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
 import "components/index.css";
 
 export function Shades() {
   const { color } = useColor();
-  const { colorMode, RGBA } = color;
+  const { colorMode, HSLA, RGBA } = color;
 
   const [shadeCount, setShadeCount] = React.useState<number>(5);
 
@@ -62,14 +62,14 @@ export function Shades() {
 
   const shades: ColorCodes[] = [color];
 
-  const shadeMultiplier = 1 / (shadeCount - 1);
+  const luminanceStep = HSLA.l / (shadeCount - 1);
 
-  for (let i = shadeCount - 2; i > 0; i--) {
-    const newShade = rgbaToColor({
-      r: RGBA.r * shadeMultiplier * i,
-      g: RGBA.g * shadeMultiplier * i,
-      b: RGBA.b * shadeMultiplier * i,
-      a: RGBA.a,
+  for (let i = 1; i < shadeCount - 1; i++) {
+    const newShade = hslaToColor({
+      h: HSLA.h,
+      s: HSLA.s,
+      l: HSLA.l - luminanceStep * i,
+      a: HSLA.a,
     });
     shades.push(newShade);
   }
