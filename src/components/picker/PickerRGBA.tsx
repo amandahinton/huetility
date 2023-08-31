@@ -4,7 +4,7 @@ import { RGBA } from "types/types";
 import { isRGBA } from "utils/helpers";
 import "components/picker/ColorPicker.css";
 
-export function ColorPickerRGBA() {
+export function PickerRGBA() {
   const { color, setRGBA } = useColor();
   const { RGBA } = color;
 

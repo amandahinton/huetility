@@ -4,7 +4,7 @@ import { RGB } from "types/types";
 import { isRGB } from "utils/helpers";
 import "components/picker/ColorPicker.css";
 
-export function ColorPickerRGB() {
+export function PickerRGB() {
   const { color, setRGB } = useColor();
   const { RGB } = color;
 

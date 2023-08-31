@@ -4,7 +4,7 @@ import { HSL } from "types/types";
 import { isHSL } from "utils/helpers";
 import "components/picker/ColorPicker.css";
 
-export function ColorPickerHSL() {
+export function PickerHSL() {
   const { color, setHSL } = useColor();
   const { HSL } = color;
 

@@ -1,9 +1,9 @@
 import {
-  ColorPickerHEX,
-  ColorPickerHSL,
-  ColorPickerHSLA,
-  ColorPickerRGB,
-  ColorPickerRGBA,
+  PickerHEX,
+  PickerHSL,
+  PickerHSLA,
+  PickerRGB,
+  PickerRGBA,
   RGBColorWheel,
   Swatch,
   Tooltip,
@@ -19,11 +19,11 @@ import {
 import "components/picker/ColorPicker.css";
 
 const pickerComponents = {
-  HEX: ColorPickerHEX,
-  HSL: ColorPickerHSL,
-  HSLA: ColorPickerHSLA,
-  RGB: ColorPickerRGB,
-  RGBA: ColorPickerRGBA,
+  HEX: PickerHEX,
+  HSL: PickerHSL,
+  HSLA: PickerHSLA,
+  RGB: PickerRGB,
+  RGBA: PickerRGBA,
 };
 
 export function ColorPicker() {

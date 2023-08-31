@@ -1,7 +1,7 @@
 import { InputHex } from "components/index";
 import { useColor } from "contexts/ColorContext";
 
-export function ColorPickerHEX() {
+export function PickerHEX() {
   const { color, setHEX } = useColor();
 
   return (
