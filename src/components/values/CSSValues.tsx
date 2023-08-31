@@ -29,9 +29,15 @@ export function CSSValues() {
       <div className="huetility-css-rules-container">
         {Object.keys(CSSMode).map((mode) => {
           const colorMode = mode as keyof typeof ColorMode;
+          const cssColor = cssColorValue(ColorMode[colorMode], color);
           return (
-            <button key={mode} className="huetility-css-rule">
-              {cssColorValue(ColorMode[colorMode], color)}
+            <button
+              key={mode}
+              onClick={() => navigator.clipboard.writeText(cssColor)}
+              className="huetility-css-rule"
+              title={`Click to copy: ${cssColor}`}
+            >
+              {cssColor}
             </button>
           );
         })}
