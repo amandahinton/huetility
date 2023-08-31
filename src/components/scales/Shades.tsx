@@ -8,7 +8,7 @@ import { rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
 import "components/index.css";
 
-export function ScaleShades() {
+export function Shades() {
   const { color } = useColor();
   const { colorMode, RGBA } = color;
 

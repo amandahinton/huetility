@@ -7,7 +7,7 @@ import { rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
 import { ColorCodes } from "@/types/types";
 
-export function ScaleTints() {
+export function Tints() {
   const { color } = useColor();
   const { colorMode, RGBA } = color;
 

@@ -3,8 +3,8 @@ import {
   Contrast,
   CSSValues,
   Harmonies,
-  ScaleShades,
-  ScaleTints,
+  Shades,
+  Tints,
   // Testing,
   Vision,
 } from "components/index";
@@ -20,8 +20,8 @@ function App() {
       <Contrast />
       <CSSValues />
       <Harmonies />
-      <ScaleTints />
-      <ScaleShades />
+      <Tints />
+      <Shades />
       <Vision />
       {/* <hr />
       <Testing /> */}
