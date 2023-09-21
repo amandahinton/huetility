@@ -1,7 +1,7 @@
 import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { Palette } from "@/types/types";
-import { contrastTextHex, cssColorValue } from "utils/helpers";
+import { cssColorValue } from "utils/helpers";
 import "components/PaletteSwatches.css";
 
 export function PaletteSwatches({ palette }: { palette: Palette }) {
