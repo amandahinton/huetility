@@ -8,3 +8,5 @@ The initial launch draws color-related information into one place for convenienc
 After selecting a color, users are shown a variety of visuals including tints and shades of the color, information to support accessibility including color contrast and vision deficiency emulations, and harmony palettes such as complementary, analogous, and more. The visuals can be clicked to quickly copy values that can be added to CSS rules.
 
 In the future, Huetility could be available as a package for engineers to add to their projects, making it easy to implement the color picker and leverage all of the available utilities, translations, and supporting functions in their own apps.
+
+![preview](https://github.com/amandahinton/huetility/blob/main/public/huetility-preview.png)
