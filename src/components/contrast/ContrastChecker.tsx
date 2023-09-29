@@ -57,7 +57,7 @@ export function ContrastChecker({ contrastColor, id }: Props) {
   }
 
   return (
-    <div className="huetility-component-container">
+    <div id={id} className="huetility-contrast-checker">
       <div className="huetility-contrast-hex-input">
         <InputHex
           onChange={(hexcode: string) => setSelection(hexToColor(hexcode))}
@@ -69,10 +69,18 @@ export function ContrastChecker({ contrastColor, id }: Props) {
       {isOpaque(color) && isOpaque(selection) && (
         <>
           <div className="huetility-contrast-swatch-container">
-            <Swatch backgroundColor={selection.HEX} height="200" width="200">
+            <Swatch
+              backgroundColor={selection.HEX}
+              bordered
+              classes="huetility-contrast-swatch"
+            >
               <ContrastSamples textHex={color.HEX} />
             </Swatch>
-            <Swatch backgroundColor={color.HEX} height="200" width="200">
+            <Swatch
+              backgroundColor={color.HEX}
+              bordered
+              classes="huetility-contrast-swatch"
+            >
               <ContrastSamples textHex={selection.HEX} />
             </Swatch>
           </div>
@@ -84,7 +92,11 @@ export function ContrastChecker({ contrastColor, id }: Props) {
       {(!isOpaque(color) || !isOpaque(selection)) && (
         <div className="huetility-contrast-swatch-container">
           <div>
-            <Swatch backgroundColor={background1.HEX} height="200" width="200">
+            <Swatch
+              backgroundColor={background1.HEX}
+              bordered
+              classes="huetility-contrast-swatch"
+            >
               <ContrastSamples textHex={text1.HEX} />
             </Swatch>
             <div className="huetility-contrast-text-ratios">
@@ -94,7 +106,11 @@ export function ContrastChecker({ contrastColor, id }: Props) {
           </div>
 
           <div>
-            <Swatch backgroundColor={background2.HEX} height="200" width="200">
+            <Swatch
+              backgroundColor={background2.HEX}
+              bordered
+              classes="huetility-contrast-swatch"
+            >
               <ContrastSamples textHex={text2.HEX} />
             </Swatch>
             <div className="huetility-contrast-text-ratios">

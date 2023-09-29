@@ -1,11 +1,36 @@
 /* Contrast  */
 
-.huetility-contrast-input-container {
+.huetility-contrast {
   display: flex;
+  flex-direction: column;
+}
+
+.huetility-contrast-checkers-container {
+  display: flex;
+  flex-direction: row;
   gap: 4rem;
 }
 
+@media (max-width: 964px) {
+  .huetility-contrast-checkers-container {
+    gap: 1rem;
+  }
+
+  #contrast-checker-2 {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+  }
+}
+
 /* ContrastChecker  */
+
+.huetility-contrast-checker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .huetility-contrast-hex-input {
   display: flex;
@@ -16,7 +41,20 @@
 
 .huetility-contrast-swatch-container {
   display: flex;
+  flex-direction: row;
   gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .huetility-contrast-swatch-container {
+    flex-direction: column;
+  }
+}
+
+.huetility-contrast-swatch {
+  height: 200px;
+  width: 200px;
 }
 
 .huetility-contrast-ratio {

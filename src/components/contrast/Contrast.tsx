@@ -23,11 +23,11 @@ export function Contrast() {
     </div>
   );
   return (
-    <div className="huetility-component-container huetility-outer">
+    <div className="huetility-contrast">
       <Tooltip hasIcon message={tooltip}>
         <h2 className="huetility-component-title">Color Contrast</h2>
       </Tooltip>
-      <div className="huetility-contrast-input-container">
+      <div className="huetility-contrast-checkers-container">
         <ContrastChecker contrastColor={WHITE_CODES} id="contrast-checker-1" />
         <ContrastChecker contrastColor={BLACK_CODES} id="contrast-checker-2" />
       </div>
