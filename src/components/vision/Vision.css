@@ -4,7 +4,6 @@
 }
 
 .huetility-vision-swatches-container {
-  border: 2px blue solid;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
