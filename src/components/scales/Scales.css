@@ -1,8 +1,9 @@
 .huetility-scales {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 3rem;
+  max-width: 1000px;
+  width: 100%;
 }
 
 .huetility-shades,
@@ -20,10 +21,41 @@
 .huetility-scale-buttons-container {
   display: flex;
   justify-content: center;
-  margin: 20px;
-  max-width: 1000px;
+  margin-top: 1rem;
+  max-width: 100%;
 }
 
 .huetility-scale-button {
   height: 100px;
+}
+
+@media (max-width: 964px) {
+  .huetility-scales {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+    gap: 3rem;
+  }
+
+  .huetility-scale-buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+
+  .huetility-scale-button {
+    width: 100% !important;
+    height: 50px !important;
+  }
+}
+
+@media (max-width: 564px) {
+  .huetility-scales {
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+    gap: 3rem;
+  }
 }
