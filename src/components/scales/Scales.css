@@ -1,3 +1,7 @@
+.huetility-scales-container {
+  gap: 3rem;
+}
+
 .huetility-scale-buttons-container {
   display: flex;
   justify-content: center;

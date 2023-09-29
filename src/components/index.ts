@@ -12,6 +12,7 @@ export * from "components//harmonies/Harmonies.tsx";
 export * from "components/InputHex.tsx";
 export * from "components/PaletteSwatches.tsx";
 export * from "components/picker/RGBColorWheel.tsx";
+export * from "components/scales/Scales.tsx"
 export * from "components/scales/Shades.tsx";
 export * from "components/scales/Tints.tsx";
 export * from "components/Swatch.tsx";
