@@ -3,16 +3,16 @@ import "components/index.css";
 
 type Props = {
   backgroundColor: string;
+  bordered: boolean;
   children?: React.ReactNode;
-  height: string;
-  width: string;
+  classes?: string;
 };
 
-export function Swatch({ backgroundColor, children, height, width }: Props) {
+export function Swatch({ backgroundColor, bordered = false, children, classes }: Props) {
   return (
     <div
-      className="huetility-swatch huetility-bordered"
-      style={{ backgroundColor, height, width }}
+      className={`${classes} huetility-swatch ${bordered ? "huetility-bordered" : ""}`}
+      style={{ backgroundColor }}
     >
       {children}
     </div>
