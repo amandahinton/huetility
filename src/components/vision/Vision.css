@@ -1,20 +1,27 @@
-.huetility-vision-container {
+.huetility-vision {
+ display: flex;
+ flex-direction: column;
+}
+
+.huetility-vision-swatches-container {
+  border: 2px blue solid;
   display: flex;
   flex-wrap: wrap;
-  width: 1000px;
-  gap: 22px;
+  justify-content: center;
+  max-width: 1000px;
+  column-gap: 36px;
+  row-gap: 30px;
 }
 
 .huetility-vision-display {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 162px;
 }
 
 .huetility-vision-swatch {
   height: 100px;
-  width: 162px;
+  width: 170px;
 }
 
 .huetility-vision-text-samples {

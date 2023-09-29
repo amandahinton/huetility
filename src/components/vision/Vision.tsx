@@ -25,12 +25,12 @@ export function Vision() {
   );
 
   return (
-    <div className="huetility-component-container huetility-outer">
+    <div className="huetility-vision">
       <Tooltip hasIcon message={tooltip}>
         <h2 className="huetility-component-title">Vision Deficiencies</h2>
       </Tooltip>
 
-      <div className="huetility-vision-container">
+      <div className="huetility-vision-swatches-container">
         {visionDeficiencyColors.map((viz) => (
           <div key={viz.name} className="huetility-vision-display">
             <Swatch
