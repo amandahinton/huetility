@@ -18,7 +18,6 @@
 
 @media (max-width: 946px) {
   .huetility-contrast-checkers-container {
-    gap: 1rem;
     justify-content: center;
   }
 
@@ -52,9 +51,10 @@
   width: 100%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: calc(400px + 5rem)) {
   .huetility-contrast-swatch-container {
     flex-direction: column;
+    align-items: center;
   }
 }
 
