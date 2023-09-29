@@ -85,16 +85,14 @@ export function RGBColorWheel() {
   };
 
   return (
-    <div className="huetility-component-container">
-      <div className="huetility-colorspace-container">
-        <Canvas
-          draw={canvasDraw}
-          onClick={handleClick}
-          height={canvasWidth}
-          width={canvasWidth}
-          classNames=""
-        />
-      </div>
+    <div>
+      <Canvas
+        draw={canvasDraw}
+        onClick={handleClick}
+        height={canvasWidth}
+        width={canvasWidth}
+        classNames=""
+      />
     </div>
   );
 }

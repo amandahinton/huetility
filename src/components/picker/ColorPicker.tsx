@@ -65,10 +65,15 @@ export function ColorPicker() {
   );
 
   return (
-    <div className="huetility-component-container huetility-outer">
-      <Swatch backgroundColor={cssValue} height="300px" width="900px">
+    <div className="huetility-color-picker">
+      <Swatch
+        backgroundColor={cssValue}
+        bordered
+        classes="huetility-picker-swatch"
+      >
         <p style={{ color: labelColor }}>{cssValue}</p>
       </Swatch>
+
       <div className="huetility-space-above">
         <Tooltip hasIcon message={tooltip}>
           <h2 className="huetility-component-title">Color Picker</h2>

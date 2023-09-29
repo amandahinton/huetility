@@ -32,7 +32,7 @@ export function InputHex({ onChange, color, id }: Props) {
   );
 
   return (
-    <div className="huetility-code-input-container">
+    <div className="huetility-picker-input-container">
       <div className="huetility-code-input">
         <div className="huetility-code-string-input">
           <label htmlFor={`hex-input-${id}`}>Hexcode:</label>

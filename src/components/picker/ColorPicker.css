@@ -1,4 +1,17 @@
 /* ColorPicker */
+.huetility-color-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.huetility-picker-swatch {
+  height: 300px;
+  width: 900px;
+  max-width: 100%;
+}
 
 .huetility-mode-select {
   margin-bottom: 1rem;
@@ -9,38 +22,49 @@
 
 .huetility-color-selection-container {
   display: flex;
-  gap: 40px;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+@media (max-width: 700px) {
+  .huetility-color-selection-container {
+    gap: 1rem;
+  }
+}
+
+/* RGBColorWheel  */
+.huetility-default-canvas {
+  border: solid 1px black;
 }
 
 /* pickerHEX, pickerRGB, etc  */
 
-.huetility-code-input-container {
+.huetility-picker-input-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 2rem;
-  width: 300px;
+  align-items: flex-start;
+  justify-content: center;
 }
 
+/* input group and error */
+.huetility-code-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* number input and sliders */
 .huetility-code-input-group {
   display: flex;
   gap: 1rem;
 }
 
-.huetility-code-input {
-  display: flex;
-  flex-direction: column;
-}
-
+/* number/string input and label */
 .huetility-code-number-input {
   margin-bottom: 0.75rem;
-}
-
-.huetility-code-input label {
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 .huetility-number-input {
@@ -56,13 +80,15 @@
   font-size: 1.25rem;
 }
 
-/* RGBColorWheel  */
-.huetility-default-canvas {
-  border: solid 1px black;
+.huetility-code-input label {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
 }
 
-.huetility-clicked-pixel {
-  display: flex;
-  justify-content: center;
-  font-weight: 500;
+@media (max-width: 700px) {
+  .huetility-slider-input {
+    visibility: hidden;
+    width: 0px;
+  }
 }

@@ -29,7 +29,7 @@ export function PickerHSL() {
   );
 
   return (
-    <div className="huetility-code-input-container">
+    <div className="huetility-picker-input-container">
       <div className="huetility-code-input">
         <div className="huetility-code-input-group">
           <div className="huetility-code-number-input">
@@ -47,6 +47,7 @@ export function PickerHSL() {
             />
           </div>
           <input
+            className="huetility-slider-input"
             type="range"
             min="0"
             max="360"
@@ -79,6 +80,7 @@ export function PickerHSL() {
             />
           </div>
           <input
+            className="huetility-slider-input"
             type="range"
             min="0"
             max="100"
@@ -111,6 +113,7 @@ export function PickerHSL() {
             />
           </div>
           <input
+            className="huetility-slider-input"
             type="range"
             min="0"
             max="100"
