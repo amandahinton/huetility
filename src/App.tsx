@@ -3,8 +3,7 @@ import {
   Contrast,
   CSSValues,
   Harmonies,
-  Shades,
-  Tints,
+  Scales,
   // Testing,
   Vision,
 } from "components/index";
@@ -15,14 +14,14 @@ import "components/index.css";
 function App() {
   return (
     <ColorProvider>
-      <h1>HUETILITY</h1>
+      <h1 className="huetility-app-title">HUETILITY</h1>
       <ColorPicker />
       <Contrast />
       <CSSValues />
       <Harmonies />
-      <Tints />
-      <Shades />
-      <Vision />
+      <Scales />
+      <Vision /> 
+
       {/* <hr />
       <Testing /> */}
     </ColorProvider>
