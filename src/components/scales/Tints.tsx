@@ -51,7 +51,7 @@ export function Tints() {
             aria-label={`Click to copy: ${cssColor}`}
             style={{
               backgroundColor: cssColor,
-              width: 300,
+              width: 250,
             }}
           ></button>
         </div>
@@ -105,7 +105,7 @@ export function Tints() {
               aria-label={`Click to copy: ${cssTint}`}
               style={{
                 backgroundColor: cssTint,
-                width: 900 / tintCount,
+                width: 1000 / tintCount,
               }}
             ></button>
           );

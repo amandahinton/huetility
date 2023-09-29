@@ -96,7 +96,7 @@ export function Testing() {
 
       <h4 className="huetility-space-above">Tooltip</h4>
       <div
-        style={{ backgroundColor: "#00ffff", width: "900px", height: "300px" }}
+        style={{ backgroundColor: "#00ffff", width: "1000px", height: "250px" }}
       >
         {cssColorValue(ColorMode.HEX, color)}
         <Tooltip hasIcon message="Lorem Ipsum" />

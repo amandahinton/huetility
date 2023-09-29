@@ -52,7 +52,7 @@ export function Shades() {
             aria-label={`Click to copy: ${cssColor}`}
             style={{
               backgroundColor: cssColor,
-              width: 300,
+              width: 250,
             }}
           ></button>
         </div>
@@ -106,7 +106,7 @@ export function Shades() {
               aria-label={`Click to copy: ${cssShade}`}
               style={{
                 backgroundColor: cssShade,
-                width: 900 / shadeCount,
+                width: 1000 / shadeCount,
               }}
             ></button>
           );

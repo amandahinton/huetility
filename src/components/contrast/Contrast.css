@@ -3,17 +3,23 @@
 .huetility-contrast {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .huetility-contrast-checkers-container {
   display: flex;
   flex-direction: row;
-  gap: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
 }
 
-@media (max-width: 964px) {
+@media (max-width: 946px) {
   .huetility-contrast-checkers-container {
     gap: 1rem;
+    justify-content: center;
   }
 
   #contrast-checker-2 {
