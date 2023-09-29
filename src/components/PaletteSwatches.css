@@ -1,4 +1,4 @@
-.huetility-palette-container {
+.huetility-palette-swatches {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,11 +10,14 @@
 
 .huetility-palette-swatch {
   height: 100px;
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100px;
+}
+
+@media (max-width: 400px) {
+  .huetility-palette-swatch {
+    height: 50px;
+    width: 50px;
+  }
 }
 
 .huetility-palette-name {

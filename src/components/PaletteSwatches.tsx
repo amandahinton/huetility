@@ -9,7 +9,7 @@ export function PaletteSwatches({ palette }: { palette: Palette }) {
   const { colorMode } = color;
 
   return (
-    <div className="huetility-palette-container">
+    <div className="huetility-palette-swatches">
       <div className="huetility-swatch-group huetility-bordered">
         {palette.paletteColors.map((swatch) => {
           const cssSwatch = cssColorValue(colorMode, swatch);
