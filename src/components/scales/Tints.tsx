@@ -36,17 +36,17 @@ export function Tints() {
 
   if (isWhite(color)) {
     return (
-      <div className="huetility-component-container huetility-outer">
+      <div className="huetility-tints">
         <Tooltip hasIcon message={tooltip}>
           <h2 className="huetility-component-title">
             {isOpaque(color) ? "Tints" : "Tints with Transparency"}
           </h2>
         </Tooltip>
 
-        <div className="huetility-scale-buttons-container">
+        <div className="huetility-scale-buttons-container huetility-bordered">
           <button
             onClick={() => navigator.clipboard.writeText(cssColor)}
-            className="huetility-scale-button huetility-bordered"
+            className="huetility-scale-button"
             title={`Click to copy: ${cssColor}`}
             aria-label={`Click to copy: ${cssColor}`}
             style={{
@@ -76,7 +76,7 @@ export function Tints() {
   tints.push(rgbaToColor({ ...WHITE_RGB, a: RGBA.a }));
 
   return (
-    <div className="huetility-component-container huetility-outer">
+    <div className="huetility-tints">
       <Tooltip hasIcon message={tooltip}>
         <h2 className="huetility-component-title">
           {isOpaque(color) ? "Tints" : "Tints with Transparency"}
@@ -93,6 +93,7 @@ export function Tints() {
         value={tintCount}
         onChange={(e) => setTintCount(Number(e.target.value))}
       />
+      
       <div className="huetility-scale-buttons-container huetility-bordered">
         {tints.map((tint, i) => {
           const cssTint = cssColorValue(colorMode, tint);

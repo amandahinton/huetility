@@ -1,18 +1,29 @@
-.huetility-scales-container {
+.huetility-scales {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 3rem;
+}
+
+.huetility-shades,
+.huetility-tints {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.huetility-shades *,
+.huetility-tints * {
+  align-self: center;
 }
 
 .huetility-scale-buttons-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 20px;
-  width: 1000px;
+  max-width: 1000px;
 }
 
 .huetility-scale-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100px;
 }

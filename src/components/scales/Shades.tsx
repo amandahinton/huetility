@@ -37,14 +37,14 @@ export function Shades() {
 
   if (isBlack(color)) {
     return (
-      <div className="huetility-component-container huetility-outer">
+      <div className="huetility-shades">
         <Tooltip hasIcon message={tooltip}>
           <h2 className="huetility-component-title">
             {isOpaque(color) ? "Shades" : "Shades with Transparency"}
           </h2>
         </Tooltip>
 
-        <div className="huetility-scale-button huetility-bordered">
+        <div className="huetility-scale-buttons-container huetility-bordered">
           <button
             onClick={() => navigator.clipboard.writeText(cssColor)}
             className="huetility-scale-button"
@@ -77,7 +77,7 @@ export function Shades() {
   shades.push(rgbaToColor({ ...BLACK_RGB, a: RGBA.a }));
 
   return (
-    <div className="huetility-component-container huetility-outer">
+    <div className="huetility-shades">
       <Tooltip hasIcon message={tooltip}>
         <h2 className="huetility-component-title">
           {isOpaque(color) ? "Shades" : "Shades with Transparency"}
@@ -94,6 +94,7 @@ export function Shades() {
         value={shadeCount}
         onChange={(e) => setShadeCount(Number(e.target.value))}
       />
+
       <div className="huetility-scale-buttons-container huetility-bordered">
         {shades.map((shade, i) => {
           const cssShade = cssColorValue(colorMode, shade);
