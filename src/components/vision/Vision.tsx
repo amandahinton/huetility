@@ -33,7 +33,11 @@ export function Vision() {
       <div className="huetility-vision-container">
         {visionDeficiencyColors.map((viz) => (
           <div key={viz.name} className="huetility-vision-display">
-            <Swatch backgroundColor={viz.color.HEX} height="100px" width="162px">
+            <Swatch
+              backgroundColor={viz.color.HEX}
+              bordered
+              classes="huetility-vision-swatch"
+            >
               <div
                 className={`huetility-vision-text-samples huetility-${viz.name}-vision-swatch`}
               >
