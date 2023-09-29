@@ -21,7 +21,7 @@ export function CSSValues() {
   );
 
   return (
-    <div className="huetility-component-container huetility-outer">
+    <div className="huetility-css-values">
       <Tooltip hasIcon message={tooltip}>
         <h2 className="huetility-component-title">CSS Values</h2>
       </Tooltip>
