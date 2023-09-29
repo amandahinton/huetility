@@ -1,15 +1,3 @@
-/* All components, imported at App.tsx */
-
-.huetility-component-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.huetility-outer {
-  margin: 2rem 0;
-}
-
 .huetility-component-title {
   margin-bottom: 0.5rem;
 }
