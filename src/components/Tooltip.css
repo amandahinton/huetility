@@ -11,7 +11,7 @@
 }
 
 .huetility-tooltip-hover .huetility-tooltip-message {
-  visibility: hidden;
+  display: none;
   position: absolute;
   width: 400px;
   background-color: #000;
@@ -27,7 +27,7 @@
 }
 
 .huetility-tooltip-hover:hover .huetility-tooltip-message {
-  visibility: visible;
+  display: block;
 }
 
 .huetility-tooltip-hover .huetility-tooltip-message::before {
