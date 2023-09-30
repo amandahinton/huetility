@@ -7,8 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1000px;
-  column-gap: 36px;
+  column-gap: 40px;
   row-gap: 30px;
 }
 
@@ -20,7 +19,7 @@
 
 .huetility-vision-swatch {
   height: 100px;
-  width: 170px;
+  width: 168px;
 }
 
 .huetility-vision-text-samples {

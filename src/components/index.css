@@ -1,14 +1,10 @@
 .huetility-component-title {
-  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .huetility-input-error {
   color: red;
   height: 0px;
-}
-
-.huetility-space-above {
-  margin-top: 2rem;
 }
 
 .huetility-bordered {

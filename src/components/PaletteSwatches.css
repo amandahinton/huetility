@@ -13,7 +13,7 @@
   width: 100px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: calc(400px + 3rem) ) {
   .huetility-palette-swatch {
     height: 50px;
     width: 50px;
