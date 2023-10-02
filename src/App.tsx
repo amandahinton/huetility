@@ -2,6 +2,7 @@ import {
   ColorPicker,
   Contrast,
   CSSValues,
+  Footer,
   Harmonies,
   Scales,
   // Testing,
@@ -15,15 +16,17 @@ function App() {
   return (
     <ColorProvider>
       <h1 className="huetility-app-title">HUETILITY</h1>
-      <ColorPicker />
-      <Contrast />
-      <CSSValues />
-      <Harmonies />
-      <Scales />
-      <Vision /> 
-
-      {/* <hr />
-      <Testing /> */}
+      <div className="huetility-app-wrapper">
+        <ColorPicker />
+        <Contrast />
+        <CSSValues />
+        <Harmonies />
+        <Scales />
+        <Vision />
+        {/* <hr />
+        <Testing /> */}
+      </div>
+      <Footer />
     </ColorProvider>
   );
 }
