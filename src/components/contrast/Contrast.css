@@ -16,15 +16,20 @@
   width: 100%;
 }
 
-@media (max-width: 946px) {
+@media (max-width: 900px) {
+  .huetility-contrast-checkers-container {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 564px) {
   .huetility-contrast-checkers-container {
     justify-content: center;
   }
 
-  #contrast-checker-2 {
-    visibility: hidden;
-    width: 0px;
-    height: 0px;
+  #contrast-checker-1 {
+    display: none;
   }
 }
 

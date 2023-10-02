@@ -89,7 +89,6 @@
 
 @media (max-width: 700px) {
   .huetility-slider-input {
-    visibility: hidden;
-    width: 0px;
+    display: none;
   }
 }
