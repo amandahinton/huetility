@@ -38,10 +38,11 @@ export function Shades() {
   if (isBlack(color)) {
     return (
       <div className="huetility-shades">
-        <Tooltip hasIcon message={tooltip}>
-          <h2 className="huetility-component-title">
-            {isOpaque(color) ? "Shades" : "Shades with Transparency"}
+        <Tooltip message={tooltip}>
+          <h2 className="huetility-tooltip-title">
+            {isOpaque(color) ? "Shades " : "Shades with Transparency "}
           </h2>
+          <p className="huetility-tooltip-icon">&#9432;</p>
         </Tooltip>
 
         <div className="huetility-scale-buttons-container huetility-bordered">
@@ -78,10 +79,11 @@ export function Shades() {
 
   return (
     <div className="huetility-shades">
-      <Tooltip hasIcon message={tooltip}>
-        <h2 className="huetility-component-title">
-          {isOpaque(color) ? "Shades" : "Shades with Transparency"}
+      <Tooltip message={tooltip}>
+        <h2 className="huetility-tooltip-title">
+          {isOpaque(color) ? "Shades " : "Shades with Transparency "}
         </h2>
+        <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>

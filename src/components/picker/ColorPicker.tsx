@@ -75,8 +75,9 @@ export function ColorPicker() {
       </Swatch>
 
       <div className="huetility-space-above">
-        <Tooltip hasIcon message={tooltip}>
-          <h2 className="huetility-component-title">Color Picker</h2>
+        <Tooltip message={tooltip}>
+          <h2 className="huetility-tooltip-title">Color Picker </h2>
+          <p className="huetility-tooltip-icon">&#9432;</p>
         </Tooltip>
       </div>
 

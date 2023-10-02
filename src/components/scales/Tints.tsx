@@ -37,10 +37,11 @@ export function Tints() {
   if (isWhite(color)) {
     return (
       <div className="huetility-tints">
-        <Tooltip hasIcon message={tooltip}>
-          <h2 className="huetility-component-title">
-            {isOpaque(color) ? "Tints" : "Tints with Transparency"}
+        <Tooltip message={tooltip}>
+          <h2 className="huetility-tooltip-title">
+            {isOpaque(color) ? "Tints " : "Tints with Transparency "}
           </h2>
+          <p className="huetility-tooltip-icon">&#9432;</p>
         </Tooltip>
 
         <div className="huetility-scale-buttons-container huetility-bordered">
@@ -77,10 +78,11 @@ export function Tints() {
 
   return (
     <div className="huetility-tints">
-      <Tooltip hasIcon message={tooltip}>
-        <h2 className="huetility-component-title">
-          {isOpaque(color) ? "Tints" : "Tints with Transparency"}
+      <Tooltip message={tooltip}>
+        <h2 className="huetility-tooltip-title">
+          {isOpaque(color) ? "Tints " : "Tints with Transparency "}
         </h2>
+        <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
@@ -93,7 +95,7 @@ export function Tints() {
         value={tintCount}
         onChange={(e) => setTintCount(Number(e.target.value))}
       />
-      
+
       <div className="huetility-scale-buttons-container huetility-bordered">
         {tints.map((tint, i) => {
           const cssTint = cssColorValue(colorMode, tint);

@@ -29,8 +29,9 @@ export function Harmonies() {
 
   return (
     <div className="huetility-harmonies">
-      <Tooltip hasIcon message={tooltip}>
-        <h2 className="huetility-component-title">Color Harmonies</h2>
+      <Tooltip message={tooltip}>
+        <h2 className="huetility-tooltip-title">Color Harmonies </h2>
+        <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 
       <div className="huetility-harmonies-container">

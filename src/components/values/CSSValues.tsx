@@ -22,8 +22,9 @@ export function CSSValues() {
 
   return (
     <div className="huetility-css-values">
-      <Tooltip hasIcon message={tooltip}>
-        <h2 className="huetility-component-title">CSS Values</h2>
+      <Tooltip message={tooltip}>
+        <h2 className="huetility-tooltip-title">CSS Values </h2>
+        <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 
       <div className="huetility-css-rules-container">

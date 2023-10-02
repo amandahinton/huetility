@@ -26,7 +26,7 @@ export function PaletteSwatches({ palette }: { palette: Palette }) {
         })}
       </div>
 
-      <Tooltip hoverChildren message={palette.description}>
+      <Tooltip message={palette.description}>
         <p className="huetility-palette-name">
           {palette.name
             .split(" ")

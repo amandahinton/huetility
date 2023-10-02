@@ -3,6 +3,17 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.huetility-tooltip-title,
+.huetility-tooltip-icon {
+  display: inline;
+}
+
+.huetility-tooltip-icon {
+  position: relative;
+  top: -0.5rem;
 }
 
 .huetility-tooltip-hover {
@@ -11,7 +22,8 @@
 }
 
 .huetility-tooltip-hover .huetility-tooltip-message {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
   position: absolute;
   width: 400px;
   background-color: #000;
@@ -20,14 +32,15 @@
   text-align: center;
   padding: 2rem;
   margin: 1rem;
-  top: 100%;
+  top: 75%;
   left: 50%;
   margin-left: -200px;
   z-index: 1;
 }
 
 .huetility-tooltip-hover:hover .huetility-tooltip-message {
-  display: block;
+  /* display: block; */
+  visibility: visible;
 }
 
 .huetility-tooltip-hover .huetility-tooltip-message::before {
@@ -46,4 +59,15 @@
 
 .huetility-tooltip-content-left-align {
   text-align: left;
+}
+
+@media (max-width: 440px) {
+  .huetility-tooltip-hover .huetility-tooltip-message {
+    width: 300px;
+    margin-left: -150px;
+  }
+
+  .huetility-tooltip-icon {
+    display: none;
+  }
 }

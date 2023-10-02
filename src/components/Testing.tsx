@@ -99,7 +99,10 @@ export function Testing() {
         style={{ backgroundColor: "#00ffff", width: "1000px", height: "250px" }}
       >
         {cssColorValue(ColorMode.HEX, color)}
-        <Tooltip hasIcon message="Lorem Ipsum" />
+        <Tooltip message={"Lorem Ipsum"}>
+        <h2 className="huetility-tooltip-title">Testing </h2>
+        <p className="huetility-tooltip-icon">&#9432;</p>
+      </Tooltip>
       </div>
     </>
   );

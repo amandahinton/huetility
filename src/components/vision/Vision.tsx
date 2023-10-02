@@ -26,8 +26,9 @@ export function Vision() {
 
   return (
     <div className="huetility-vision">
-      <Tooltip hasIcon message={tooltip}>
-        <h2 className="huetility-component-title">Vision Deficiencies</h2>
+      <Tooltip message={tooltip}>
+        <h2 className="huetility-tooltip-title">Vision Deficiencies </h2>
+        <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 
       <div className="huetility-vision-swatches-container">
@@ -57,7 +58,6 @@ export function Vision() {
             </Swatch>
 
             <Tooltip
-              hoverChildren
               message={
                 <div className="huetility-tooltip-content-left-align">
                   <p>{viz.description}</p>
