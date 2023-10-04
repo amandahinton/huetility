@@ -10,7 +10,6 @@ export const BLACK_CODES = {
   RGB: BLACK_RGB,
   RGBA: BLACK_RGBA,
 };
-export const BLACK_RGB_CSS = "rgb(0, 0, 0)";
 
 export const WHITE_HEXCODE = "#ffffff";
 export const WHITE_HSL = { h: 0, s: 0, l: 100 };
@@ -25,7 +24,6 @@ export const WHITE_CODES = {
   RGB: WHITE_RGB,
   RGBA: WHITE_RGBA,
 };
-export const WHITE_RGB_CSS = "rgb(255, 255, 255)";
 
 export const HUES = [
   { id: 0, descriptor: "R - red", degree: 0, cssRGB: "rgb(255, 0, 0)" },
