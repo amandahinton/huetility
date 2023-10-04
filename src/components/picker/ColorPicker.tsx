@@ -18,14 +18,6 @@ import {
 } from "utils/helpers";
 import "components/picker/ColorPicker.css";
 
-const pickerComponents = {
-  HEX: PickerHEX,
-  HSL: PickerHSL,
-  HSLA: PickerHSLA,
-  RGB: PickerRGB,
-  RGBA: PickerRGBA,
-};
-
 export function ColorPicker() {
   const { color, setMode } = useColor();
   const { colorMode } = color;
@@ -34,7 +26,24 @@ export function ColorPicker() {
   const blendedColor = blendForegroundToBackground(color, WHITE_CODES);
   const labelColor = contrastTextHex(blendedColor);
 
-  const PickerInput = pickerComponents[colorMode];
+  let pickerInput;
+  switch (colorMode) {
+    case ColorMode.HEX:
+      pickerInput = <PickerHEX />;
+      break;
+    case ColorMode.HSL:
+      pickerInput = <PickerHSL />;
+      break;
+    case ColorMode.HSLA:
+      pickerInput = <PickerHSLA />;
+      break;
+    case ColorMode.RGB:
+      pickerInput = <PickerRGB />;
+      break;
+    case ColorMode.RGBA:
+      pickerInput = <PickerRGBA />;
+      break;
+  }
 
   const tooltip = (
     <div className="huetility-tooltip-content-left-align">
@@ -99,7 +108,7 @@ export function ColorPicker() {
 
       <div className="huetility-color-selection-container">
         <RGBColorWheel />
-        <PickerInput />
+        {pickerInput}
       </div>
     </div>
   );
