@@ -10,7 +10,7 @@ import {
   rgbaToColor,
 } from "utils/translations";
 
-type ColorContextType = {
+export type ColorContextType = {
   color: ColorData;
   setMode: (mode: ColorMode) => void;
   setHEX: (hexcode: string) => void;
