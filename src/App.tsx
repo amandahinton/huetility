@@ -5,7 +5,6 @@ import {
   Footer,
   Harmonies,
   Scales,
-  // Testing,
   Vision,
 } from "components/index";
 import { ColorProvider } from "contexts/ColorContext";
@@ -23,8 +22,6 @@ function App() {
         <Harmonies />
         <Scales />
         <Vision />
-        {/* <hr />
-        <Testing /> */}
       </div>
       <Footer />
     </ColorProvider>

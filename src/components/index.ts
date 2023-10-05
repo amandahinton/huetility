@@ -24,5 +24,4 @@ export * from "components/Footer.tsx";
 export * from "components/InputHex.tsx";
 export * from "components/PaletteSwatches.tsx";
 export * from "components/Swatch.tsx";
-export * from "components/Testing.tsx";
 export * from "components/Tooltip.tsx";
