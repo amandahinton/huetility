@@ -12,6 +12,7 @@
       "@/*": ["src/*"],
       "components/*": ["src/components/*"],
       "contexts/*": ["src/contexts/*"],
+      "tests/*": ["src/tests/*"],
       "types/*": ["src/types/*"],
       "utils/*": ["src/utils/*"]
     },
