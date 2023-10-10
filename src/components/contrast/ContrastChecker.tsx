@@ -47,7 +47,9 @@ export function ContrastChecker({ contrastColor, id }: Props) {
   const contrast2 = contrast(text2, background2);
 
   function contrastMessage(contrast: number): string {
-    if (contrast >= 4.5) {
+    if (contrast == 1) {
+      return "No contrast (text and background are same)";
+    } else if (contrast >= 4.5) {
       return "Good for text of all sizes";
     } else if (contrast < 3) {
       return "Low contrast, hard to read";
