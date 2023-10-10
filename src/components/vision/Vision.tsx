@@ -1,14 +1,16 @@
 import { Swatch, Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { PerceivedColor } from "types/types";
-import { contrast, perceivedColors } from "utils/helpers";
+import { blendForegroundToBackground, contrast, isOpaque, perceivedColors } from "utils/helpers";
 import { BLACK_CODES, WHITE_CODES } from "utils/constants";
 import "components/vision/Vision.css";
 
 export function Vision() {
   const { color } = useColor();
 
-  const visionDeficiencyColors: PerceivedColor[] = perceivedColors(color);
+  const flattenedColor = isOpaque(color) ? color : blendForegroundToBackground(color, WHITE_CODES)
+
+  const visionDeficiencyColors: PerceivedColor[] = perceivedColors(flattenedColor);
 
   const tooltip = (
     <div className="huetility-tooltip-content-left-align">
