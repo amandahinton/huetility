@@ -2,7 +2,7 @@ import React from "react";
 import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { WHITE_RGB } from "utils/constants";
-import { cssColorValue, isOpaque, isWhite } from "utils/helpers";
+import { cssColorValue, isWhite } from "utils/helpers";
 import { hslaToColor, rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
 import { ColorCodes } from "@/types/types";
@@ -38,9 +38,7 @@ export function Tints() {
     return (
       <div className="huetility-tints">
         <Tooltip message={tooltip}>
-          <h2 className="huetility-tooltip-title">
-            {isOpaque(color) ? "Tints " : "Tints with Transparency "}
-          </h2>
+          <h2 className="huetility-tooltip-title">Tints </h2>
           <p className="huetility-tooltip-icon">&#9432;</p>
         </Tooltip>
 
@@ -79,9 +77,7 @@ export function Tints() {
   return (
     <div className="huetility-tints">
       <Tooltip message={tooltip}>
-        <h2 className="huetility-tooltip-title">
-          {isOpaque(color) ? "Tints " : "Tints with Transparency "}
-        </h2>
+        <h2 className="huetility-tooltip-title">Tints </h2>
         <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 

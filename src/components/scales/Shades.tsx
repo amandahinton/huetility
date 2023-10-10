@@ -3,7 +3,7 @@ import { Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { ColorCodes } from "types/types";
 import { BLACK_RGB } from "utils/constants";
-import { cssColorValue, isBlack, isOpaque } from "utils/helpers";
+import { cssColorValue, isBlack } from "utils/helpers";
 import { hslaToColor, rgbaToColor } from "utils/translations";
 import "components/scales/Scales.css";
 import "components/index.css";
@@ -39,9 +39,7 @@ export function Shades() {
     return (
       <div className="huetility-shades">
         <Tooltip message={tooltip}>
-          <h2 className="huetility-tooltip-title">
-            {isOpaque(color) ? "Shades " : "Shades with Transparency "}
-          </h2>
+          <h2 className="huetility-tooltip-title">Shades </h2>
           <p className="huetility-tooltip-icon">&#9432;</p>
         </Tooltip>
 
@@ -80,9 +78,7 @@ export function Shades() {
   return (
     <div className="huetility-shades">
       <Tooltip message={tooltip}>
-        <h2 className="huetility-tooltip-title">
-          {isOpaque(color) ? "Shades " : "Shades with Transparency "}
-        </h2>
+        <h2 className="huetility-tooltip-title">Shades </h2>
         <p className="huetility-tooltip-icon">&#9432;</p>
       </Tooltip>
 
