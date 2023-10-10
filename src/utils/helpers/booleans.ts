@@ -70,6 +70,24 @@ export const isBlack = (color: ColorCodes): boolean => {
   return color.RGB.r === 0 && color.RGB.g === 0 && color.RGB.b === 0;
 };
 
+export const isOpaqueBlack = (color: ColorCodes): boolean => {
+  return (
+    color.RGBA.r === 0 &&
+    color.RGBA.g === 0 &&
+    color.RGBA.b === 0 &&
+    color.RGBA.a === 1
+  );
+};
+
 export const isWhite = (color: ColorCodes): boolean => {
   return color.RGB.r === 255 && color.RGB.g === 255 && color.RGB.b === 255;
+};
+
+export const isOpaqueWhite = (color: ColorCodes): boolean => {
+  return (
+    color.RGBA.r === 255 &&
+    color.RGBA.g === 255 &&
+    color.RGBA.b === 255 &&
+    color.RGBA.a === 1
+  );
 };
