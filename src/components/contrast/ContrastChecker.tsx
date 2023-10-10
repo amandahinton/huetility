@@ -48,7 +48,7 @@ export function ContrastChecker({ contrastColor, id }: Props) {
 
   function contrastMessage(contrast: number): string {
     if (contrast == 1) {
-      return "No contrast (text and background are same)";
+      return "Same colors, no contrast";
     } else if (contrast >= 4.5) {
       return "Good for text of all sizes";
     } else if (contrast < 3) {
