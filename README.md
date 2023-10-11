@@ -17,6 +17,6 @@ View the app at [amandahinton.github.io/huetility/](https://amandahinton.github.
 - React Testing Library
 - Vitest
 
-In the future, Huetility could be available as a package for engineers to add to their projects, making it easy to implement a color picker and leverage all of the available utilities, translations, and supporting functions in their own apps. Huetility should expand to support CIELAB and Oklab colorspaces.
-
 ![preview](https://github.com/amandahinton/huetility/blob/main/public/huetility-preview.png)
+
+In the future, Huetility could be available as a package for engineers to add to their projects, making it easy to implement a color picker and leverage all of the available utilities, translations, and supporting functions in their own apps. Huetility should expand to support CIELAB and Oklab colorspaces.
