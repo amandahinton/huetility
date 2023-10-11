@@ -26,14 +26,21 @@ export function PaletteSwatches({ palette }: { palette: Palette }) {
         })}
       </div>
 
-      <Tooltip message={palette.description}>
-        <p className="huetility-palette-name">
-          {palette.name
-            .split(" ")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ")}
-        </p>
-      </Tooltip>
+      <Tooltip
+        message={
+          <div className="huetility-tooltip-message">
+            <p>{palette.description}</p>
+          </div>
+        }
+        trigger={
+          <p className="huetility-palette-name">
+            {palette.name
+              .split(" ")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
+          </p>
+        }
+      />
     </div>
   );
 }

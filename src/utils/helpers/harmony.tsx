@@ -79,63 +79,38 @@ export const harmonyPalettes = (color: ColorCodes): Palette[] => {
     {
       name: HarmonyCategory.COMPLEMENTARY,
       paletteColors: harmonyComplementary(color),
-      description: (
-        <p className="huetility-tooltip-content-left-align">
-          Two colors that are directly opposite each other on the color wheel.
-        </p>
-      ),
+      description:
+        "Two colors that are directly opposite each other on the color wheel.",
     },
     {
       name: HarmonyCategory.TRIADIC,
       paletteColors: harmonyTriadic(color),
-      description: (
-        <p className="huetility-tooltip-content-left-align">
-          Three colors that are equally distant from each other on the color
-          wheel, forming an equilateral triangle.
-        </p>
-      ),
+      description:
+        "Three colors that are equally distant from each other on the color wheel, forming an equilateral triangle.",
     },
     {
       name: HarmonyCategory.TETRADIC,
       paletteColors: harmonyTetradic(color),
-      description: (
-        <p className="huetility-tooltip-content-left-align">
-          Four colors that are equally distant from each other on the color
-          wheel, forming a square.
-        </p>
-      ),
+      description:
+        "Four colors that are equally distant from each other on the color wheel, forming a square.",
     },
     {
       name: HarmonyCategory.SPLIT,
       paletteColors: harmonySplitComplementary(color),
-      description: (
-        <p className="huetility-tooltip-content-left-align">
-          Color scheme with colors equally close to the complement of the
-          selected color. Here, two colors are 30 degrees to each side of the
-          selected color's complement.
-        </p>
-      ),
+      description:
+        "Color scheme with colors equally close to the complement of the selected color. Here, two colors are 30 degrees to each side of the selected color's complement.",
     },
     {
       name: HarmonyCategory.MONOCHROMATIC,
       paletteColors: harmonyMonochromatic(color),
-      description: (
-        <p className="huetility-tooltip-content-left-align">
-          Color scheme with light and/or dark versions of a hue. Here, the
-          selected color is blended with white to make a tint and with black to
-          make a shade.
-        </p>
-      ),
+      description:
+        "Color scheme with light and/or dark versions of a hue. Here, the selected color is blended with white to make a tint and with black to make a shade.",
     },
     {
       name: HarmonyCategory.ANALOGOUS,
       paletteColors: harmonyAnalogous(color),
-      description: (
-        <p className="huetility-tooltip-content-left-align">
-          Color scheme with colors equally close to the selected color. Here,
-          two colors are 30 degrees to each side of the selected color.
-        </p>
-      ),
+      description:
+        "Color scheme with colors equally close to the selected color. Here, two colors are 30 degrees to each side of the selected color.",
     },
   ];
 };
