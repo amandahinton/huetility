@@ -28,12 +28,20 @@ export function PaletteSwatches({ palette }: { palette: Palette }) {
 
       <Tooltip
         message={
-          <div className="huetility-tooltip-message">
+          <div
+            id={`tooltip-palettes-${palette.name}`}
+            className="huetility-tooltip-message"
+          >
             <p>{palette.description}</p>
           </div>
         }
         trigger={
-          <p className="huetility-palette-name">
+          <p
+            className="huetility-tooltip-trigger huetility-palette-name"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby={`tooltip-palettes-${palette.name}`}
+          >
             {palette.name
               .split(" ")
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

@@ -21,7 +21,7 @@ export function Vision() {
     perceivedColors(flattenedColor);
 
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-vision" className="huetility-tooltip-message">
       <p>
         Simulations for how users with vision deficiencies might perceive the
         selected color. Hover over the deficiency's name to see how prevelant it
@@ -40,7 +40,18 @@ export function Vision() {
         classes="huetility-component-title"
         message={tooltip}
         text={<h2 className="huetility-tooltip-text">Vision Deficiencies</h2>}
-        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-vision"
+            aria-label="More info on vision deficiencies"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <div className="huetility-vision-swatches-container">
@@ -77,7 +88,12 @@ export function Vision() {
                 </div>
               }
               trigger={
-                <p className="huetility-vision-category">
+                <p
+                  className="huetility-tooltip-trigger huetility-vision-category"
+                  tabIndex={0}
+                  role="tooltip"
+                  aria-describedby="tooltip-vision"
+                >
                   {viz.name.charAt(0).toUpperCase() + viz.name.slice(1)}
                 </p>
               }

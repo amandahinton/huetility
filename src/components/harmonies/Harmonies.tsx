@@ -13,7 +13,7 @@ export function Harmonies() {
   const harmonies: Palette[] = harmonyPalettes(color);
 
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-harmonies" className="huetility-tooltip-message">
       <p>
         Harmonious palettes are created through geometric relationships on the
         color wheel. Hover over a palette name to see how the colors are
@@ -33,7 +33,18 @@ export function Harmonies() {
         classes="huetility-component-title"
         message={tooltip}
         text={<h2 className="huetility-tooltip-text">Color Harmonies</h2>}
-        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-harmonies"
+            aria-label="More info on harmonies"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <div className="huetility-harmonies-container">

@@ -14,7 +14,7 @@ export function CSSValues() {
   const { color } = useColor();
 
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-css-values" className="huetility-tooltip-message">
       <p>
         Click any of the values to copy to the clipboard for use in CSS
         declarations.
@@ -28,7 +28,18 @@ export function CSSValues() {
         classes="huetility-component-title"
         message={tooltip}
         text={<h2 className="huetility-tooltip-text">CSS Values</h2>}
-        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-css-values"
+            aria-label="More info on css values"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <div className="huetility-css-rules-container">

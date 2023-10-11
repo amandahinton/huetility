@@ -46,7 +46,7 @@ export function ColorPicker() {
   }
 
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-picker" className="huetility-tooltip-message">
       <p>
         Select a color by entering values through the inputs or sliders, or by
         clicking a color on the wheel. On the wheel, shades are along the
@@ -86,8 +86,23 @@ export function ColorPicker() {
       <Tooltip
         classes="huetility-component-title"
         message={tooltip}
-        text={<h2 className="huetility-tooltip-text huetility-component-title">Color Picker</h2>}
-        trigger={<p style={{position: "relative", top: "-.5rem"}}>&#9432;</p>}
+        text={
+          <h2 className="huetility-tooltip-text huetility-component-title">
+            Color Picker
+          </h2>
+        }
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-picker"
+            aria-label="More info on color selection"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <select

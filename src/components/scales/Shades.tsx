@@ -17,7 +17,7 @@ export function Shades() {
   const cssColor = cssColorValue(colorMode, color);
 
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-shades" className="huetility-tooltip-message">
       <p>Shades are created by mixing a color with black.</p>
       {!isBlack(color) && (
         <>
@@ -43,7 +43,16 @@ export function Shades() {
           message={tooltip}
           text={<h2 className="huetility-tooltip-text">Shades</h2>}
           trigger={
-            <p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>
+            <p
+              className="huetility-tooltip-trigger"
+              tabIndex={0}
+              role="tooltip"
+              aria-describedby="tooltip-shades"
+              aria-label="More info on shades"
+              style={{ position: "relative", top: "-.5rem" }}
+            >
+              &#9432;
+            </p>
           }
         />
 
@@ -85,7 +94,18 @@ export function Shades() {
         classes="huetility-component-title"
         message={tooltip}
         text={<h2 className="huetility-tooltip-text">Shades</h2>}
-        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-shades"
+            aria-label="More info on shades"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>

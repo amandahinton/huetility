@@ -1,4 +1,5 @@
-.huetility-tooltip-text, .huetility-tooltip-hover {
+.huetility-tooltip-text,
+.huetility-tooltip-hover {
   display: inline-block;
 }
 
@@ -11,7 +12,7 @@
   position: absolute;
   width: 400px;
   margin-left: -200px;
-  margin-top: .75rem;
+  margin-top: 0.75rem;
   padding: 2rem;
   background-color: #000;
   border: 3px solid #fff;
@@ -20,7 +21,8 @@
   z-index: 1;
 }
 
-.huetility-tooltip-hover:hover .huetility-tooltip-message {
+.huetility-tooltip-trigger:hover + .huetility-tooltip-message,
+.huetility-tooltip-trigger:focus-visible + .huetility-tooltip-message {
   display: block;
   visibility: visible;
 }

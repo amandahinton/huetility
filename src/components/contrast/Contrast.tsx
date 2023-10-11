@@ -4,7 +4,7 @@ import "components/contrast/Contrast.css";
 
 export function Contrast() {
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-contrast" className="huetility-tooltip-message">
       <p>
         To meet WCAG accessibility standards, text and interactive elements
         should have a contrast ratio of at least 4.5:1.
@@ -28,7 +28,18 @@ export function Contrast() {
         classes="huetility-component-title"
         message={tooltip}
         text={<h2 className="huetility-tooltip-text">Color Contrast</h2>}
-        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-contrast"
+            aria-label="More info on contrast"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <div className="huetility-contrast-checkers-container">

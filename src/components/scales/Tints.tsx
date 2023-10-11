@@ -16,7 +16,7 @@ export function Tints() {
   const cssColor = cssColorValue(colorMode, color);
 
   const tooltip = (
-    <div className="huetility-tooltip-message">
+    <div id="tooltip-tints" className="huetility-tooltip-message">
       <p>Tints are created by mixing a color with white.</p>
       {!isWhite(color) && (
         <>
@@ -42,7 +42,16 @@ export function Tints() {
           message={tooltip}
           text={<h2 className="huetility-tooltip-text">Tints</h2>}
           trigger={
-            <p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>
+            <p
+              className="huetility-tooltip-trigger"
+              tabIndex={0}
+              role="tooltip"
+              aria-describedby="tooltip-tints"
+              aria-label="More info on tints"
+              style={{ position: "relative", top: "-.5rem" }}
+            >
+              &#9432;
+            </p>
           }
         />
 
@@ -84,7 +93,18 @@ export function Tints() {
         classes="huetility-component-title"
         message={tooltip}
         text={<h2 className="huetility-tooltip-text">Tints</h2>}
-        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+        trigger={
+          <p
+            className="huetility-tooltip-trigger"
+            tabIndex={0}
+            role="tooltip"
+            aria-describedby="tooltip-tints"
+            aria-label="More info on tints"
+            style={{ position: "relative", top: "-.5rem" }}
+          >
+            &#9432;
+          </p>
+        }
       />
 
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
