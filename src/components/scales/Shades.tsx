@@ -17,7 +17,7 @@ export function Shades() {
   const cssColor = cssColorValue(colorMode, color);
 
   const tooltip = (
-    <div className="huetility-tooltip-content-left-align">
+    <div className="huetility-tooltip-message">
       <p>Shades are created by mixing a color with black.</p>
       {!isBlack(color) && (
         <>
@@ -38,10 +38,14 @@ export function Shades() {
   if (isBlack(color)) {
     return (
       <div className="huetility-shades">
-        <Tooltip message={tooltip}>
-          <h2 className="huetility-tooltip-title">Shades </h2>
-          <p className="huetility-tooltip-icon">&#9432;</p>
-        </Tooltip>
+        <Tooltip
+          classes="huetility-component-title"
+          message={tooltip}
+          text={<h2 className="huetility-tooltip-text">Shades</h2>}
+          trigger={
+            <p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>
+          }
+        />
 
         <div className="huetility-scale-buttons-container huetility-bordered">
           <button
@@ -77,10 +81,12 @@ export function Shades() {
 
   return (
     <div className="huetility-shades">
-      <Tooltip message={tooltip}>
-        <h2 className="huetility-tooltip-title">Shades </h2>
-        <p className="huetility-tooltip-icon">&#9432;</p>
-      </Tooltip>
+      <Tooltip
+        classes="huetility-component-title"
+        message={tooltip}
+        text={<h2 className="huetility-tooltip-text">Shades</h2>}
+        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+      />
 
       <label htmlFor="shadeCount">Number of Shades: {shadeCount}</label>
       <input

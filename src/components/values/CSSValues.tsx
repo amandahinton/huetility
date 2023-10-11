@@ -14,18 +14,22 @@ export function CSSValues() {
   const { color } = useColor();
 
   const tooltip = (
-    <p className="huetility-tooltip-content-left-align">
-      Click any of the values to copy to the clipboard for use in CSS
-      declarations.
-    </p>
+    <div className="huetility-tooltip-message">
+      <p>
+        Click any of the values to copy to the clipboard for use in CSS
+        declarations.
+      </p>
+    </div>
   );
 
   return (
     <div className="huetility-css-values">
-      <Tooltip message={tooltip}>
-        <h2 className="huetility-tooltip-title">CSS Values </h2>
-        <p className="huetility-tooltip-icon">&#9432;</p>
-      </Tooltip>
+      <Tooltip
+        classes="huetility-component-title"
+        message={tooltip}
+        text={<h2 className="huetility-tooltip-text">CSS Values</h2>}
+        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+      />
 
       <div className="huetility-css-rules-container">
         {Object.keys(CSSMode).map((mode) => {

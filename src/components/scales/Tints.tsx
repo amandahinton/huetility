@@ -16,7 +16,7 @@ export function Tints() {
   const cssColor = cssColorValue(colorMode, color);
 
   const tooltip = (
-    <div className="huetility-tooltip-content-left-align">
+    <div className="huetility-tooltip-message">
       <p>Tints are created by mixing a color with white.</p>
       {!isWhite(color) && (
         <>
@@ -37,10 +37,14 @@ export function Tints() {
   if (isWhite(color)) {
     return (
       <div className="huetility-tints">
-        <Tooltip message={tooltip}>
-          <h2 className="huetility-tooltip-title">Tints </h2>
-          <p className="huetility-tooltip-icon">&#9432;</p>
-        </Tooltip>
+        <Tooltip
+          classes="huetility-component-title"
+          message={tooltip}
+          text={<h2 className="huetility-tooltip-text">Tints</h2>}
+          trigger={
+            <p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>
+          }
+        />
 
         <div className="huetility-scale-buttons-container huetility-bordered">
           <button
@@ -76,10 +80,12 @@ export function Tints() {
 
   return (
     <div className="huetility-tints">
-      <Tooltip message={tooltip}>
-        <h2 className="huetility-tooltip-title">Tints </h2>
-        <p className="huetility-tooltip-icon">&#9432;</p>
-      </Tooltip>
+      <Tooltip
+        classes="huetility-component-title"
+        message={tooltip}
+        text={<h2 className="huetility-tooltip-text">Tints</h2>}
+        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+      />
 
       <label htmlFor="tintCount">Number of Tints: {tintCount}</label>
       <input

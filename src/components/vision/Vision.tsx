@@ -1,19 +1,27 @@
 import { Swatch, Tooltip } from "components/index";
 import { useColor } from "contexts/ColorContext";
 import { PerceivedColor } from "types/types";
-import { blendForegroundToBackground, contrast, isOpaque, perceivedColors } from "utils/helpers";
+import {
+  blendForegroundToBackground,
+  contrast,
+  isOpaque,
+  perceivedColors,
+} from "utils/helpers";
 import { BLACK_CODES, WHITE_CODES } from "utils/constants";
 import "components/vision/Vision.css";
 
 export function Vision() {
   const { color } = useColor();
 
-  const flattenedColor = isOpaque(color) ? color : blendForegroundToBackground(color, WHITE_CODES)
+  const flattenedColor = isOpaque(color)
+    ? color
+    : blendForegroundToBackground(color, WHITE_CODES);
 
-  const visionDeficiencyColors: PerceivedColor[] = perceivedColors(flattenedColor);
+  const visionDeficiencyColors: PerceivedColor[] =
+    perceivedColors(flattenedColor);
 
   const tooltip = (
-    <div className="huetility-tooltip-content-left-align">
+    <div className="huetility-tooltip-message">
       <p>
         Simulations for how users with vision deficiencies might perceive the
         selected color. Hover over the deficiency's name to see how prevelant it
@@ -28,10 +36,12 @@ export function Vision() {
 
   return (
     <div className="huetility-vision">
-      <Tooltip message={tooltip}>
-        <h2 className="huetility-tooltip-title">Vision Deficiencies </h2>
-        <p className="huetility-tooltip-icon">&#9432;</p>
-      </Tooltip>
+      <Tooltip
+        classes="huetility-component-title"
+        message={tooltip}
+        text={<h2 className="huetility-tooltip-text">Vision Deficiencies</h2>}
+        trigger={<p style={{ position: "relative", top: "-.5rem" }}>&#9432;</p>}
+      />
 
       <div className="huetility-vision-swatches-container">
         {visionDeficiencyColors.map((viz) => (
@@ -61,16 +71,17 @@ export function Vision() {
 
             <Tooltip
               message={
-                <div className="huetility-tooltip-content-left-align">
+                <div className="huetility-tooltip-message">
                   <p>{viz.description}</p>
                   <p>{viz.prevalence}</p>
                 </div>
               }
-            >
-              <p className="huetility-vision-category">
-                {viz.name.charAt(0).toUpperCase() + viz.name.slice(1)}
-              </p>
-            </Tooltip>
+              trigger={
+                <p className="huetility-vision-category">
+                  {viz.name.charAt(0).toUpperCase() + viz.name.slice(1)}
+                </p>
+              }
+            />
           </div>
         ))}
       </div>
