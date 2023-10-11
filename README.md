@@ -14,6 +14,7 @@ View the app at [amandahinton.github.io/huetility/](https://amandahinton.github.
 - TypeScript
 - Vite
 - React
+- CSS
 - React Testing Library
 - Vitest
 
