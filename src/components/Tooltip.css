@@ -1,73 +1,33 @@
-.huetility-tooltip-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.huetility-tooltip-title,
-.huetility-tooltip-icon {
-  display: inline;
-}
-
-.huetility-tooltip-icon {
-  position: relative;
-  top: -0.5rem;
-}
-
-.huetility-tooltip-hover {
-  position: relative;
+.huetility-tooltip-text, .huetility-tooltip-hover {
   display: inline-block;
 }
 
-.huetility-tooltip-hover .huetility-tooltip-message {
-  /* display: none; */
+.huetility-tooltip-text {
+  margin-right: 1rem;
+}
+
+.huetility-tooltip-message {
   visibility: hidden;
   position: absolute;
   width: 400px;
+  margin-left: -200px;
+  margin-top: .75rem;
+  padding: 2rem;
   background-color: #000;
   border: 3px solid #fff;
   color: #fff;
-  text-align: center;
-  padding: 2rem;
-  margin: 1rem;
-  top: 75%;
   left: 50%;
-  margin-left: -200px;
   z-index: 1;
 }
 
 .huetility-tooltip-hover:hover .huetility-tooltip-message {
-  /* display: block; */
+  display: block;
   visibility: visible;
 }
 
-.huetility-tooltip-hover .huetility-tooltip-message::before {
-  content: " ";
-  position: absolute;
-  bottom: calc(100% - 10px);
-  left: calc(50% - 10px);
-  transform: rotate(45deg);
-  background-color: #000;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #fff transparent transparent #fff;
-  padding: 8px;
-  z-index: 1;
-}
-
-.huetility-tooltip-content-left-align {
-  text-align: left;
-}
-
 @media (max-width: 440px) {
-  .huetility-tooltip-hover .huetility-tooltip-message {
+  .huetility-tooltip-message {
     width: 300px;
     margin-left: -150px;
-  }
-
-  .huetility-tooltip-icon {
-    display: none;
   }
 }

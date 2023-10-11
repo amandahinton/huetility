@@ -1,16 +1,19 @@
 import "components/Tooltip.css";
 
 type Props = {
-  children?: React.ReactNode;
+  classes?: string;
   message: React.ReactNode;
+  text?: React.ReactNode;
+  trigger: React.ReactNode;
 };
 
-export function Tooltip({ children, message }: Props) {
+export function Tooltip({ classes = "", message, text, trigger }: Props) {
   return (
-    <div className="huetility-tooltip-container">
+    <div className={`huetility-tooltip ${classes}`}>
+      {text && text}
       <div className="huetility-tooltip-hover">
-        <span>{children}</span>
-        <span className="huetility-tooltip-message">{message}</span>
+        {trigger}
+        {message}
       </div>
     </div>
   );
