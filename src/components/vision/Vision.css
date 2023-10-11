@@ -1,6 +1,8 @@
 .huetility-vision {
  display: flex;
  flex-direction: column;
+ justify-content: center;
+ align-items: center;
 }
 
 .huetility-vision-swatches-container {
